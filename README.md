@@ -82,13 +82,19 @@ Douze graphiques SVG construits à la main, sans bibliothèque.
 
 ## Technique
 
-Trois fichiers, aucune dépendance, aucune requête externe.
+Site statique. Aucune dépendance à l'exécution, aucune requête externe,
+aucune étape de compilation.
 
 ```
 index.html              le document
+404.html                page d'erreur, dans le même style
 assets/css/report.css   papier, crayon, « en clair », navigation, impression
 assets/js/report.js     données, graphiques, glossaire, navigation, révélation
+og.png                  image de partage 1200×630
+vercel.json             en-têtes, cache, URLs propres
 build.js                assemble le tout en un fichier unique dans dist/
+tools/og.js             régénère og.png
+test/smoke.js           test de fumée (3 tailles d'écran + 404 + og)
 ```
 
 - Responsive de 320 px à grand écran : les graphiques sont redessinés à la
@@ -99,15 +105,64 @@ build.js                assemble le tout en un fichier unique dans dist/
 - Le document assume un rendu unique — du papier. Pas de mode sombre : la
   métaphore est une feuille de listing.
 
+## Déployer sur Vercel
+
+La branche de production est `main`. Tout est déjà configuré : il n'y a ni
+commande de compilation, ni variable d'environnement, ni réglage à saisir.
+
+1. Sur [vercel.com/new](https://vercel.com/new), importer le dépôt
+   `cryptocomiks/WAREN`.
+2. Laisser tous les champs tels quels — Vercel lit `vercel.json` et sert la
+   racine. Le préréglage de framework doit rester **Other**.
+3. Cliquer sur **Deploy**.
+
+Chaque `git push` sur `main` redéploie la production. Chaque pull request reçoit
+sa propre URL de prévisualisation.
+
+Ce que `vercel.json` met en place :
+
+- **URLs propres** — `/` au lieu de `/index.html`.
+- **Cache** — le HTML est toujours revalidé, donc un nouveau déploiement est
+  visible tout de suite ; les assets sont mis en cache une heure puis revalidés
+  en tâche de fond. Pas de cache immuable : les fichiers gardent le même nom
+  d'un déploiement à l'autre, un visiteur de retour resterait bloqué sur
+  l'ancienne version.
+- **En-têtes de sécurité** — `nosniff`, `Referrer-Policy`, `X-Frame-Options`,
+  `Permissions-Policy`.
+- **Installation neutralisée** — `installCommand` est un simple `echo`, pour que
+  Vercel ne télécharge pas Playwright (utile en développement seulement) à
+  chaque déploiement.
+- **`.vercelignore`** écarte du déploiement les tests, les outils et `dist/`.
+
+### Avec un domaine personnalisé
+
+Une seule chose mérite d'être ajustée : l'image de partage est référencée en
+chemin relatif (`/og.png`), ce que les principaux robots d'aperçu résolvent
+correctement. Pour être certain du rendu sur tous les réseaux, remplacer dans
+`index.html` les deux lignes `og:image` et `twitter:image` par l'URL absolue :
+
+```html
+<meta property="og:image" content="https://mondomaine.fr/og.png">
+<meta name="twitter:image" content="https://mondomaine.fr/og.png">
+```
+
 ## Lancer en local
 
 ```sh
-npx http-server -p 8099 .
-# puis http://127.0.0.1:8099/
+npm run dev     # http://127.0.0.1:8099/
+npm test        # test de fumée sur 3 tailles d'écran
+npm run bundle  # régénère dist/
+npm run og      # régénère l'image de partage
 ```
 
-Aucune étape de compilation : le dépôt peut être servi tel quel par GitHub Pages
-ou n'importe quel hébergement statique.
+Le dépôt peut aussi être servi tel quel par GitHub Pages, Netlify, Cloudflare
+Pages ou n'importe quel hébergement statique.
+
+## Intégration continue
+
+`.github/workflows/ci.yml` s'exécute sur chaque push et chaque pull request vers
+`main` : syntaxe JavaScript, validité de `vercel.json`, test de fumée sur trois
+tailles d'écran, et vérification que `dist/` est bien à jour.
 
 ## Avertissement
 

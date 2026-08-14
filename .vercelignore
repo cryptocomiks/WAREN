@@ -1,0 +1,8 @@
+# Rien de tout cela n'a besoin d'être déployé : le site est servi depuis
+# index.html, assets/, og.png, 404.html et robots.txt.
+.github/
+test/
+tools/
+dist/
+build.js
+README.md

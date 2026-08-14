@@ -1,0 +1,17 @@
+{
+  "name": "dossier-berkshire-t2-2026",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dossier d'analyse Berkshire Hathaway T2 2026 — site statique, sans dépendance ni étape de compilation.",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "npx --yes http-server -p 8099 -c-1 .",
+    "check": "node --check assets/js/report.js && node --check build.js",
+    "bundle": "node build.js",
+    "og": "node tools/og.js",
+    "test": "node test/smoke.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.1"
+  }
+}

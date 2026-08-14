@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Le dossier tient en une seule page ; pas de plan de site nécessaire.
