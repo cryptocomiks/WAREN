@@ -1,10 +1,10 @@
 name: CI
 
+# Déclenché sur toutes les branches, sans dépendre de laquelle est la branche
+# par défaut du dépôt.
 on:
   push:
-    branches: [main]
   pull_request:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
