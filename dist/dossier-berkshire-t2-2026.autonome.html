@@ -1,0 +1,2753 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<title>Dossier Berkshire T2 2026</title>
+<style>
+/* =========================================================================
+   BERKSHIRE HATHAWAY — DOSSIER T2 2026
+   Feuille de style : papier comptable à bandes vertes + crayon rouge d'auditeur
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. JETONS
+   Le document assume un seul rendu : du papier. `color-scheme: light` est
+   déclaré pour que les contrôles de formulaire ne s'inversent pas en dark OS.
+   ------------------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --desk:          #cfc9b0;   /* sous-main */
+  --desk-deep:     #b9b299;
+  --paper:         #f4f0e1;   /* surface graphique de référence */
+  --paper-edge:    #e9e3cf;
+  --bar-green:     #d5e3ca;   /* bande verte du listing */
+  --bar-green-2:   #dfead6;
+  --rule:          #b7bda6;   /* filets imprimés */
+  --rule-soft:     #cdd2bd;
+
+  /* Encres */
+  --ink:           #1b1e14;
+  --ink-2:         #4b5040;
+  --ink-3:         #6f7561;
+  --ink-green:     #0d4a2c;   /* encre d'imprimerie du listing */
+
+  /* Crayon d'auditeur */
+  --pencil:        #c0271a;
+  --pencil-soft:   #d9614f;
+  --pencil-wash:   rgba(192, 39, 26, 0.09);
+
+  /* Séries catégorielles — validées sur surface #F4F0E1
+     (bande L 0.43–0.77, chroma ≥ 0.1, contraste ≥ 3:1, ΔE normal 19.6) */
+  --series-1:      #127a46;   /* vert grand-livre  — achats / positif */
+  --series-2:      #1a5fa8;   /* bleu encre        — tiers / référence */
+  --series-3:      #c0271a;   /* rouge auditeur    — ventes / négatif */
+  /* Statut réservé : jamais utilisé comme « série 4 », toujours avec icône + libellé */
+  --status-warn:   #8a6300;
+
+  /* Rampe séquentielle — une seule teinte, clair → foncé */
+  --seq-1:         #d3e5d6;
+  --seq-2:         #a9cdb2;
+  --seq-3:         #74ad8b;
+  --seq-4:         #3d8a63;
+  --seq-5:         #14603c;
+  --seq-6:         #0b3d27;
+
+  /* Typographie */
+  --serif:  "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+  --sans:   -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono:   ui-monospace, "SF Mono", SFMono-Regular, "DejaVu Sans Mono", "Roboto Mono", Menlo, Consolas, monospace;
+  --hand:   "Bradley Hand", "Segoe Print", "Chalkboard SE", "Comic Sans MS", "Brush Script MT", cursive;
+
+  /* Métrique */
+  --measure: 38rem;           /* longueur de ligne confortable */
+  --sheet-max: 70rem;
+  --gutter: clamp(1rem, 4vw, 3.25rem);
+}
+
+/* -------------------------------------------------------------------------
+   2. RÉINITIALISATION
+   ------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.02rem, 0.98rem + 0.22vw, 1.15rem);
+  line-height: 1.62;
+  color: var(--ink);
+  background-color: var(--desk);
+  background-image:
+    radial-gradient(circle at 18% 8%,  rgba(255,255,255,.35), transparent 55%),
+    radial-gradient(circle at 82% 92%, rgba(0,0,0,.10),      transparent 60%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+img, svg { max-width: 100%; }
+h1, h2, h3, h4 { line-height: 1.18; margin: 0; text-wrap: balance; }
+p { margin: 0 0 1.05em; }
+a { color: var(--ink-green); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { color: var(--pencil); }
+:focus-visible { outline: 3px solid var(--pencil); outline-offset: 3px; border-radius: 2px; }
+
+/* Grain papier — une seule couche fixe, peu coûteuse */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 999;
+  opacity: .30; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'>\
+<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/>\
+<feColorMatrix type='saturate' values='0'/></filter>\
+<rect width='180' height='180' filter='url(%23n)' opacity='.42'/></svg>");
+}
+
+/* -------------------------------------------------------------------------
+   3. RAIL DE PROGRESSION — trait de crayon rouge en haut de page
+   ------------------------------------------------------------------------- */
+.rail {
+  position: fixed; top: 0; left: 0; right: 0; height: 5px;
+  z-index: 60; background: rgba(27, 30, 20, .12);
+}
+.rail__ink {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--pencil) 0%, var(--pencil-soft) 100%);
+  box-shadow: 0 0 6px rgba(192, 39, 26, .55);
+  transition: width .12s linear;
+}
+
+/* -------------------------------------------------------------------------
+   4. NAVIGATION — onglets d'intercalaire
+   ------------------------------------------------------------------------- */
+.tabs {
+  position: sticky; top: 5px; z-index: 50;
+  background: rgba(244, 240, 225, .93);
+  backdrop-filter: blur(7px);
+  border-bottom: 1px solid var(--rule);
+  box-shadow: 0 2px 0 rgba(27,30,20,.07), 0 10px 20px -18px rgba(0,0,0,.7);
+}
+.tabs__inner {
+  max-width: var(--sheet-max); margin: 0 auto;
+  display: flex; gap: .1rem; align-items: stretch;
+  overflow-x: auto; scrollbar-width: none;
+  padding: 0 .5rem;
+}
+.tabs__inner::-webkit-scrollbar { display: none; }
+.tabs a {
+  flex: 0 0 auto;
+  font-family: var(--sans); font-size: .69rem; font-weight: 600;
+  letter-spacing: .09em; text-transform: uppercase; text-decoration: none;
+  color: var(--ink-2); padding: .68rem .72rem .6rem;
+  border-bottom: 3px solid transparent; white-space: nowrap;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.tabs a:hover { background: rgba(19,122,70,.08); color: var(--ink-green); }
+.tabs a[aria-current="true"] { color: var(--pencil); border-bottom-color: var(--pencil); }
+.tabs a .t-num { font-family: var(--mono); opacity: .55; margin-right: .3em; }
+
+/* -------------------------------------------------------------------------
+   5. COUVERTURE
+   ------------------------------------------------------------------------- */
+.cover {
+  position: relative;
+  max-width: var(--sheet-max);
+  margin: clamp(1rem, 3vw, 2.5rem) auto 0;
+  padding: clamp(2.2rem, 6vw, 4.5rem) var(--gutter) clamp(2.6rem, 6vw, 4rem);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  box-shadow: 0 22px 46px -26px rgba(0,0,0,.62), inset 0 0 0 6px rgba(255,255,255,.4);
+  overflow: hidden;
+}
+.cover::after {  /* liseré vert de couverture */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(
+    180deg, transparent 0 46px, rgba(19,122,70,.055) 46px 92px);
+}
+.cover > * { position: relative; z-index: 1; }
+
+.cover__meta {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--ink-3);
+  display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; margin-bottom: 2.2rem;
+  border-bottom: 1px solid var(--rule-soft); padding-bottom: .8rem;
+}
+.cover__kicker {
+  font-family: var(--sans); font-size: .72rem; font-weight: 700;
+  letter-spacing: .26em; text-transform: uppercase; color: var(--series-1);
+  margin-bottom: 1rem;
+}
+.cover h1 {
+  font-size: clamp(2.3rem, 1.2rem + 5.4vw, 4.7rem);
+  font-weight: 400; letter-spacing: -.022em; margin-bottom: .35rem;
+}
+.cover h1 em { font-style: normal; display: block; color: var(--ink-green); }
+.cover__sub {
+  font-size: clamp(1.12rem, 1rem + .8vw, 1.5rem); line-height: 1.42;
+  color: var(--ink-2); max-width: 34ch; margin: 1.3rem 0 0;
+  border-left: 3px solid var(--pencil); padding-left: 1rem;
+}
+/* Tampon : posé sur le coin en grand format, replié dans le flux en petit */
+.cover__stamp { display: block; margin-bottom: 1.6rem; }
+.cover__stamp .stamp { transform: rotate(-2.5deg); }
+@media (min-width: 900px) {
+  .cover__stamp {
+    position: absolute; top: clamp(1.4rem, 3vw, 2.6rem); right: var(--gutter);
+    margin: 0; z-index: 2;
+  }
+  .cover__stamp .stamp { transform: rotate(11deg); }
+  .cover__meta { padding-right: 13rem; }
+}
+.cover__scroll {
+  margin-top: 2.6rem; display: inline-flex; align-items: center; gap: .6rem;
+  font-family: var(--sans); font-size: .74rem; font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3);
+}
+.cover__scroll span:last-child { animation: bob 2.1s ease-in-out infinite; }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+/* Bandeau de repères sous le titre */
+.cover__facts {
+  margin-top: 2.6rem; display: grid; gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  background: var(--rule-soft); border: 1px solid var(--rule);
+}
+.cover__facts div { background: var(--paper); padding: .95rem 1rem; }
+.cover__facts dt {
+  font-family: var(--sans); font-size: .62rem; letter-spacing: .13em;
+  text-transform: uppercase; color: var(--ink-3); margin-bottom: .35rem;
+}
+.cover__facts dd {
+  margin: 0; font-family: var(--mono); font-size: 1.28rem;
+  font-weight: 600; color: var(--ink-green); font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------------------
+   6. FEUILLETS
+   ------------------------------------------------------------------------- */
+.sheet {
+  position: relative;
+  max-width: var(--sheet-max);
+  margin: clamp(1.4rem, 3.5vw, 2.6rem) auto;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  box-shadow: 0 20px 42px -28px rgba(0,0,0,.6);
+  padding: clamp(1.8rem, 4.5vw, 3.4rem) var(--gutter) clamp(2.4rem, 5vw, 3.6rem);
+  scroll-margin-top: 4.2rem;
+}
+/* Perforation latérale — décor, masqué sur petit écran */
+.sheet::before {
+  content: ""; position: absolute; left: 12px; top: 2.2rem; bottom: 2.2rem; width: 12px;
+  background-image: radial-gradient(circle at 6px 6px, var(--desk) 5px, transparent 5.6px);
+  background-size: 12px 58px; opacity: .8;
+}
+@media (max-width: 860px) { .sheet::before { display: none; } }
+
+.sheet__head {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: .75rem 1.1rem;
+  padding-bottom: .9rem; margin-bottom: 1.8rem;
+  border-bottom: 2px solid var(--ink-green);
+}
+.sheet__num {
+  font-family: var(--mono); font-size: .72rem; font-weight: 700;
+  letter-spacing: .1em; color: var(--paper); background: var(--ink-green);
+  padding: .28rem .55rem; border-radius: 2px;
+}
+.sheet__head h2 {
+  font-size: clamp(1.5rem, 1.1rem + 1.9vw, 2.5rem); font-weight: 400;
+  letter-spacing: -.015em; flex: 1 1 14rem;
+}
+.sheet__head .stamp { margin-left: auto; }
+
+.lede {
+  font-size: clamp(1.1rem, 1.02rem + .5vw, 1.35rem);
+  line-height: 1.5; color: var(--ink-2); max-width: 42ch; margin-bottom: 1.8rem;
+}
+.sheet h3 {
+  font-family: var(--sans); font-size: .82rem; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--ink-green);
+  margin: 2.6rem 0 .9rem; padding-bottom: .35rem;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.sheet h4 {
+  font-family: var(--sans); font-size: .78rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2);
+  margin: 1.9rem 0 .6rem;
+}
+.sheet p, .sheet li { max-width: var(--measure); }
+.sheet ul, .sheet ol { padding-left: 1.15rem; margin: 0 0 1.15em; }
+.sheet li { margin-bottom: .55em; }
+.sheet li::marker { color: var(--series-1); }
+
+strong { font-weight: 700; color: var(--ink); }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 600; }
+.up   { color: var(--series-1); }
+.down { color: var(--series-3); }
+
+/* Grille prose + marge d'annotations (desktop) */
+.with-margin { display: grid; gap: 1.4rem; align-items: start; }
+@media (min-width: 1050px) {
+  .with-margin { grid-template-columns: minmax(0, 1fr) 14rem; gap: 2.4rem; }
+}
+
+/* -------------------------------------------------------------------------
+   7. CRAYON ROUGE
+   ------------------------------------------------------------------------- */
+.pencil {
+  font-family: var(--hand); color: var(--pencil);
+  font-size: 1.05em; line-height: 1.35;
+}
+.note {
+  font-family: var(--hand); color: var(--pencil);
+  font-size: clamp(.98rem, .94rem + .2vw, 1.1rem); line-height: 1.4;
+  transform: rotate(-1.1deg);
+  border-left: 2px solid var(--pencil);
+  padding: .35rem 0 .35rem .75rem;
+  margin: 1.4rem 0;
+  max-width: 30ch;
+}
+.note::before {
+  content: "✎ "; font-family: var(--sans); font-size: .85em; opacity: .8;
+}
+.note--right { margin-left: auto; }
+@media (min-width: 1050px) {
+  .note--margin {
+    margin: .2rem 0 1.2rem; transform: rotate(-1.6deg);
+    background: var(--pencil-wash); padding: .7rem .8rem .7rem .85rem;
+  }
+}
+
+/* Mot souligné au crayon */
+.mark {
+  background-image: linear-gradient(transparent 62%, rgba(192,39,26,.28) 62%);
+  padding-bottom: .05em;
+}
+/* Cerclage d'un chiffre */
+.circle {
+  position: relative; display: inline-block; padding: .1em .42em; z-index: 0;
+  color: var(--pencil); font-weight: 700;
+}
+.circle::after {
+  content: ""; position: absolute; inset: -.24em -.18em -.28em -.18em; z-index: -1;
+  border: 2px solid var(--pencil); border-radius: 48% 52% 46% 54% / 56% 44% 58% 42%;
+  transform: rotate(-2.5deg); opacity: .85;
+  filter: url(#wobble);
+}
+/* Rature */
+.strike { position: relative; color: var(--ink-3); }
+.strike::after {
+  content: ""; position: absolute; left: -2px; right: -2px; top: 52%; height: 2px;
+  background: var(--pencil); transform: rotate(-1.2deg); filter: url(#wobble);
+}
+
+/* Tampons */
+.stamp {
+  display: inline-block; font-family: var(--sans); font-size: .64rem; font-weight: 800;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--pencil);
+  border: 2px solid var(--pencil); padding: .35rem .7rem;
+  box-shadow: inset 0 0 0 1px var(--paper), 0 0 0 1px rgba(192,39,26,.35);
+  transform: rotate(-3deg); opacity: .92; white-space: nowrap;
+  background: rgba(244,240,225,.5);
+}
+.stamp--ok   { color: var(--series-1); border-color: var(--series-1);
+               box-shadow: inset 0 0 0 1px var(--paper), 0 0 0 1px rgba(19,122,70,.3); }
+.stamp--warn { color: var(--status-warn); border-color: var(--status-warn);
+               box-shadow: inset 0 0 0 1px var(--paper), 0 0 0 1px rgba(138,99,0,.3); }
+.stamp--big { font-size: clamp(.75rem, .6rem + .7vw, 1.1rem); padding: .6rem 1.1rem; border-width: 3px; }
+
+/* -------------------------------------------------------------------------
+   8. ENCADRÉS
+   ------------------------------------------------------------------------- */
+.box {
+  border: 1px solid var(--rule); border-left: 4px solid var(--series-1);
+  background: rgba(255,255,255,.5);
+  padding: 1.15rem 1.3rem; margin: 1.7rem 0; max-width: 46rem;
+}
+.box__label {
+  font-family: var(--sans); font-size: .64rem; font-weight: 800;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--series-1);
+  margin-bottom: .55rem; display: flex; align-items: center; gap: .45rem;
+}
+.box p:last-child, .box ul:last-child, .box ol:last-child { margin-bottom: 0; }
+.box--warn { border-left-color: var(--status-warn); background: rgba(138,99,0,.055); }
+.box--warn .box__label { color: var(--status-warn); }
+.box--pencil { border-left-color: var(--pencil); background: var(--pencil-wash); }
+.box--pencil .box__label { color: var(--pencil); }
+.box--quote {
+  border: none; border-left: 4px double var(--ink-green);
+  background: transparent; font-style: italic; color: var(--ink-2);
+}
+.box--quote cite {
+  display: block; font-style: normal; font-family: var(--sans);
+  font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-3); margin-top: .7rem;
+}
+
+/* Cartouche de chiffre-clé */
+.kpis {
+  display: grid; gap: 1px; background: var(--rule-soft);
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  border: 1px solid var(--rule); margin: 1.8rem 0;
+}
+.kpi { background: var(--paper); padding: 1.1rem 1.15rem; }
+.kpi__label {
+  font-family: var(--sans); font-size: .62rem; font-weight: 600;
+  letter-spacing: .13em; text-transform: uppercase; color: var(--ink-3);
+  margin-bottom: .45rem;
+}
+.kpi__value {
+  font-family: var(--mono); font-size: clamp(1.5rem, 1.2rem + 1.3vw, 2.15rem);
+  font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums;
+  color: var(--ink-green); line-height: 1.05;
+}
+.kpi__value.is-neg { color: var(--series-3); }
+.kpi__note { font-size: .84rem; color: var(--ink-2); margin-top: .4rem; line-height: 1.4; }
+
+/* -------------------------------------------------------------------------
+   9. TABLEAUX — vraies bandes vertes (2 lignes vertes / 2 lignes crème)
+   ------------------------------------------------------------------------- */
+.tablewrap {
+  margin: 1.7rem 0; border: 1px solid var(--rule);
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  background: var(--paper);
+  box-shadow: inset -14px 0 12px -14px rgba(0,0,0,.22);
+}
+table.ledger {
+  width: 100%; border-collapse: collapse;
+  font-family: var(--mono); font-size: .84rem; font-variant-numeric: tabular-nums;
+  min-width: 30rem;
+}
+table.ledger caption {
+  caption-side: top; text-align: left; padding: .8rem 1rem .7rem;
+  font-family: var(--sans); font-size: .68rem; font-weight: 800;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--ink-green);
+  background: rgba(19,122,70,.07); border-bottom: 1px solid var(--rule);
+}
+table.ledger th, table.ledger td {
+  padding: .48rem .8rem; text-align: right; white-space: nowrap;
+  border-right: 1px solid rgba(183,189,166,.5);
+}
+table.ledger th:first-child, table.ledger td:first-child {
+  text-align: left; font-family: var(--serif); font-size: .96rem; white-space: normal;
+  min-width: 9rem;
+}
+table.ledger thead th {
+  font-family: var(--sans); font-size: .63rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-green);
+  background: var(--paper); border-bottom: 2px solid var(--ink-green);
+  position: sticky; top: 0; z-index: 1;
+}
+table.ledger tbody tr:nth-child(4n+1),
+table.ledger tbody tr:nth-child(4n+2) { background: var(--bar-green); }
+table.ledger tbody tr:nth-child(4n+3),
+table.ledger tbody tr:nth-child(4n+0) { background: transparent; }
+table.ledger tbody tr:hover { background: rgba(192,39,26,.10); }
+table.ledger tfoot td, table.ledger tr.is-total td {
+  border-top: 2px solid var(--ink-green); font-weight: 700;
+  background: rgba(19,122,70,.10);
+}
+/* Variante « prose » : colonnes de texte, alignées à gauche et sécables */
+table.ledger--text td { text-align: left; white-space: normal; min-width: 11rem; }
+table.ledger--text thead th:not(:first-child) { text-align: left; }
+table.ledger td.pos { color: var(--series-1); font-weight: 700; }
+table.ledger td.neg { color: var(--series-3); font-weight: 700; }
+table.ledger td.flag { color: var(--pencil); font-weight: 700; }
+.tablewrap__hint {
+  font-family: var(--sans); font-size: .66rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-3); margin: -1.2rem 0 1.7rem;
+}
+@media (min-width: 700px) { .tablewrap__hint { display: none; } }
+
+/* -------------------------------------------------------------------------
+   10. FIGURES / GRAPHIQUES
+   ------------------------------------------------------------------------- */
+.fig {
+  margin: 2rem 0; padding: 1.2rem 1.2rem 1rem;
+  border: 1px solid var(--rule); background: rgba(255,255,255,.42);
+  max-width: 52rem;
+}
+.fig__title {
+  font-family: var(--sans); font-size: .78rem; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink); margin-bottom: .25rem;
+}
+.fig__sub { font-size: .88rem; color: var(--ink-2); margin-bottom: .9rem; max-width: 46ch; }
+.fig figcaption {
+  font-family: var(--sans); font-size: .72rem; color: var(--ink-3);
+  line-height: 1.5; margin-top: .85rem; padding-top: .6rem;
+  border-top: 1px solid var(--rule-soft);
+}
+.fig svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+.legend { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; margin-bottom: .8rem; }
+.legend__item {
+  display: inline-flex; align-items: center; gap: .42rem;
+  font-family: var(--sans); font-size: .72rem; color: var(--ink-2);
+}
+.legend__swatch {
+  width: 13px; height: 13px; border-radius: 3px; flex: 0 0 auto;
+  box-shadow: 0 0 0 1px rgba(27,30,20,.18);
+}
+
+/* Table de repli sous chaque figure */
+.fig__data > summary {
+  font-family: var(--sans); font-size: .68rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-green);
+  cursor: pointer; margin-top: .7rem; list-style: none;
+}
+.fig__data > summary::before { content: "▸ "; }
+.fig__data[open] > summary::before { content: "▾ "; }
+.fig__data .tablewrap { margin: .7rem 0 0; }
+
+/* Infobulle graphique */
+.tip {
+  position: fixed; z-index: 80; pointer-events: none; opacity: 0;
+  background: var(--ink); color: #f6f3e6;
+  font-family: var(--sans); font-size: .74rem; line-height: 1.45;
+  padding: .5rem .65rem; border-radius: 3px; max-width: 15rem;
+  box-shadow: 0 8px 22px -8px rgba(0,0,0,.7);
+  transition: opacity .1s;
+}
+.tip.is-on { opacity: 1; }
+.tip b { font-family: var(--mono); font-weight: 700; }
+.tip .tip__k { color: #b9c9ae; display: block; font-size: .66rem;
+               letter-spacing: .08em; text-transform: uppercase; }
+
+/* -------------------------------------------------------------------------
+   11. COMMANDES LUDIQUES
+   ------------------------------------------------------------------------- */
+.btn {
+  font-family: var(--sans); font-size: .74rem; font-weight: 700;
+  letter-spacing: .11em; text-transform: uppercase;
+  background: var(--paper); color: var(--ink-green);
+  border: 2px solid var(--ink-green); border-radius: 2px;
+  padding: .58rem 1rem; cursor: pointer;
+  transition: background .15s, color .15s, transform .1s;
+}
+.btn:hover { background: var(--ink-green); color: var(--paper); }
+.btn:active { transform: translateY(1px); }
+.btn--pencil { color: var(--pencil); border-color: var(--pencil); }
+.btn--pencil:hover { background: var(--pencil); color: var(--paper); }
+
+.switch { display: inline-flex; border: 2px solid var(--ink-green); border-radius: 2px; overflow: hidden; margin-bottom: 1rem; }
+.switch button {
+  font-family: var(--sans); font-size: .7rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  background: transparent; color: var(--ink-green); border: 0;
+  padding: .5rem .85rem; cursor: pointer; transition: background .15s, color .15s;
+}
+.switch button + button { border-left: 1px solid var(--rule); }
+.switch button[aria-pressed="true"] { background: var(--ink-green); color: var(--paper); }
+
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+.chips button {
+  font-family: var(--sans); font-size: .68rem; font-weight: 600;
+  letter-spacing: .07em; background: transparent; color: var(--ink-2);
+  border: 1px solid var(--rule); border-radius: 999px;
+  padding: .32rem .8rem; cursor: pointer; transition: all .15s;
+}
+.chips button:hover { border-color: var(--ink-green); color: var(--ink-green); }
+.chips button[aria-pressed="true"] {
+  background: var(--ink-green); border-color: var(--ink-green); color: var(--paper);
+}
+
+/* Bloc « voir la note de bas de page » */
+.reveal-block { border: 2px dashed var(--rule); padding: 1.2rem; margin: 1.8rem 0; max-width: 46rem; }
+.reveal-block__body { display: none; margin-top: 1.2rem; }
+.reveal-block.is-open { border-style: solid; border-color: var(--pencil); }
+.reveal-block.is-open .reveal-block__body { display: block; animation: unfold .5s ease both; }
+@keyframes unfold { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+/* Cartes « pièges » retournables */
+.traps { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15.5rem, 1fr)); margin: 1.8rem 0; }
+.trap {
+  border: 1px solid var(--rule); background: var(--paper);
+  padding: 1.1rem 1.15rem; text-align: left; cursor: pointer;
+  font: inherit; color: inherit; position: relative;
+  transition: box-shadow .18s, transform .18s, border-color .18s;
+}
+.trap:hover { box-shadow: 0 10px 24px -16px rgba(0,0,0,.6); transform: translateY(-2px); }
+.trap__tag {
+  font-family: var(--sans); font-size: .6rem; font-weight: 800; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--ink-3); margin-bottom: .5rem;
+}
+.trap__claim { font-size: 1.02rem; line-height: 1.4; margin-bottom: .8rem; }
+.trap__hint {
+  font-family: var(--sans); font-size: .66rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--pencil);
+}
+.trap__truth { display: none; margin-top: .5rem; font-size: .93rem; line-height: 1.5; color: var(--ink-2); }
+.trap.is-open { border-color: var(--pencil); background: var(--pencil-wash); }
+.trap.is-open .trap__claim { text-decoration: line-through; text-decoration-color: var(--pencil);
+                             text-decoration-thickness: 2px; color: var(--ink-3); }
+.trap.is-open .trap__hint { display: none; }
+.trap.is-open .trap__truth { display: block; animation: unfold .4s ease both; }
+.trap__verdict {
+  font-family: var(--hand); color: var(--pencil); font-size: 1.15rem;
+  display: block; margin-bottom: .35rem;
+}
+
+/* Termes de glossaire */
+.gl {
+  border-bottom: 1px dotted var(--pencil); cursor: help;
+  background: none; border-left: 0; border-right: 0; border-top: 0;
+  font: inherit; color: inherit; padding: 0;
+}
+.gl::after { content: "?"; font-family: var(--sans); font-size: .58em; vertical-align: super;
+             color: var(--pencil); font-weight: 800; margin-left: .12em; }
+.gl-pop {
+  position: fixed; z-index: 90; max-width: 20rem;
+  background: var(--paper); border: 2px solid var(--pencil);
+  padding: .75rem .85rem; box-shadow: 0 14px 30px -12px rgba(0,0,0,.55);
+  font-size: .88rem; line-height: 1.5; display: none;
+}
+.gl-pop.is-on { display: block; animation: unfold .18s ease both; }
+.gl-pop b { display: block; font-family: var(--sans); font-size: .66rem; letter-spacing: .14em;
+            text-transform: uppercase; color: var(--pencil); margin-bottom: .35rem; }
+
+/* Liste de dépouillement */
+.checklist { list-style: none; padding: 0; counter-reset: ck; }
+.checklist li {
+  position: relative; padding: 1rem 0 1rem 3.1rem;
+  border-bottom: 1px solid var(--rule-soft); max-width: 46rem; cursor: pointer;
+}
+.checklist li::before {
+  counter-increment: ck; content: counter(ck);
+  position: absolute; left: 0; top: .95rem;
+  width: 2.1rem; height: 2.1rem; display: grid; place-items: center;
+  border: 2px solid var(--ink-green); color: var(--ink-green);
+  font-family: var(--mono); font-size: .85rem; font-weight: 700;
+  transition: all .18s;
+}
+.checklist li.is-done::before {
+  content: "✓"; background: var(--pencil); border-color: var(--pencil); color: var(--paper);
+  transform: rotate(-6deg);
+}
+.checklist li.is-done { opacity: .58; }
+.checklist li.is-done .ck-title { text-decoration: line-through; text-decoration-color: var(--pencil); }
+.ck-title { font-weight: 700; display: block; margin-bottom: .3rem; }
+.ck-body { font-size: .93rem; color: var(--ink-2); line-height: 1.55; }
+
+/* Barème de confiance */
+.conf { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); margin: 1.6rem 0; }
+.conf__col { border-top: 4px solid var(--rule); padding-top: .9rem; }
+.conf__col h4 { margin-top: 0; }
+.conf__col--solid  { border-top-color: var(--series-1); }
+.conf__col--ok     { border-top-color: var(--series-2); }
+.conf__col--doubt  { border-top-color: var(--status-warn); }
+.conf__col ul { font-size: .92rem; }
+
+/* -------------------------------------------------------------------------
+   12. QUIZ
+   ------------------------------------------------------------------------- */
+.quiz { max-width: 46rem; }
+.quiz__meta {
+  display: flex; flex-wrap: wrap; gap: .8rem 1.6rem; align-items: center;
+  font-family: var(--sans); font-size: .7rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  padding: .7rem 0; margin-bottom: 1.6rem;
+}
+.quiz__meta .score { color: var(--pencil); font-family: var(--mono); font-size: .95rem; }
+.qbar { flex: 1 1 8rem; height: 6px; background: rgba(27,30,20,.12); min-width: 6rem; }
+.qbar__fill { height: 100%; width: 0; background: var(--pencil); transition: width .35s ease; }
+
+.q { border: 1px solid var(--rule); background: var(--paper); margin-bottom: 1.1rem; }
+.q__head {
+  display: flex; gap: .8rem; align-items: baseline;
+  padding: 1rem 1.15rem .35rem;
+}
+.q__n {
+  font-family: var(--mono); font-size: .72rem; font-weight: 700; color: var(--paper);
+  background: var(--ink-green); padding: .18rem .45rem; flex: 0 0 auto;
+}
+.q__text { font-size: 1.04rem; line-height: 1.45; }
+.q__opts { list-style: none; margin: 0; padding: .6rem .9rem 1rem; display: grid; gap: .45rem; }
+.q__opts li { margin: 0; max-width: none; }
+.opt {
+  width: 100%; text-align: left; font: inherit; font-size: .95rem;
+  background: rgba(255,255,255,.5); border: 1px solid var(--rule);
+  padding: .68rem .85rem; cursor: pointer; display: flex; gap: .7rem; align-items: flex-start;
+  transition: border-color .15s, background .15s;
+  color: var(--ink);
+}
+.opt:hover:not(:disabled) { border-color: var(--ink-green); background: rgba(19,122,70,.07); }
+.opt:disabled { cursor: default; }
+.opt__k {
+  font-family: var(--mono); font-size: .8rem; font-weight: 700; color: var(--ink-3);
+  flex: 0 0 auto; width: 1.2rem;
+}
+.opt.is-right { border-color: var(--series-1); background: rgba(19,122,70,.14); }
+.opt.is-right .opt__k { color: var(--series-1); }
+.opt.is-right::after { content: "✓"; margin-left: auto; color: var(--series-1); font-weight: 800; }
+.opt.is-wrong { border-color: var(--pencil); background: var(--pencil-wash); }
+.opt.is-wrong .opt__k { color: var(--pencil); }
+.opt.is-wrong::after { content: "✗"; margin-left: auto; color: var(--pencil); font-weight: 800; }
+
+.q__fb { display: none; padding: 0 1.15rem 1.15rem; }
+.q.is-answered .q__fb { display: block; animation: unfold .35s ease both; }
+.q__fb-in {
+  border-left: 3px solid var(--pencil); background: var(--pencil-wash);
+  padding: .75rem .9rem; font-size: .93rem; line-height: 1.55;
+}
+.q__fb-in .verdict {
+  font-family: var(--hand); font-size: 1.1rem; color: var(--pencil);
+  display: block; margin-bottom: .3rem;
+}
+.q__fb-in .verdict.ok { color: var(--series-1); }
+.q__ref { font-family: var(--sans); font-size: .66rem; letter-spacing: .1em;
+          text-transform: uppercase; color: var(--ink-3); margin-top: .55rem; }
+
+.result { display: none; border: 3px double var(--ink-green); padding: 1.6rem 1.4rem; margin-top: 1.8rem; text-align: center; }
+.result.is-on { display: block; animation: unfold .5s ease both; }
+.result__grade {
+  font-family: var(--mono); font-size: clamp(2.4rem, 1.6rem + 4vw, 4rem);
+  font-weight: 700; color: var(--ink-green); line-height: 1;
+}
+.result__label { font-family: var(--hand); color: var(--pencil); font-size: 1.35rem; margin: .7rem 0 .3rem; }
+.result__body { color: var(--ink-2); font-size: .96rem; max-width: 40ch; margin: .6rem auto 1.2rem; }
+
+/* -------------------------------------------------------------------------
+   13. CONTACT / PIED
+   ------------------------------------------------------------------------- */
+.contact {
+  max-width: var(--sheet-max); margin: clamp(1.4rem,3.5vw,2.6rem) auto;
+  background: var(--ink-green); color: #eef3e6;
+  padding: clamp(2rem, 5vw, 3.4rem) var(--gutter);
+  border: 1px solid #08301c;
+  box-shadow: 0 20px 42px -28px rgba(0,0,0,.7);
+}
+.contact h2 { font-size: clamp(1.6rem, 1.2rem + 2vw, 2.6rem); font-weight: 400; margin-bottom: .8rem; }
+.contact p { color: #cfdcc4; max-width: 42ch; }
+.contact strong { color: #ffffff; }
+.contact a.ig {
+  display: inline-flex; align-items: center; gap: .7rem; margin-top: 1.2rem;
+  font-family: var(--sans); font-size: .82rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+  background: var(--paper); color: var(--ink-green);
+  padding: .85rem 1.4rem; border: 2px solid var(--paper);
+  transition: transform .15s, box-shadow .15s;
+}
+.contact a.ig:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -12px rgba(0,0,0,.8); }
+.contact__note { font-family: var(--hand); color: #f0a99e; font-size: 1.05rem; margin-top: 1.3rem; transform: rotate(-1deg); }
+
+footer.colophon {
+  max-width: var(--sheet-max); margin: 0 auto; padding: 2.4rem var(--gutter) 4rem;
+  font-family: var(--sans); font-size: .72rem; line-height: 1.7; color: var(--ink-2);
+}
+footer.colophon p { max-width: 52rem; }
+footer.colophon strong { color: var(--ink); }
+
+/* -------------------------------------------------------------------------
+   14. RÉVÉLATION PROGRESSIVE
+   ------------------------------------------------------------------------- */
+.reveal { opacity: 0; transform: translateY(18px); }
+.reveal.is-in {
+  opacity: 1; transform: none;
+  transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1);
+}
+.reveal-d1.is-in { transition-delay: .09s; }
+.reveal-d2.is-in { transition-delay: .18s; }
+.reveal-d3.is-in { transition-delay: .27s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
+  .cover__scroll span:last-child { animation: none; }
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* -------------------------------------------------------------------------
+   15. IMPRESSION — c'est un rapport, il doit s'imprimer proprement
+   ------------------------------------------------------------------------- */
+@media print {
+  body { background: #fff; }
+  body::before, .rail, .tabs, .cover__scroll, .tip, .gl-pop { display: none !important; }
+  .sheet, .cover { box-shadow: none; break-inside: auto; page-break-before: always; margin: 0; max-width: none; }
+  .cover { page-break-before: avoid; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .reveal-block__body, .trap__truth, .q__fb { display: block !important; }
+  .fig__data > summary { display: none; }
+  .fig__data > :not(summary) { display: block !important; }
+  .tablewrap { overflow: visible; box-shadow: none; }
+  table.ledger thead th { position: static; }
+  .fig, .box, .kpi, .trap, .q, table.ledger tr { break-inside: avoid; }
+  .contact { background: #fff; color: #000; border: 2px solid #000; }
+  .contact p, .contact__note { color: #333; }
+}
+
+/* -------------------------------------------------------------------------
+   16. ANIMATION DES GRAPHIQUES
+   Les barres poussent depuis leur ligne de base quand la figure entre
+   dans le champ. `transform-box: fill-box` ancre l'origine sur la forme.
+   ------------------------------------------------------------------------- */
+.chart svg .bar-v, .chart svg .bar-v-d,
+.chart svg .bar-h, .chart svg .bar-h-r {
+  transform-box: fill-box;
+  transition: transform .8s cubic-bezier(.22,.75,.28,1);
+}
+.chart svg .bar-v   { transform-origin: 50% 100%; transform: scaleY(0); }
+.chart svg .bar-v-d { transform-origin: 50% 0%;   transform: scaleY(0); }
+.chart svg .bar-h   { transform-origin: 0% 50%;   transform: scaleX(0); }
+.chart svg .bar-h-r { transform-origin: 100% 50%; transform: scaleX(0); }
+.chart svg.is-drawn .bar-v,
+.chart svg.is-drawn .bar-v-d { transform: scaleY(1); }
+.chart svg.is-drawn .bar-h,
+.chart svg.is-drawn .bar-h-r { transform: scaleX(1); }
+
+.chart svg .fade { opacity: 0; transition: opacity .55s ease .3s; }
+.chart svg.is-drawn .fade { opacity: 1; }
+
+.chart svg [data-tip] { cursor: pointer; }
+.chart svg [data-tip]:hover  > rect:last-of-type,
+.chart svg rect[data-tip]:hover { filter: brightness(1.12); }
+.chart svg [data-tip]:focus-visible { outline: 2px solid var(--pencil); outline-offset: 2px; }
+
+/* Filtrage du portefeuille : on estompe, on ne repeint jamais */
+.chart svg .pf-row { transition: opacity .3s ease; }
+.chart svg .pf-row.is-dim { opacity: .16; }
+
+@media (prefers-reduced-motion: reduce) {
+  .chart svg .bar-v, .chart svg .bar-v-d,
+  .chart svg .bar-h, .chart svg .bar-h-r { transform: none !important; }
+  .chart svg .fade { opacity: 1 !important; }
+}
+
+</style>
+<!-- Filtres SVG : tremblement de trait pour les annotations au crayon -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <filter id="wobble">
+    <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="wobble-soft">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<div class="rail" aria-hidden="true"><div class="rail__ink" id="rail"></div></div>
+
+<nav class="tabs" aria-label="Sommaire du dossier">
+  <div class="tabs__inner" id="tabs">
+    <a href="#statut"><span class="t-num">00</span>Statut</a>
+    <a href="#fait"><span class="t-num">01</span>Le fait central</a>
+    <a href="#chiffres"><span class="t-num">02</span>Les chiffres</a>
+    <a href="#portefeuille"><span class="t-num">03</span>Portefeuille</a>
+    <a href="#alphabet"><span class="t-num">04</span>Alphabet</a>
+    <a href="#doctrine"><span class="t-num">05</span>Doctrine Abel</a>
+    <a href="#pourquoi"><span class="t-num">06</span>Pourquoi maintenant</a>
+    <a href="#vision"><span class="t-num">07</span>Long terme</a>
+    <a href="#pieges"><span class="t-num">08</span>Les 4 pièges</a>
+    <a href="#grille"><span class="t-num">09</span>Dépouillement</a>
+    <a href="#confiance"><span class="t-num">10</span>Confiance</a>
+    <a href="#quiz"><span class="t-num">✎</span>Quiz</a>
+    <a href="#contact"><span class="t-num">✉</span>Contact</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════ COUVERTURE ══════════════════════ -->
+<header class="cover">
+  <div class="cover__stamp"><span class="stamp stamp--big">Sur pièces&nbsp;· SEC</span></div>
+
+  <div class="cover__meta">
+    <span>Dossier n° BRK-T2-2026</span>
+    <span>Exercice&nbsp;: 2<sup>e</sup> trimestre 2026</span>
+    <span>Clôture des travaux&nbsp;: 14 août 2026</span>
+    <span>Feuillets&nbsp;: 11 + quiz</span>
+  </div>
+
+  <p class="cover__kicker">Analyse de documents primaires</p>
+  <h1>Berkshire&nbsp;Hathaway<em>l'année où l'on a cessé de vendre.</em></h1>
+  <p class="cover__sub">Après <strong>14 trimestres consécutifs</strong> de ventes nettes, Greg Abel a rouvert le carnet d'achats. Ce dossier reconstitue l'opération ligne à ligne — et démonte quatre erreurs de lecture répandues.</p>
+
+  <dl class="cover__facts">
+    <div><dt>Achats nets T2</dt><dd data-count="19.8" data-dec="1" data-suffix=" Md$" data-prefix="+">+19,8 Md$</dd></div>
+    <div><dt>Ventes T1 → T2</dt><dd>24,1 → 3,7</dd></div>
+    <div><dt>Rachats d'actions T2</dt><dd data-count="4.5" data-dec="1" data-suffix=" Md$">4,5 Md$</dd></div>
+    <div><dt>Trésorerie 30 juin</dt><dd data-count="364.7" data-dec="1" data-suffix=" Md$">364,7 Md$</dd></div>
+  </dl>
+
+  <p class="cover__scroll"><span>Déroulez le listing</span><span>↓</span></p>
+</header>
+
+<main>
+
+<!-- ══════════════════════════════════════ 00 · STATUT ═════════════════════ -->
+<section class="sheet" id="statut" aria-labelledby="h-statut">
+  <div class="sheet__head reveal">
+    <span class="sheet__num">00</span>
+    <h2 id="h-statut">Statut du dossier</h2>
+    <span class="stamp stamp--warn">Provisoire</span>
+  </div>
+
+  <p class="lede reveal">Avant tout chiffre, une mise au point&nbsp;: <strong>le <button class="gl" data-gl="13F">13F</button> du T2 2026 n'est pas encore public.</strong></p>
+
+  <div class="with-margin">
+    <div>
+      <p class="reveal">L'échéance réglementaire tombe aujourd'hui, 14 août — 45 jours après la clôture du trimestre. Berkshire dépose traditionnellement en fin de journée américaine, soit vers <strong>22 h heure française</strong>.</p>
+
+      <p class="reveal">Le dernier détail ligne par ligne officiellement disponible date donc du <strong>31 mars 2026</strong>. Tout ce que l'on sait du deuxième trimestre provient du <button class="gl" data-gl="10Q">10-Q</button> déposé le 8 août&nbsp;: il donne les <em>agrégats</em>, jamais les noms.</p>
+
+      <div class="box reveal">
+        <p class="box__label">Sources primaires utilisées</p>
+        <ul>
+          <li>10-Q du T1 — déposé le 15 mai 2026</li>
+          <li>10-Q du T2 — déposé le 8 août 2026</li>
+          <li>13F-HR du T1 — déposé le 15 mai 2026</li>
+          <li>Prospectus <button class="gl" data-gl="424B5">424B5</button> et 8-K d'Alphabet — juin 2026</li>
+          <li>10-Q d'Alphabet — juillet 2026</li>
+        </ul>
+      </div>
+
+      <p class="reveal">Autrement dit&nbsp;: on connaît les <strong>montants</strong> engagés au T2 avec une précision comptable, et on ignore encore les <strong>noms</strong> derrière environ 11 milliards de dollars. Ce dossier va aussi loin que les documents le permettent, puis s'arrête — et le dit.</p>
+    </div>
+
+    <aside>
+      <p class="note note--margin reveal reveal-d1">Ne jamais confondre « pas encore publié » et « inconnu ». Les agrégats du 10-Q contraignent déjà énormément le champ des possibles.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 01 · LE FAIT ════════════════════ -->
+<section class="sheet" id="fait" aria-labelledby="h-fait">
+  <div class="sheet__head reveal">
+    <span class="sheet__num">01</span>
+    <h2 id="h-fait">Le fait central</h2>
+  </div>
+
+  <p class="lede reveal">Après quatorze trimestres consécutifs de ventes nettes, Berkshire est redevenu acheteur net d'actions. C'est le premier signal fort de la nouvelle direction.</p>
+
+  <div class="with-margin">
+    <div>
+      <p class="reveal"><strong>Greg Abel est directeur général depuis le 1<sup>er</sup> janvier 2026.</strong> Warren Buffett, 95 ans, reste président du conseil.</p>
+
+      <figure class="fig reveal" data-chart="streak">
+        <p class="fig__title">Quatorze trimestres, puis la bascule</p>
+        <p class="fig__sub">Sens du flux net sur actions cotées, trimestre par trimestre. Schéma de séquence — seules les deux dernières barres sont chiffrées par les documents ci-dessous.</p>
+        <div class="chart"></div>
+        <figcaption>Lecture&nbsp;: chaque trait vers le bas est un trimestre de ventes nettes. Le dernier, vers le haut, est le T2&nbsp;2026 à +19,8&nbsp;Md$.</figcaption>
+      </figure>
+
+      <p class="reveal">Mais le fait le plus révélateur n'est pas l'achat.</p>
+
+      <div class="box box--pencil reveal">
+        <p class="box__label">✎ Annotation de l'auditeur</p>
+        <p style="font-size:1.25rem;line-height:1.4;margin:0"><strong>C'est l'arrêt des ventes.</strong></p>
+      </div>
+
+      <p class="reveal">Un gérant qui achète peut simplement placer de la trésorerie. Un gérant qui <em>cesse de vendre</em> après trois ans et demi de retrait continu change de posture. Toute la suite de ce dossier consiste à vérifier laquelle des deux lectures les documents soutiennent.</p>
+    </div>
+
+    <aside>
+      <p class="note note--margin reveal reveal-d1">Le titre de presse dit « Berkshire achète pour 23,5&nbsp;Md$ ». Le vrai titre serait « Berkshire a divisé ses ventes par 6,5 ».</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 02 · LES CHIFFRES ═══════════════ -->
+<section class="sheet" id="chiffres" aria-labelledby="h-chiffres">
+  <div class="sheet__head reveal">
+    <span class="sheet__num">02</span>
+    <h2 id="h-chiffres">Les chiffres vérifiés</h2>
+    <span class="stamp stamp--ok">Rapproché</span>
+  </div>
+
+  <h3 class="reveal">2.1 — Flux sur actions cotées</h3>
+  <p class="reveal">Calculés par différence entre le 10-Q semestriel et celui du premier trimestre.</p>
+
+  <figure class="fig reveal" data-chart="flux">
+    <p class="fig__title">Achats et ventes d'actions cotées, en milliards de dollars</p>
+    <p class="fig__sub">Le mouvement décisif se lit sur la barre hachurée&nbsp;: les ventes s'effondrent de 24,1 à 3,7&nbsp;Md$.</p>
+    <div class="chart"></div>
+    <figcaption>Source&nbsp;: 10-Q T1 et 10-Q T2 2026, tableau des flux de trésorerie d'investissement. Le T2 est obtenu par différence semestre − T1.</figcaption>
+  </figure>
+
+  <div class="tablewrap reveal">
+    <table class="ledger">
+      <caption>Flux sur actions cotées (M$)</caption>
+      <thead><tr><th scope="col">Flux</th><th scope="col">T1 2026</th><th scope="col">T2 2026</th><th scope="col">S1 2026</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Achats</th><td>15 938</td><td>23 467</td><td>39 405</td></tr>
+        <tr><th scope="row">Ventes</th><td>24 087</td><td>3 693</td><td>27 780</td></tr>
+        <tr class="is-total"><th scope="row">Net</th><td class="neg">−8 149</td><td class="pos">+19 774</td><td class="pos">+11 625</td></tr>
+        <tr><th scope="row">Plus-values imposables réalisées</th><td>7 200</td><td>2 300</td><td>9 500</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tablewrap__hint">← Faites glisser le tableau horizontalement</p>
+
+  <p class="reveal">Abel a vendu pour 24,1&nbsp;Md$ au T1 et seulement 3,7&nbsp;Md$ au T2&nbsp;: <span class="circle">une division par 6,5</span>. Le grand nettoyage — les 16 sorties complètes — était un <strong>événement ponctuel du premier trimestre</strong>, pas une politique continue. C'est une distinction que la presse ne fait pas.</p>
+
+  <h3 class="reveal">2.2 — Rachats d'actions propres</h3>
+
+  <figure class="fig reveal" data-chart="buyback">
+    <p class="fig__title">Rachats d'actions Berkshire</p>
+    <p class="fig__sub">La séquence réelle n'est pas une accélération. C'est un robinet resté fermé toute une année, puis rouvert.</p>
+    <div class="chart"></div>
+    <figcaption>Source&nbsp;: 10-Q T1 et T2 2026. Le programme est explicitement conditionné au prix — voir §5.2.</figcaption>
+  </figure>
+
+  <p class="reveal">La séquence est donc <strong>0 → 235 M$ → 4 527 M$</strong>. Abel a rouvert un robinet resté fermé pendant <strong>toute l'année 2025</strong>. C'est un signal de valorisation bien plus net qu'une simple « accélération ».</p>
+
+  <div class="box reveal">
+    <p class="box__label">Contexte de valorisation</p>
+    <p>Berkshire ne fait que <strong>+3 % en 2026</strong> contre <strong>+13 % pour le S&amp;P 500</strong>. Le titre est en retard — et la politique de rachat, on le verra, est explicitement conditionnée au prix. Racheter massivement, ici, c'est une déclaration sur la valeur intrinsèque.</p>
+  </div>
+
+  <h3 class="reveal">2.3 — La trésorerie&nbsp;: attention, piège majeur</h3>
+
+  <div class="reveal-block reveal" data-reveal-block>
+    <p class="trap__tag">Ce que titrent tous les journaux</p>
+    <p style="font-size:1.3rem;line-height:1.35;margin-bottom:1rem">« La trésorerie de Berkshire fond de <strong>397,4</strong> à <strong>365,5&nbsp;Md$</strong> — une ponction de <strong class="down">31,9&nbsp;Md$</strong>. »</p>
+    <button class="btn btn--pencil" data-reveal-trigger>Ouvrir la note de bas de page ⟶</button>
+
+    <div class="reveal-block__body">
+      <div class="box box--quote">
+        <p>Les placements en bons du Trésor incluent des achats non dénoués de <strong>17,2 Md$ au 31 mars 2026</strong> et de <strong>771 M$ au 30 juin 2026</strong>. Ces montants figurent également au passif et ont été payés peu après chaque date de clôture.</p>
+        <cite>Notes au bilan, 10-Q T2 2026</cite>
+      </div>
+
+      <p>Le chiffre du 31 mars comptait donc <strong>17,2 Md$ de bons du Trésor achetés mais pas encore payés</strong>. Le « record historique » de 397,4 Md$ était lui-même gonflé par un artefact de règlement-livraison.</p>
+
+      <figure class="fig" data-chart="cash">
+        <p class="fig__title">Trésorerie&nbsp;: chiffre brut contre chiffre à périmètre comparable</p>
+        <p class="fig__sub">Neutralisation des achats de bons du Trésor non dénoués aux deux dates.</p>
+        <div class="chart"></div>
+        <figcaption>La vraie ponction est de <strong>~15,5 Md$, pas 32</strong> — soit deux fois moins que le chiffre repris partout.</figcaption>
+      </figure>
+
+      <div class="tablewrap">
+        <table class="ledger">
+          <caption>Réconciliation de trésorerie (Md$)</caption>
+          <thead><tr><th scope="col">Date</th><th scope="col">Brut publié</th><th scope="col">Achats non dénoués</th><th scope="col">Net réel</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">31 mars 2026</th><td>397,4</td><td class="neg">−17,2</td><td class="flag">380,2</td></tr>
+            <tr><th scope="row">30 juin 2026</th><td>365,5</td><td class="neg">−0,8</td><td class="flag">364,7</td></tr>
+            <tr class="is-total"><th scope="row">Variation</th><td class="neg">−31,9</td><td>—</td><td class="flag">−15,5</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="note">Ce n'est pas une lubie d'analyse.</p>
+
+      <p>CNBC applique <strong>exactement le même ajustement</strong> sur le T4 2025&nbsp;: la trésorerie globale avait baissé de 2,2 % à 373,3 Md$ au 31 décembre, mais hors trésorerie de BNSF et après déduction des bons du Trésor à payer, elle avait <strong class="up">augmenté</strong> de 4,1 % à 369,0 Md$. Même inversion de lecture entre chiffre brut et chiffre ajusté.</p>
+    </div>
+  </div>
+
+  <h3 class="reveal">2.4 — Bilan et fiscalité latente</h3>
+
+  <figure class="fig reveal" data-chart="unrealized">
+    <p class="fig__title">Portefeuille actions au 30 juin 2026&nbsp;: ce qui a été payé, ce qui a été gagné</p>
+    <p class="fig__sub">323,8 Md$ de valeur pour 106,5 Md$ de coût. L'écart est le poste le plus structurant du dossier.</p>
+    <div class="chart"></div>
+    <figcaption>Le passif d'impôts, principalement différés, s'élève à 90,2 Md$. Vendre le noyau historique, c'est déclencher une facture accumulée sur des décennies — voir §6.2.</figcaption>
+  </figure>
+
+  <div class="tablewrap reveal">
+    <table class="ledger">
+      <caption>Bilan au 30 juin 2026</caption>
+      <thead><tr><th scope="col">Poste</th><th scope="col">Montant (Md$)</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Portefeuille actions (juste valeur)</th><td>323,8</td></tr>
+        <tr><th scope="row">Coût de revient</th><td>106,5</td></tr>
+        <tr class="is-total"><th scope="row">Plus-values latentes</th><td class="flag">217,3</td></tr>
+        <tr><th scope="row">Impôts, principalement différés (passif)</th><td>90,2</td></tr>
+        <tr><th scope="row">Capitaux propres</th><td>750,2</td></tr>
+        <tr><th scope="row">Total bilan</th><td>1 263</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="reveal">2.5 — Résultats du trimestre</h3>
+
+  <div class="kpis reveal">
+    <div class="kpi">
+      <p class="kpi__label">Bénéfice opérationnel T2</p>
+      <p class="kpi__value" data-count="12.98" data-dec="2" data-suffix=" Md$">12,98 Md$</p>
+      <p class="kpi__note"><span class="up">+16 %</span> — contre 11,16 Md$ un an plus tôt</p>
+    </div>
+    <div class="kpi">
+      <p class="kpi__label">Résultat net part du groupe</p>
+      <p class="kpi__value" data-count="25.7" data-dec="1" data-suffix=" Md$">25,7 Md$</p>
+      <p class="kpi__note">35,8 Md$ sur le semestre</p>
+    </div>
+    <div class="kpi">
+      <p class="kpi__label">Résultat de souscription</p>
+      <p class="kpi__value is-neg" data-count="1.73" data-dec="2" data-suffix=" Md$">1,73 Md$</p>
+      <p class="kpi__note"><span class="down">−13 %</span> — le point faible du trimestre</p>
+    </div>
+    <div class="kpi">
+      <p class="kpi__label">Manufacture / services / distribution</p>
+      <p class="kpi__value" data-count="4.47" data-dec="2" data-suffix=" Md$">4,47 Md$</p>
+      <p class="kpi__note"><span class="up">+24 %</span></p>
+    </div>
+  </div>
+
+  <p class="reveal">Les gains d'investissement du T2 atteignent 16,1 Md$, dont <strong>15,6 Md$ de plus-values latentes non réalisées</strong> — c'est-à-dire de la variation de cours, pas de l'encaissement. À côté du recul de l'assurance (revenus de placement −9 % à 3,06 Md$), <strong>Berkshire Hathaway Energy progresse de 27 % à 891 M$</strong> et BNSF de 6 % à 1,56 Md$.</p>
+
+  <p class="note reveal">Le bénéfice opérationnel est le chiffre à suivre. Le résultat net, lui, danse au rythme du cours d'Apple.</p>
+</section>
+
+<!-- ══════════════════════════════════════ 03 · PORTEFEUILLE ═══════════════ -->
+<section class="sheet" id="portefeuille" aria-labelledby="h-pf">
+  <div class="sheet__head reveal">
+    <span class="sheet__num">03</span>
+    <h2 id="h-pf">Le portefeuille</h2>
+  </div>
+
+  <p class="lede reveal">Au 31 mars 2026, dernier 13F publié&nbsp;: <strong>29 lignes, 263,1 Md$</strong>. Le portefeuille était passé de 42 à 29 lignes en un seul trimestre.</p>
+
+  <div class="box box--warn reveal">
+    <p class="box__label">⚠ Les 16 sorties complètes du T1</p>
+    <p>Amazon · Visa · Mastercard · UnitedHealth · Domino's · Charter · Diageo · Aon · Pool · Lamar · Heico A · Formula One · Liberty Latin America (×2) · Atlanta Braves · Allegion.</p>
+  </div>
+
+  <figure class="fig reveal" data-chart="portfolio">
+    <p class="fig__title">Les 28 lignes déclarées au 31 mars 2026</p>
+    <p class="fig__sub">Poids dans le portefeuille 13F. Filtrez par mouvement du trimestre pour voir la main d'Abel.</p>
+    <div class="chips" data-pf-filter role="group" aria-label="Filtrer les lignes">
+      <button type="button" aria-pressed="true" data-f="all">Toutes</button>
+      <button type="button" aria-pressed="false" data-f="new">Nouvelles</button>
+      <button type="button" aria-pressed="false" data-f="up">Renforcées</button>
+      <button type="button" aria-pressed="false" data-f="down">Réduites</button>
+      <button type="button" aria-pressed="false" data-f="flat">Inchangées</button>
+    </div>
+    <div class="chart"></div>
+    <figcaption>Source&nbsp;: 13F-HR du 15 mai 2026. Survolez une barre pour la valeur et le nombre de titres.</figcaption>
+    <details class="fig__data">
+      <summary>Voir le tableau complet</summary>
+      <div data-pf-table></div>
+    </details>
+  </figure>
+
+  <h3 class="reveal">3.2 — Le basculement du top 5</h3>
+  <p class="reveal">C'est le fait structurant du trimestre, et il est confirmé par les deux 10-Q.</p>
+
+  <figure class="fig reveal" data-chart="top5">
+    <p class="fig__title">Chevron sort, Alphabet entre</p>
+    <p class="fig__sub">Les cinq plus grosses lignes par valeur de marché, aux deux dates de clôture.</p>
+    <div class="switch" data-top5 role="group" aria-label="Choisir la date">
+      <button type="button" aria-pressed="true"  data-d="q1">31 mars 2026</button>
+      <button type="button" aria-pressed="false" data-d="q2">30 juin 2026</button>
+    </div>
+    <div class="chart"></div>
+    <figcaption>Concentration du top 5&nbsp;: <strong>61 % au 31 mars, 66 % au 30 juin</strong>.</figcaption>
+  </figure>
+
+  <div class="box box--warn reveal">
+    <p class="box__label">⚠ Attention méthodologique</p>
+    <p>Le 10-Q liste les cinq lignes <strong>par ordre alphabétique</strong>. On sait qu'Alphabet est dans le top 5&nbsp;; <strong>on ne sait pas à quel rang</strong>. Ne pas surinterpréter — les hauteurs affichées ci-dessus pour le 30 juin sont un ordre de grandeur, pas un classement déclaré.</p>
+  </div>
+
+  <h3 class="reveal">3.3 — Ce que le 13F ne montre jamais</h3>
+  <p class="reveal">Le 13F ne couvre que les titres cotés aux États-Unis. Une part considérable du patrimoine d'investissement de Berkshire lui échappe&nbsp;:</p>
+
+  <div class="tablewrap reveal">
+    <table class="ledger ledger--text">
+      <caption>Positions hors périmètre 13F</caption>
+      <thead><tr><th scope="col">Position</th><th scope="col">Nature</th><th scope="col">Repère de valeur</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">5 sogo shosha japonaises</th><td>Itochu, Marubeni, Mitsubishi, Mitsui, Sumitomo — cotées hors États-Unis</td><td class="flag">~35,4 Md$ pour ~15,4 Md$ de coût</td></tr>
+        <tr><th scope="row">Occidental — actions communes</th><td>26,7 % du capital, <button class="gl" data-gl="mee">mise en équivalence</button></td><td class="neg">12,9 Md$ au 30/06 (vs 17,2 au 31/03)</td></tr>
+        <tr><th scope="row">Occidental — préférentielles</th><td>Dividende 8 %/an, remboursables dès 2029 à 105 %</td><td>8,5 Md$ de valeur de liquidation</td></tr>
+        <tr><th scope="row">Occidental — warrants</th><td>Droit d'achat de 83,9 M d'actions</td><td>Prix d'exercice 59,59 $</td></tr>
+        <tr><th scope="row">Kraft Heinz</th><td>27,5 % du capital, mise en équivalence</td><td>Voir §9, point 5</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="with-margin">
+    <div>
+      <p class="reveal">Sur le Japon&nbsp;: Berkshire détient ces cinq maisons de négoce depuis 2019-2020 et a <strong>franchi les 10 % dans les cinq en mai 2026</strong>, via sa filiale National Indemnity. Mitsubishi était au-dessus de 11 % au 30 avril.</p>
+      <p class="reveal">Sur Occidental&nbsp;: la juste valeur de la participation en mise en équivalence est passée de 17,2 à 12,9 Md$ en un trimestre, soit <span class="circle">−25 %</span>. Le pétrole a lourdement pesé au T2 — un point qu'il faut garder en tête au moment de lire la coupe dans Chevron.</p>
+    </div>
+    <aside>
+      <p class="note note--margin reveal reveal-d1">15,4 → 35,4&nbsp;Md$ sur le Japon, et rien de tout cela n'apparaît dans le 13F que tout le monde va commenter ce soir.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 04 · ALPHABET ═══════════════════ -->
+<section class="sheet" id="alphabet" aria-labelledby="h-abc">
+  <div class="sheet__head reveal">
+    <span class="sheet__num">04</span>
+    <h2 id="h-abc">Alphabet — l'opération décisive</h2>
+    <span class="stamp">Pièce maîtresse</span>
+  </div>
+
+  <p class="lede reveal">Le 1<sup>er</sup> juin 2026, Alphabet annonce des offres de capitaux propres pour 80 Md$, destinées à financer son infrastructure de calcul pour l'IA. Dedans&nbsp;: un placement privé de <strong>10 Md$ réservé à Berkshire</strong>.</p>
+
+  <h3 class="reveal">4.1 — Les faits, sur pièces</h3>
+
+  <div class="kpis reveal">
+    <div class="kpi"><p class="kpi__label">Actions de classe A</p><p class="kpi__value">351,81 $</p><p class="kpi__note">14 212 035 titres, pour 5 Md$</p></div>
+    <div class="kpi"><p class="kpi__label">Actions de classe C</p><p class="kpi__value">348,20 $</p><p class="kpi__note">14 359 656 titres, pour 5 Md$</p></div>
+    <div class="kpi"><p class="kpi__label">Décote obtenue</p><p class="kpi__value" data-count="6.5" data-dec="1" data-suffix=" %">6,5 %</p><p class="kpi__note">vs clôtures de la veille&nbsp;: 376,37 $ et 372,58 $</p></div>
+    <div class="kpi"><p class="kpi__label">Offre totale relevée</p><p class="kpi__value">84,75 Md$</p><p class="kpi__note">le 2 juin, après sursouscription</p></div>
+  </div>
+
+  <p class="reveal">L'opération est clôturée le <strong>4 juin 2026</strong>, au titre d'une exemption d'enregistrement prévue à la <button class="gl" data-gl="4a2">section 4(a)(2)</button> du <em>Securities Act</em> de 1933 — le 10-Q d'Alphabet le confirme. Goldman Sachs a agi comme agent placeur. Berkshire a par ailleurs obtenu des <button class="gl" data-gl="droits">droits d'enregistrement</button>.</p>
+
+  <p class="reveal">Position totale après l'opération&nbsp;: environ <strong>68,2 M d'actions A et 18,0 M d'actions C</strong>, soit <span class="circle">~86 M de titres</span>.</p>
+
+  <h3 class="reveal">4.2 — Pourquoi c'est important</h3>
+
+  <div class="box reveal">
+    <p class="box__label">a · Le retour du Berkshire « prêteur de dernier recours »</p>
+    <p>C'est le rôle joué avec Goldman Sachs en 2008, Bank of America en 2011, Occidental en 2019. Alphabet — plus de 2 000 milliards de capitalisation — <strong>n'avait aucun besoin de Berkshire pour lever des fonds</strong>. Elle avait besoin de son <em>sceau</em>. Berkshire monétise sa réputation contre une décote de 6,5 % et des droits d'enregistrement. C'est le modèle économique le plus rentable et le moins réplicable de la maison.</p>
+  </div>
+
+  <div class="box reveal">
+    <p class="box__label">b · Financer le capex IA en actionnaire, pas en opérateur</p>
+    <p>Abel ne construit pas de centres de données. Il prend une part du gagnant présumé de la couche recherche / cloud / applicative, <strong>au moment précis où le marché s'inquiète du coût du capex</strong>. Le pari&nbsp;: la rente publicitaire et cloud de Google absorbera l'investissement.</p>
+  </div>
+
+  <div class="box reveal">
+    <p class="box__label">c · L'initiative revient à Buffett, l'échelle à Abel</p>
+    <p>Buffett a publiquement revendiqué l'idée de la position Alphabet. Mais c'est Abel qui l'a <strong>triplée au T1</strong> (+203 %, avec création d'une ligne en classe C), puis <strong>doublée au T2</strong>. C'est la signature d'un successeur qui ne rompt pas — mais qui appuie beaucoup plus fort.</p>
+  </div>
+
+  <figure class="fig reveal" data-chart="alphabet">
+    <p class="fig__title">Montée en puissance d'Alphabet dans le portefeuille</p>
+    <p class="fig__sub">De ligne secondaire à membre du top 5 en deux trimestres. Trois niveaux comparables — le placement de juin est intégré au dernier point, jamais affiché comme une barre séparée.</p>
+    <div class="chart"></div>
+    <figcaption>Seule la valeur du 31 mars est déclarée. Le point de fin décembre est rétro-calculé depuis la hausse de 203 % du T1&nbsp;; le dernier est un plancher de capital engagé, hors variation de cours. Le 13F de ce soir donnera le chiffre exact.</figcaption>
+  </figure>
+
+  <p class="note reveal">Une décote de 6,5 % sur 10&nbsp;Md$, c'est 650&nbsp;M$ de valeur créée à la signature. Avant même que l'action bouge.</p>
+</section>
+
+<!-- ══════════════════════════════════════ 05 · DOCTRINE ═══════════════════ -->
+<section class="sheet" id="doctrine" aria-labelledby="h-doc">
+  <div class="sheet__head reveal">
+    <span class="sheet__num">05</span>
+    <h2 id="h-doc">La doctrine Abel</h2>
+  </div>
+
+  <h3 class="reveal">5.1 — Ce qu'il conserve</h3>
+  <ul class="reveal">
+    <li><strong>La décentralisation, mais avec redevabilité.</strong> L'autonomie des filiales est « fondée sur une confiance méritée » — là où Buffett déléguait, selon sa propre formule, presque jusqu'à l'abdication. L'allocation du capital, elle, reste centralisée.</li>
+    <li><strong>Le même filtre d'investissement.</strong> Comprendre l'entreprise et ses risques, évaluer son économie future, s'appuyer sur un management compétent et honnête, exiger une marge de sécurité sur le prix.</li>
+    <li><strong>La trésorerie comme choix stratégique.</strong> Indépendance financière, flexibilité, efficience fiscale — et refus des « ABC »&nbsp;: arrogance, bureaucratie, complaisance.</li>
+    <li><strong>La flexibilité du conglomérat.</strong> Déplacer le capital de l'assurance vers le non-assurance, vers les actions, ou le garder en cash.</li>
+  </ul>
+
+  <div class="box box--quote reveal">
+    <p>Nous avons entendu cela mille fois&nbsp;: les ABC qui peuvent s'installer dans une entreprise finissent par la tuer, et nous n'avons pas l'intention de laisser cela arriver.</p>
+    <cite>Greg Abel</cite>
+  </div>
+
+  <h3 class="reveal">5.2 — La règle de rachat, texte primaire</h3>
+
+  <div class="box box--quote reveal">
+    <p>Le programme de rachat autorise Berkshire à racheter ses actions A et B à des prix inférieurs à sa valeur intrinsèque, déterminée de manière conservatrice par le directeur général <strong>après consultation du président du conseil</strong>. Nous ne sommes soumis ni à un minimum ni à un maximum. Nous ne rachèterons pas nos actions si cela ramène nos liquidités et bons du Trésor consolidés <strong>sous 30 milliards de dollars</strong>. La solidité financière et une liquidité redondante resteront toujours d'une importance capitale chez Berkshire.</p>
+    <cite>MD&amp;A du 10-Q T2 2026</cite>
+  </div>
+
+  <p class="reveal">Deux enseignements que personne ne relève&nbsp;:</p>
+  <ol class="reveal">
+    <li><strong>Buffett dispose d'un droit de regard formel et codifié sur les rachats.</strong> « Après consultation du président du conseil » n'est pas une figure de style, c'est une clause.</li>
+    <li><strong>Le plancher de trésorerie déclaré est de 30 Md$.</strong> Avec 364,7 Md$ au 30 juin, la marge de manœuvre théorique dépasse <span class="circle">330 Md$</span>.</li>
+  </ol>
+
+  <figure class="fig reveal" data-chart="floor">
+    <p class="fig__title">Trésorerie disponible contre plancher déclaré</p>
+    <p class="fig__sub">La contrainte que Berkshire s'impose n'en est pas une, à ce niveau de bilan.</p>
+    <div class="chart"></div>
+    <figcaption>Trésorerie nette au 30 juin 2026 (364,7 Md$) rapportée au plancher de 30 Md$ inscrit dans la politique de rachat.</figcaption>
+  </figure>
+
+  <h3 class="reveal">5.3 — Ce qu'il change</h3>
+  <ul class="reveal">
+    <li><strong>Un noyau dur nommé explicitement.</strong> Dans sa lettre&nbsp;: « <em>Apple, American Express, Coca-Cola et Moody's — des entreprises que nous comprenons bien, dont nous estimons les dirigeants, et qui devraient composer pendant des décennies.</em> » Tout ce qui n'est pas dans cette liste est, de fait, mis en jeu.</li>
+    <li><strong>Une franchise inhabituelle sur les échecs.</strong> « <em>Notre investissement dans Kraft Heinz a été décevant. Même en tenant compte de la composante en actions préférentielles de notre investissement initial dans Heinz, notre rendement a été bien en deçà de l'acceptable.</em> » Buffett n'aurait pas formulé cela ainsi dans une lettre.</li>
+    <li><strong>Une ère « pilotée par l'opérateur ».</strong> Centrée sur l'exécution, l'efficience et un déploiement discipliné du capital, dans un monde où les méga-opérations sont rares.</li>
+    <li><strong>Sur l'IA, une prudence assumée.</strong> Berkshire réfléchit à utiliser l'IA pour créer de la valeur, mais ne va pas « faire de l'IA pour faire de l'IA ».</li>
+  </ul>
+
+  <h3 class="reveal">5.4 — Nuance capitale&nbsp;: tout n'est pas Abel</h3>
+
+  <div class="box box--pencil reveal">
+    <p class="box__label">✎ Le garde-fou le plus utile de ce dossier</p>
+    <p>Abel a précisé dans sa lettre que <strong>Ted Weschler continuerait de gérer une partie du portefeuille</strong>. Conséquence pratique&nbsp;: les petites lignes — Macy's (55 M$), Jefferies (18 M$), NVR (73 M$), Louisiana-Pacific, Ally, VeriSign, New York Times — ne sont <strong>probablement pas</strong> des décisions d'Abel. C'est historiquement le périmètre de Weschler et Combs.</p>
+    <p style="margin-bottom:0">Lire Macy's comme « un signal sur la vision d'Abel pour le retail » serait une surinterprétation.</p>
+  </div>
+
+  <div class="tablewrap reveal">
+    <table class="ledger ledger--text">
+      <caption>Attribution des décisions</caption>
+      <thead><tr><th scope="col">Décision</th><th scope="col">Attribution</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Alphabet (T1 + placement de juin)</th><td class="pos">Abel — certain</td></tr>
+        <tr><th scope="row">Coupe de 35 % dans Chevron</th><td class="pos">Abel — certain</td></tr>
+        <tr><th scope="row">Les 16 sorties complètes du T1</th><td class="pos">Abel — certain</td></tr>
+        <tr><th scope="row">OxyChem, Taylor Morrison</th><td class="pos">Abel — certain</td></tr>
+        <tr><th scope="row">Reprise des rachats d'actions</th><td class="pos">Abel — certain</td></tr>
+        <tr><th scope="row">Macy's, Jefferies, NVR, Ally, NYT…</th><td class="flag">Probablement Weschler / Combs</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 06 · POURQUOI ═══════════════════ -->
+<section class="sheet" id="pourquoi" aria-labelledby="h-why">
+  <div class="sheet__head reveal">
+    <span class="sheet__num">06</span>
+    <h2 id="h-why">Pourquoi maintenant — l'analyse</h2>
+  </div>
+
+  <h3 class="reveal">6.1 — Un problème de rendement, pas de conviction</h3>
+  <div class="with-margin">
+    <div>
+      <p class="reveal">325 Md$ en bons du Trésor, c'est un actif qui rapporte le taux court&nbsp;: sans risque, et sans croissance. Tant que le taux court était élevé, l'attente se justifiait toute seule — <strong>Buffett était payé pour ne rien faire</strong>.</p>
+      <p class="reveal">Quand le cycle de baisse s'enclenche, le <button class="gl" data-gl="cout">coût d'opportunité</button> de la trésorerie augmente mécaniquement, et l'arbitrage bascule. Le retournement acheteur est donc <strong>autant un arbitrage de taux qu'un pari sur les valorisations</strong>.</p>
+      <p class="reveal">C'est une lecture moins romantique que « Abel voit de la valeur ». Elle est probablement plus exacte.</p>
+    </div>
+    <aside>
+      <p class="note note--margin reveal reveal-d1">Quand le cash rapporte 5 %, patienter est un métier. Quand il rapporte 3 %, c'est une perte de temps chiffrable.</p>
+    </aside>
+  </div>
+
+  <h3 class="reveal">6.2 — Une contrainte fiscale qui dicte la structure du portefeuille</h3>
+  <p class="reveal">C'est le mécanisme le moins compris et le plus déterminant de tout le dossier.</p>
+
+  <p class="reveal">323,8 Md$ de valeur pour 106,5 Md$ de coût, soit <strong>217,3 Md$ de plus-values latentes</strong>. Vendre Apple ou Coca-Cola déclenche 21 % d'impôt fédéral sur des gains accumulés depuis des décennies. Les ventes du seul premier semestre ont déjà généré <strong>9,5 Md$ de plus-values imposables</strong>.</p>
+
+  <div class="box box--pencil reveal">
+    <p class="box__label">✎ D'où le comportement observé</p>
+    <p>Abel liquide les positions <strong>récentes</strong> — Visa, Mastercard, Amazon, UnitedHealth&nbsp;: base de coût peu accumulée, donc facture fiscale modeste. Et il ne touche pas au noyau historique.</p>
+    <p style="margin-bottom:0">Ce n'est pas seulement de la conviction. <strong>C'est une optimisation fiscale contrainte.</strong> Le noyau Apple / Coca-Cola / AmEx est en partie prisonnier de sa propre performance.</p>
+  </div>
+
+  <p class="reveal">Corollaire&nbsp;: méfiez-vous des lectures du type « Abel garde Coca-Cola, donc il y croit ». <span class="mark">Il la garde peut-être surtout parce qu'il ne peut pas se permettre de la vendre.</span></p>
+
+  <h3 class="reveal">6.3 — Où sont réellement passés les 23,5 Md$ du T2</h3>
+  <p class="reveal">Voici la ventilation la plus précise disponible publiquement, obtenue en croisant les tableaux de coût de revient des deux 10-Q.</p>
+
+  <figure class="fig reveal" data-chart="blocks">
+    <p class="fig__title">Variation du coût de revient par bloc, T2 2026</p>
+    <p class="fig__sub">Le capital est allé dans un seul endroit&nbsp;: le bloc « commercial, industriel et autres ».</p>
+    <div class="chart"></div>
+    <figcaption>Obtenu par différence entre les tableaux de coût de revient des 10-Q du T1 et du T2. Aucun article de presse ne fait ce calcul.</figcaption>
+  </figure>
+
+  <div class="tablewrap reveal">
+    <table class="ledger">
+      <caption>Coût de revient du portefeuille par bloc (Md$)</caption>
+      <thead><tr><th scope="col">Bloc</th><th scope="col">31/12/25</th><th scope="col">31/03/26</th><th scope="col">30/06/26</th><th scope="col">Δ T1</th><th scope="col">Δ T2</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Banques, assurance, finance</th><td>15,45</td><td>14,69</td><td>15,73</td><td class="neg">−0,77</td><td class="pos">+1,04</td></tr>
+        <tr><th scope="row">Produits de consommation</th><td>11,90</td><td>8,85</td><td>8,65</td><td class="neg">−3,05</td><td class="neg">−0,20</td></tr>
+        <tr><th scope="row">Commercial, industriel et autres</th><td>58,04</td><td>61,06</td><td>82,14</td><td class="pos">+3,03</td><td class="pos">+21,08</td></tr>
+        <tr class="is-total"><th scope="row">Total</th><td>85,39</td><td>84,60</td><td>106,52</td><td class="neg">−0,79</td><td class="pos">+21,93</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4 class="reveal">Contrôle de cohérence</h4>
+  <div class="box reveal" id="recon">
+    <p class="box__label">✓ Rapprochement</p>
+    <p style="font-family:var(--mono);font-size:.92rem;line-height:1.9;max-width:none">
+      Achats T2 <strong>23,47</strong><br>
+      − coût sorti sur les ventes <strong>1,39</strong> &nbsp;<span style="color:var(--ink-3)">(3,69 de produit − 2,30 de plus-value)</span><br>
+      = attendu <strong>22,08</strong><br>
+      constaté <strong>21,93</strong><br>
+      <span style="border-top:2px solid var(--ink-green);display:inline-block;padding-top:.4rem;margin-top:.2rem">écart <strong class="flag">150 M$</strong> — <span class="up">la réconciliation tient.</span></span>
+    </p>
+  </div>
+
+  <figure class="fig reveal" data-chart="deploy">
+    <p class="fig__title">Ventilation du capital déployé au T2 2026</p>
+    <p class="fig__sub">Sur 28 milliards engagés, 10 sont nommés. Le reste est contraint, mais anonyme.</p>
+    <div class="chart"></div>
+    <figcaption>Estimations dérivées des deux 10-Q. Le bloc « autres achats industriels / technologiques » mélange achats nouveaux et renforcements de lignes existantes.</figcaption>
+  </figure>
+
+  <p class="reveal"><strong>Conclusion&nbsp;:</strong> environ <span class="circle">11 Md$</span> sont allés dans un ou plusieurs titres industriels ou technologiques hors Alphabet, et <strong>environ 1 Md$ dans une valeur financière</strong> — ce qu'on ne peut donc pas exclure. Rien sur la consommation courante.</p>
+
+  <p class="note reveal">C'est plus précis que le « mystère à 13,5&nbsp;Md$ » repris partout, qui n'est que le résiduel arithmétique 23,5 − 10.</p>
+
+  <h3 class="reveal">6.4 — Un pari macro cohérent&nbsp;: le logement américain</h3>
+  <p class="reveal">Taylor Morrison + Lennar (A et B) + NVR + Louisiana-Pacific + Clayton Homes + Berkshire Hathaway HomeServices&nbsp;: c'est une <strong>thèse unique, construite sur plusieurs véhicules</strong>.</p>
+
+  <div class="box box--quote reveal">
+    <p>Ils parient que le cycle immobilier va se retourner et qu'il existe une demande refoulée.</p>
+    <cite>Bill Stone, directeur des investissements de Glenview Trust et actionnaire de Berkshire</cite>
+  </div>
+
+  <div class="box box--quote reveal">
+    <p>Avec le temps, nous prévoyons d'unifier nos opérations de construction sur site en une plateforme combinée.</p>
+    <cite>Greg Abel</cite>
+  </div>
+
+  <p class="reveal">C'est du Berkshire canonique&nbsp;: acheter un secteur cyclique déprimé par les taux, avec un bilan qui permet d'attendre le retournement <em>aussi longtemps qu'il faut</em>.</p>
+
+  <h3 class="reveal">6.5 — La pression de la succession&nbsp;: le facteur le plus risqué</h3>
+  <p class="reveal">Abel doit démontrer qu'il alloue. Un directeur général qui hérite de 397 Md$ de trésorerie et ne fait rien n'a aucune légitimité, quel que soit le mérite théorique de la patience.</p>
+  <p class="reveal">Le passage de zéro rachat en 2025 à 4,5 Md$ en un trimestre, la première acquisition majeure, le placement Alphabet&nbsp;: c'est aussi de la <strong>construction de crédibilité</strong>.</p>
+
+  <div class="box box--warn reveal">
+    <p class="box__label">⚠ Le risque à surveiller</p>
+    <p>Un dirigeant qui doit prouver qu'il agit finit parfois par agir pour prouver. C'est le principal risque de dérive, et la raison pour laquelle <strong>deux trimestres ne suffisent pas à juger</strong>.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 07 · VISION ═════════════════════ -->
+<section class="sheet" id="vision" aria-labelledby="h-vision">
+  <div class="sheet__head reveal">
+    <span class="sheet__num">07</span>
+    <h2 id="h-vision">La vision long terme</h2>
+  </div>
+
+  <p class="lede reveal">Le fil conducteur, une fois toutes les lignes recollées&nbsp;: <strong>sortir de l'énergie fossile cotée, entrer dans les infrastructures — numériques et physiques.</strong></p>
+
+  <ul class="reveal">
+    <li><strong>Sortie partielle du pétrole papier</strong>, entrée dans la chimie industrielle contrôlée. Chevron −35 % au T1, sortie du top 5 au T2 — mais acquisition d'OxyChem. Abel troque une position boursière volatile contre un actif industriel à cash-flow régulier. C'est parfaitement cohérent avec son parcours dans les <em>utilities</em>&nbsp;: c'est le métier qu'il connaît.</li>
+    <li><strong>Entrée dans la tech par le portail « péage »</strong>&nbsp;: Alphabet, VeriSign. Des rentes d'infrastructure, pas des paris sur des modèles ou des applications.</li>
+    <li><strong>Le Japon comme socle géographique permanent.</strong> Les sogo shosha sont, selon la formule de Buffett, gérées « d'une manière assez similaire à Berkshire elle-même ». Financées par de la dette en yens, elles constituent à la fois une couverture de change et un portefeuille de matières premières hors périmètre 13F. Abel a poussé au-delà du plafond de 10 % dans les cinq&nbsp;: c'est un engagement de plusieurs décennies, et probablement la partie la plus sous-estimée du portefeuille.</li>
+    <li><strong>Le logement américain</strong> comme pari cyclique majeur.</li>
+    <li><strong>Une trésorerie qui reste massive</strong>&nbsp;: 365 Md$ après tout cela, pour un plancher déclaré de 30 Md$.</li>
+  </ul>
+
+  <h3 class="reveal">7.2 — Le contexte que personne ne mentionne</h3>
+  <p class="reveal">Berkshire sous-performe déjà. Pas depuis un trimestre&nbsp;: depuis dix ans.</p>
+
+  <figure class="fig reveal" data-chart="perf">
+    <p class="fig__title">Berkshire contre S&amp;P 500, croissance annualisée</p>
+    <p class="fig__sub">Le record historique est écrasant. La dernière décennie ne l'est plus du tout.</p>
+    <div class="chart"></div>
+    <figcaption>Valeur comptable par action (1965-2025 et dernière décennie) et cours de bourse. Sources&nbsp;: rapports annuels Berkshire, Morningstar.</figcaption>
+  </figure>
+
+  <div class="tablewrap reveal">
+    <table class="ledger">
+      <caption>Croissance annualisée</caption>
+      <thead><tr><th scope="col">Mesure</th><th scope="col">Berkshire</th><th scope="col">S&amp;P 500 TR</th><th scope="col">Écart</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Valeur comptable / action, 1965-2025</th><td>18,1 %/an</td><td>10,5 %/an</td><td class="pos">+7,6 pts</td></tr>
+        <tr><th scope="row">Valeur comptable / action, dernière décennie</th><td>12,4 %/an</td><td>14,8 %/an</td><td class="neg">−2,4 pts</td></tr>
+        <tr><th scope="row">Cours de bourse, 1965-2025</th><td>19,8 %/an</td><td>10,5 %/an</td><td class="pos">+9,3 pts</td></tr>
+        <tr><th scope="row">Cours de bourse, dernière décennie</th><td>14,3 %/an</td><td>14,8 %/an</td><td class="neg">−0,5 pt</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box box--pencil reveal">
+    <p class="box__label">✎ Le vrai cadre du mandat d'Abel</p>
+    <p>Il n'hérite pas d'une machine invaincue. <strong>Il hérite d'une machine qui a cessé de battre l'indice depuis dix ans</strong>, avec un problème de taille — il est devenu très difficile de bouger 1 200 Md$ de bilan — et une trésorerie improductive.</p>
+    <p style="margin-bottom:0">Le déploiement de capital n'est pas un caprice de nouveau patron. <strong>C'est une nécessité.</strong></p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 08 · PIÈGES ═════════════════════ -->
+<section class="sheet" id="pieges" aria-labelledby="h-traps">
+  <div class="sheet__head reveal">
+    <span class="sheet__num">08</span>
+    <h2 id="h-traps">Les quatre pièges de lecture</h2>
+    <span class="stamp">À corriger</span>
+  </div>
+
+  <p class="lede reveal">Récapitulatif des erreurs les plus répandues dans la couverture médiatique. <strong>Cliquez sur chaque affirmation</strong> pour voir la correction.</p>
+
+  <div class="traps reveal">
+    <button class="trap" type="button" data-trap>
+      <p class="trap__tag">Piège 1 · Trésorerie</p>
+      <p class="trap__claim">« La trésorerie a fondu de 32 Md$. »</p>
+      <p class="trap__hint">Cliquez pour corriger ✎</p>
+      <div class="trap__truth">
+        <span class="trap__verdict">Faux — annoter.</span>
+        <p style="margin:0">~15,5 Md$ après neutralisation des bons du Trésor non dénoués (17,2 Md$ au 31 mars, 0,8 au 30 juin). Le « record » de 397,4 Md$ était lui-même un artefact de règlement-livraison. Voir §2.3.</p>
+      </div>
+    </button>
+
+    <button class="trap" type="button" data-trap>
+      <p class="trap__tag">Piège 2 · Acquisitions</p>
+      <p class="trap__claim">« Taylor Morrison et OxyChem expliquent la baisse du cash au T2. »</p>
+      <p class="trap__hint">Cliquez pour corriger ✎</p>
+      <div class="trap__truth">
+        <span class="trap__verdict">Faux — erreur de date.</span>
+        <p style="margin:0">Le 10-Q est sans ambiguïté&nbsp;: <strong>OxyChem clôturé le 2 janvier 2026 (T1)</strong>, <strong>Taylor Morrison le 24 juillet 2026 (T3)</strong>. Aucune des deux n'a touché la trésorerie du deuxième trimestre. Plusieurs médias reprennent cette erreur.</p>
+      </div>
+    </button>
+
+    <button class="trap" type="button" data-trap>
+      <p class="trap__tag">Piège 3 · Le mouvement</p>
+      <p class="trap__claim">« Abel a acheté pour 23,5 Md$. »</p>
+      <p class="trap__hint">Cliquez pour corriger ✎</p>
+      <div class="trap__truth">
+        <span class="trap__verdict">Vrai, mais incomplet.</span>
+        <p style="margin:0">Le mouvement décisif est <strong>l'effondrement des ventes</strong>, de 24,1 à 3,7 Md$. L'achat est le symptôme&nbsp;; l'arrêt des ventes est le changement de régime.</p>
+      </div>
+    </button>
+
+    <button class="trap" type="button" data-trap>
+      <p class="trap__tag">Piège 4 · Attribution</p>
+      <p class="trap__claim">« Chaque ligne reflète la vision d'Abel. »</p>
+      <p class="trap__hint">Cliquez pour corriger ✎</p>
+      <div class="trap__truth">
+        <span class="trap__verdict">Faux — deux mains sur le volant.</span>
+        <p style="margin:0">Ted Weschler gère toujours une partie du portefeuille. Les petites lignes (Macy's, Jefferies, NVR, Ally…) relèvent historiquement de son périmètre et de celui de Todd Combs. Voir §5.4.</p>
+      </div>
+    </button>
+  </div>
+
+  <div class="box box--warn reveal">
+    <p class="box__label">⚠ Bonus — le prix d'OxyChem</p>
+    <p>Trois chiffres circulent&nbsp;: <strong>9,7 Md$</strong> annoncés le 2 janvier, <strong>~9,5 Md$</strong> dans le 10-Q du T1, <strong>~9,4 Md$</strong> dans le 10-Q du T2 après ajustements post-clôture. Le chiffre à jour est <strong>9,4 Md$</strong>.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 09 · GRILLE ═════════════════════ -->
+<section class="sheet" id="grille" aria-labelledby="h-grid">
+  <div class="sheet__head reveal">
+    <span class="sheet__num">09</span>
+    <h2 id="h-grid">Grille de dépouillement pour ce soir</h2>
+  </div>
+
+  <p class="lede reveal">Les six chiffres à extraire du 13F dans l'ordre, avec leur seuil d'interprétation. <strong>Cochez au fur et à mesure.</strong></p>
+
+  <ol class="checklist reveal" data-checklist>
+    <li>
+      <span class="ck-title">Le total du 13F — test de complétude</span>
+      <span class="ck-body">Repère du T1&nbsp;: 13F = 263,1 Md$ contre 288,0 Md$ de « titres de capitaux propres » au bilan. L'écart de 24,9 Md$ s'explique&nbsp;: le 13F <strong>inclut</strong> Occidental commun (17,2) et Kraft Heinz (7,3) que le bilan classe en mise en équivalence, tandis que le bilan <strong>inclut</strong> les positions japonaises, les préférentielles et les warrants Oxy, non déclarables au 13F. Si le total du T2 ressort nettement sous le chiffre attendu par ce même calcul, c'est le signe d'une <strong>demande de traitement confidentiel</strong> auprès de la SEC — la signature historique de Buffett quand une position est encore en construction. <em>Marge d'erreur large&nbsp;: pas de valorisation vérifiée des participations japonaises au 30 juin.</em></span>
+    </li>
+    <li>
+      <span class="ck-title">L'identité des ~11 Md$ hors Alphabet</span>
+      <span class="ck-body">Bloc industriel / technologique. C'est le cœur du sujet, et la seule vraie inconnue du dossier.</span>
+    </li>
+    <li>
+      <span class="ck-title">La ligne financière à ~1 Md$</span>
+      <span class="ck-body">Nouvelle ligne, ou renforcement de Chubb / Capital One / Ally&nbsp;? Le chiffre est petit mais l'information est qualitative&nbsp;: elle dit si Abel revient sur le secteur qu'il a taillé au T1.</span>
+    </li>
+    <li>
+      <span class="ck-title">Bank of America</span>
+      <span class="ck-body">Abel a liquidé Visa et Mastercard et allégé le bloc bancaire au T1. Avec 25 Md$, BAC est la grosse ligne la plus exposée à une coupe.</span>
+    </li>
+    <li>
+      <span class="ck-title">Kraft Heinz</span>
+      <span class="ck-body">Abel l'a publiquement désavouée. Note technique&nbsp;: l'écart entre valeur comptable et juste valeur s'est <strong>réduit</strong>, de 1,4 Md$ (15,7 %) au 31 mars à 1,1 Md$ (12,2 %) au 30 juin. Berkshire écrit avoir conclu qu'aucune dépréciation n'était requise, tout en précisant que « nos attentes et intentions actuelles concernant cet investissement peuvent changer à l'avenir ». Avertissement à peine voilé.</span>
+    </li>
+    <li>
+      <span class="ck-title">Alphabet — le chiffre exact</span>
+      <span class="ck-body">Attendu autour de <strong>86 M de titres</strong>. Ce sera la première mesure officielle de la ligne après le placement du 4 juin.</span>
+    </li>
+  </ol>
+
+  <p class="note reveal">Six chiffres, dans cet ordre. Si le n° 1 sort trop bas, tous les autres passent au second plan&nbsp;: cela voudra dire qu'il y a une position cachée.</p>
+</section>
+
+<!-- ══════════════════════════════════════ 10 · CONFIANCE ═════════════════ -->
+<section class="sheet" id="confiance" aria-labelledby="h-conf">
+  <div class="sheet__head reveal">
+    <span class="sheet__num">10</span>
+    <h2 id="h-conf">Niveaux de confiance et limites</h2>
+  </div>
+
+  <p class="lede reveal">Un dossier honnête dit où il est solide et où il ne l'est pas. Voici le classement de chaque affirmation.</p>
+
+  <div class="conf reveal">
+    <div class="conf__col conf__col--solid">
+      <h4>Solide — documents SEC primaires</h4>
+      <ul>
+        <li>Tous les flux d'achats et ventes T1, T2, S1</li>
+        <li>Les coûts de revient par bloc</li>
+        <li>La trésorerie et son ajustement</li>
+        <li>Les rachats d'actions</li>
+        <li>La composition des top 5 aux deux dates</li>
+        <li>Les termes exacts du placement Alphabet</li>
+        <li>Kraft Heinz et Occidental</li>
+        <li>Dates et montants d'OxyChem et Taylor Morrison</li>
+        <li>La politique de rachat</li>
+      </ul>
+    </div>
+    <div class="conf__col conf__col--ok">
+      <h4>Fiable — sources concordantes</h4>
+      <ul>
+        <li>Bénéfice opérationnel du T2 (deux articles CNBC cohérents)</li>
+        <li>Alphabet dans le top 5 par valeur de marché</li>
+        <li>Les 16 sorties du T1</li>
+        <li>La performance boursière 2026</li>
+        <li>Les taux de croissance annualisés historiques (Morningstar)</li>
+      </ul>
+    </div>
+    <div class="conf__col conf__col--doubt">
+      <h4>⚠ Encore incertain</h4>
+      <ul>
+        <li>Le mot-à-mot des citations de la lettre d'Abel — le PDF original n'a pas pu être consulté&nbsp;; le sens est confirmé par trois analystes indépendants</li>
+        <li>La valeur au 30 juin des participations japonaises</li>
+        <li>La valeur exacte de la ligne Alphabet au 30 juin</li>
+        <li>L'âge de Greg Abel (63 ou 64 selon les sources)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="reveal">Limites méthodologiques permanentes du 13F</h3>
+  <ul class="reveal">
+    <li>Photo à <strong>45 jours de retard</strong>.</li>
+    <li>Titres cotés aux États-Unis <strong>uniquement</strong>.</li>
+    <li>Exclut la trésorerie, les filiales opérationnelles et les positions étrangères.</li>
+    <li>Ne dit <strong>ni la date ni le prix</strong> des transactions.</li>
+  </ul>
+
+  <div class="box box--pencil reveal">
+    <p class="box__label">✎ Réserve de fond</p>
+    <p>La thèse d'Abel n'est validée par personne à ce stade. <strong>Deux trimestres, c'est un échantillon, pas une performance.</strong> Et une part significative de ce qu'on observe peut relever de la construction de légitimité d'un nouveau dirigeant autant que d'une conviction d'investissement.</p>
+    <p style="margin-bottom:0"><strong>Rien de ce document ne constitue un conseil en investissement.</strong></p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ QUIZ ═══════════════════════════ -->
+<section class="sheet" id="quiz" aria-labelledby="h-quiz">
+  <div class="sheet__head reveal">
+    <span class="sheet__num">✎</span>
+    <h2 id="h-quiz">Contrôle des connaissances</h2>
+    <span class="stamp stamp--warn">Épreuve</span>
+  </div>
+
+  <p class="lede reveal">Douze questions pour vérifier que vous ne tomberez pas dans les pièges. Réponse immédiate, correction expliquée, référence au feuillet.</p>
+
+  <div class="quiz reveal">
+    <div class="quiz__meta">
+      <span>Progression</span>
+      <span class="qbar"><span class="qbar__fill" id="qbar"></span></span>
+      <span class="score" id="qscore">0 / 12</span>
+    </div>
+    <div id="qlist"></div>
+    <div class="result" id="qresult" tabindex="-1"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════════════════════════ CONTACT ════════════════════════ -->
+<section class="contact" id="contact" aria-labelledby="h-contact">
+  <h2 id="h-contact">Une question sur ce dossier&nbsp;?</h2>
+  <p>Un chiffre qui vous paraît faux, une méthode que vous voulez comprendre, un point du 13F que vous voulez qu'on décortique&nbsp;? Écrivez-nous. <strong>On essaiera de répondre au maximum.</strong></p>
+  <a class="ig" href="https://www.instagram.com/crypto_comiks?igsi=MWplenpsYXh3ODVwdg%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5.5"/>
+      <circle cx="12" cy="12" r="4.2"/>
+      <circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/>
+    </svg>
+    @crypto_comiks
+  </a>
+  <p class="contact__note">✎ Les meilleures questions finissent en dossier.</p>
+</section>
+
+<footer class="colophon">
+  <p><strong>Méthode.</strong> Toutes les données chiffrées de ce dossier proviennent de documents déposés auprès de la SEC&nbsp;: 10-Q de Berkshire Hathaway du 15 mai et du 8 août 2026, 13F-HR du 15 mai 2026, prospectus 424B5 et 8-K d'Alphabet de juin 2026, 10-Q d'Alphabet de juillet 2026. Les flux du deuxième trimestre sont obtenus par différence entre le semestre et le premier trimestre. Le feuillet 10 détaille le niveau de confiance de chaque affirmation.</p>
+  <p><strong>Avertissement.</strong> Ce document est un travail d'analyse et de pédagogie. Il ne constitue pas un conseil en investissement, ni une recommandation d'achat ou de vente. Les performances passées ne préjugent pas des performances futures.</p>
+  <p>Dossier BRK-T2-2026 — clos le 14 août 2026 avant publication du 13F. Réalisé par <a href="https://www.instagram.com/crypto_comiks?igsi=MWplenpsYXh3ODVwdg%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">Crypto&nbsp;Comiks</a>.</p>
+</footer>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+<div class="gl-pop" id="glpop" role="dialog" aria-label="Définition"></div>
+<script>
+/* =========================================================================
+   BERKSHIRE HATHAWAY — DOSSIER T2 2026
+   Moteur du rapport : données, graphiques SVG, révélation progressive, quiz.
+   Aucune dépendance externe.
+   ========================================================================= */
+(function () {
+  'use strict';
+
+  /* ---------------------------------------------------------------------
+     0. OUTILS
+     --------------------------------------------------------------------- */
+  var $  = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function nf(v, d) {
+    d = d == null ? 1 : d;
+    return v.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function sgn(v, d) { return (v > 0 ? '+' : v < 0 ? '−' : '') + nf(Math.abs(v), d); }
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function debounce(fn, ms) {
+    var t; return function () { var a = arguments, c = this; clearTimeout(t); t = setTimeout(function () { fn.apply(c, a); }, ms); };
+  }
+
+  var C = {
+    s1: '#127a46', s2: '#1a5fa8', s3: '#c0271a',
+    warn: '#8a6300',
+    seq: ['#d3e5d6', '#a9cdb2', '#74ad8b', '#3d8a63', '#14603c', '#0b3d27'],
+    ink: '#1b1e14', ink2: '#4b5040', ink3: '#6f7561',
+    rule: '#b7bda6', ruleSoft: '#cdd2bd', paper: '#f4f0e1', pencil: '#c0271a'
+  };
+
+  /* ---------------------------------------------------------------------
+     1. DONNÉES
+     --------------------------------------------------------------------- */
+  var DATA = {
+    flux: [
+      { q: 'T1 2026', achats: 15938, ventes: 24087, net: -8149 },
+      { q: 'T2 2026', achats: 23467, ventes: 3693,  net: 19774 }
+    ],
+    buyback: [
+      { k: 'Année 2025', v: 0,    note: 'aucun rachat' },
+      { k: 'T1 2026',    v: 235,  note: 'réouverture' },
+      { k: 'T2 2026',    v: 4527, note: 'plein régime' }
+    ],
+    cash: [
+      { d: '31 mars 2026', brut: 397.4, nonDenoue: 17.2, net: 380.2 },
+      { d: '30 juin 2026', brut: 365.5, nonDenoue: 0.8,  net: 364.7 }
+    ],
+    perf: [
+      { k: 'Valeur comptable / action', p: '1965–2025',         ps: '1965–25', brk: 18.1, sp: 10.5 },
+      { k: 'Valeur comptable / action', p: 'dernière décennie',  ps: '10 ans',  brk: 12.4, sp: 14.8 },
+      { k: 'Cours de bourse',           p: '1965–2025',         ps: '1965–25', brk: 19.8, sp: 10.5 },
+      { k: 'Cours de bourse',           p: 'dernière décennie',  ps: '10 ans',  brk: 14.3, sp: 14.8 }
+    ],
+    blocks: [
+      { k: 'Commercial, industriel et autres', d: 21.08 },
+      { k: 'Banques, assurance, finance',      d: 1.04 },
+      { k: 'Produits de consommation',         d: -0.20 }
+    ],
+    deploy: [
+      { k: 'Alphabet — placement du 4 juin',             v: 10.0, c: C.s1, known: true },
+      { k: 'Autres achats industriels / technologiques', v: 11.1, known: false },
+      { k: 'Achats, bloc financier',                     v: 1.0,  known: false },
+      { k: "Rachats d'actions Berkshire",                v: 4.5,  c: C.s2, known: true }
+    ],
+    /* Trois niveaux comparables — jamais un niveau et un incrément sur le
+       même axe. Le placement de juin est intégré au troisième point.        */
+    alphabet: [
+      { d: '31 déc. 2025',      v: 5.5,  known: false, lab: '~5,5 Md$',  sub: 'rétro-calculé depuis le +203 % du T1' },
+      { d: '31 mars 2026',      v: 16.6, known: true,  lab: '16,6 Md$',  sub: '13F — seule valeur déclarée' },
+      { d: 'après le 4 juin',   v: 26.6, known: false, lab: '≥ 26,6 Md$', sub: '16,6 + 10,0 souscrits, hors variation de cours' }
+    ],
+    top5q1: [
+      { k: 'Apple',            v: 58, out: false },
+      { k: 'American Express', v: 46, out: false },
+      { k: 'Coca-Cola',        v: 30, out: false },
+      { k: 'Bank of America',  v: 25, out: false },
+      { k: 'Chevron',          v: 18, out: true }
+    ],
+    top5q2: ['Alphabet', 'American Express', 'Apple', 'Bank of America', 'Coca-Cola'],
+    /* 13F au 31 mars 2026 — 28 lignes déclarées, 263,1 Md$
+       mv : mouvement du trimestre — new | up | down | flat                */
+    pf: [
+      { k: 'Apple',                w: 22.0, v: 58,    t: '228 M',  mv: 'flat', n: '—' },
+      { k: 'American Express',     w: 17.4, v: 46,    t: '152 M',  mv: 'flat', n: '—' },
+      { k: 'Coca-Cola',            w: 11.6, v: 30,    t: '400 M',  mv: 'flat', n: '—' },
+      { k: 'Bank of America',      w: 9.5,  v: 25,    t: '514 M',  mv: 'flat', n: '—' },
+      { k: 'Chevron',              w: 6.6,  v: 18,    t: '84 M',   mv: 'down', n: '−35 %' },
+      { k: 'Occidental (commun)',  w: 6.5,  v: 17,    t: '265 M',  mv: 'flat', n: '—' },
+      { k: 'Alphabet A + C',       w: 6.3,  v: 16.6,  t: '54 + 3,6 M', mv: 'up', n: '+203 %, classe C nouvelle' },
+      { k: 'Chubb',                w: 4.2,  v: 11,    t: '34 M',   mv: 'flat', n: '—' },
+      { k: "Moody's",              w: 4.1,  v: 11,    t: '25 M',   mv: 'flat', n: '—' },
+      { k: 'Kraft Heinz',          w: 2.8,  v: 7.3,   t: '326 M',  mv: 'flat', n: '—' },
+      { k: 'DaVita',               w: 1.8,  v: 4.6,   t: '30 M',   mv: 'down', n: '−5 %' },
+      { k: 'Kroger',               w: 1.4,  v: 3.6,   t: '50 M',   mv: 'flat', n: '—' },
+      { k: 'SiriusXM',             w: 1.1,  v: 2.9,   t: '125 M',  mv: 'flat', n: '—' },
+      { k: 'Delta Air Lines',      w: 1.0,  v: 2.6,   t: '40 M',   mv: 'new',  n: 'NOUVEAU' },
+      { k: 'VeriSign',             w: 0.8,  v: 2.2,   t: '9,0 M',  mv: 'flat', n: '—' },
+      { k: 'Capital One',          w: 0.5,  v: 1.3,   t: '7,2 M',  mv: 'flat', n: '—' },
+      { k: 'New York Times',       w: 0.5,  v: 1.3,   t: '15 M',   mv: 'up',   n: '+198 %' },
+      { k: 'Ally Financial',       w: 0.4,  v: 1.1,   t: '29 M',   mv: 'flat', n: '—' },
+      { k: 'Liberty Live C',       w: 0.4,  v: 0.996, t: '11 M',   mv: 'down', n: '−3 %' },
+      { k: 'Lennar A',             w: 0.3,  v: 0.877, t: '10 M',   mv: 'up',   n: '+43 %' },
+      { k: 'Nucor',                w: 0.3,  v: 0.661, t: '3,9 M',  mv: 'down', n: '−39 %' },
+      { k: 'Liberty Live A',       w: 0.2,  v: 0.457, t: '5,0 M',  mv: 'flat', n: '—' },
+      { k: 'Louisiana-Pacific',    w: 0.2,  v: 0.412, t: '5,7 M',  mv: 'flat', n: '—' },
+      { k: 'Constellation Brands', w: 0.04, v: 0.095, t: '633 k',  mv: 'down', n: '−95 %' },
+      { k: 'NVR',                  w: 0.03, v: 0.073, t: '11 k',   mv: 'flat', n: '—' },
+      { k: "Macy's",               w: 0.02, v: 0.055, t: '3,0 M',  mv: 'new',  n: 'NOUVEAU' },
+      { k: 'Lennar B',             w: 0.01, v: 0.020, t: '238 k',  mv: 'up',   n: '+31 %' },
+      { k: 'Jefferies',            w: 0.01, v: 0.018, t: '434 k',  mv: 'flat', n: '—' }
+    ]
+  };
+
+  var GLOSSARY = {
+    '13F': ['Formulaire 13F', "Déclaration trimestrielle obligatoire pour tout gérant américain détenant plus de 100 M$ de titres cotés aux États-Unis, à déposer dans les 45 jours suivant la clôture du trimestre. Il donne les positions ligne par ligne — mais uniquement les titres américains, et sans jamais indiquer la date ni le prix des transactions."],
+    '10Q': ['Formulaire 10-Q', "Rapport financier trimestriel déposé auprès de la SEC. Contrairement au 13F, il fournit bilan, compte de résultat et flux de trésorerie : on y lit donc les montants agrégés d'achats et de ventes de titres, mais jamais le nom des sociétés concernées."],
+    '424B5': ['Prospectus 424B5', "Supplément de prospectus déposé lors d'une émission de titres. C'est le document qui donne les termes exacts d'un placement : nombre d'actions, prix unitaire, identité de l'agent placeur."],
+    '4a2': ['Section 4(a)(2)', "Exemption d'enregistrement du Securities Act de 1933 réservée aux placements privés. Elle permet de vendre des titres à un investisseur qualifié sans passer par une offre publique — d'où la rapidité d'exécution de l'opération Alphabet–Berkshire."],
+    'droits': ["Droits d'enregistrement", "Engagement pris par l'émetteur de faire enregistrer les titres auprès de la SEC, ce qui les rend librement négociables. Sans cet engagement, Berkshire resterait porteur de titres difficilement cessibles."],
+    'mee': ['Mise en équivalence', "Méthode comptable appliquée lorsqu'on détient une influence notable — en général au-delà de 20 % du capital — sans contrôler la société. La participation figure au bilan à sa valeur comptable ajustée de la quote-part de résultat, et non à sa valeur de marché."],
+    'cout': ["Coût d'opportunité", "Ce que rapporterait le meilleur emploi alternatif du même capital. Garder 325 Md$ en bons du Trésor ne coûte presque rien tant que les taux courts sont élevés ; cela devient une perte relative mesurable dès qu'ils baissent."]
+  };
+
+  /* ---------------------------------------------------------------------
+     2. PRIMITIVES SVG
+     --------------------------------------------------------------------- */
+  function svgOpen(w, h) {
+    /* role="group" et non "img" : les marques portent chacune leur propre
+       étiquette et doivent rester atteignables au clavier. */
+    return '<svg viewBox="0 0 ' + w + ' ' + h + '" width="' + w + '" height="' + h +
+           '" role="group" xmlns="http://www.w3.org/2000/svg">';
+  }
+  function txt(x, y, s, o) {
+    o = o || {};
+    return '<text x="' + x + '" y="' + y + '"' +
+      ' fill="' + (o.fill || C.ink2) + '"' +
+      ' font-size="' + (o.size || 11) + '"' +
+      ' font-family="' + (o.mono ? 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+                                 : '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif') + '"' +
+      (o.weight ? ' font-weight="' + o.weight + '"' : '') +
+      (o.anchor ? ' text-anchor="' + o.anchor + '"' : '') +
+      (o.baseline ? ' dominant-baseline="' + o.baseline + '"' : '') +
+      (o.ls ? ' letter-spacing="' + o.ls + '"' : '') +
+      (o.cls ? ' class="' + o.cls + '"' : '') +
+      (o.opacity ? ' opacity="' + o.opacity + '"' : '') +
+      '>' + esc(s) + '</text>';
+  }
+  function rrect(x, y, w, h, r, fill, extra) {
+    if (w < 0) { x += w; w = -w; }
+    if (h < 0) { y += h; h = -h; }
+    r = Math.max(0, Math.min(r, w / 2, h / 2));
+    return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) +
+           '" rx="' + r + '" fill="' + fill + '"' + (extra || '') + '/>';
+  }
+  function tipAttr(title, lines) {
+    return ' data-tip="' + esc(title + '||' + lines.join('|')) + '" tabindex="0" role="img"' +
+           ' aria-label="' + esc(title + '. ' + lines.join('. ')) + '"';
+  }
+  function gridline(x1, y, x2) {
+    return '<line x1="' + x1 + '" y1="' + y + '" x2="' + x2 + '" y2="' + y + '" stroke="' + C.ruleSoft +
+           '" stroke-width="1" shape-rendering="crispEdges"/>';
+  }
+  function legend(items) {
+    return '<div class="legend">' + items.map(function (i) {
+      var bg = i.open
+        ? 'background:rgba(192,39,26,.07);background-image:repeating-linear-gradient(45deg,' + i.c + ' 0 2px,transparent 2px 5px)'
+        : 'background:' + i.c + (i.hatch ? ';background-image:repeating-linear-gradient(45deg,transparent 0 2px,' + C.paper + ' 2px 4px)' : '');
+      return '<span class="legend__item"><span class="legend__swatch" style="' + bg +
+        '"></span>' + esc(i.k) + '</span>';
+    }).join('') + '</div>';
+  }
+  /* Hachure pleine : encodage secondaire obligatoire sur la paire rouge/vert (ΔE CVD 7,0) */
+  function hatchDef(id, color) {
+    return '<defs><pattern id="' + id + '" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">' +
+      '<rect width="6" height="6" fill="' + color + '"/>' +
+      '<line x1="0" y1="0" x2="0" y2="6" stroke="' + C.paper + '" stroke-width="2.2"/></pattern></defs>';
+  }
+  /* Hachure ouverte : réservée aux montants dérivés ou non déclarés — la forme
+     reste lisible mais « vide », et un libellé sombre y garde son contraste. */
+  function hatchOpen(id, color) {
+    /* Le trait est centré dans la tuile : posé sur x=0 il serait écrêté de
+       moitié par les bornes du motif, et la hachure deviendrait invisible. */
+    return '<defs><pattern id="' + id + '" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">' +
+      '<rect width="7" height="7" fill="rgba(192,39,26,.10)"/>' +
+      '<line x1="3.5" y1="0" x2="3.5" y2="7" stroke="' + color + '" stroke-width="2.4"/></pattern></defs>';
+  }
+  var DASHED = ' stroke="' + C.pencil + '" stroke-width="1.5" stroke-dasharray="5 3"';
+
+  /* ---------------------------------------------------------------------
+     3. GRAPHIQUES
+     Chaque fonction reçoit la largeur disponible et retourne du HTML.
+     --------------------------------------------------------------------- */
+  var CHARTS = {};
+
+  /* 3.1 — Séquence des 14 trimestres -------------------------------------- */
+  CHARTS.streak = function (W) {
+    var H = 200, mid = 108, n = 15;
+    var pad = 8, gap = 3;
+    var bw = Math.max(6, (W - pad * 2 - gap * (n - 1)) / n);
+    var s = svgOpen(W, H) + hatchDef('h-streak', C.s3);
+    var heights = [34, 41, 30, 47, 38, 52, 33, 44, 58, 36, 49, 40, 55, 43];
+    s += '<line x1="' + pad + '" y1="' + mid + '" x2="' + (W - pad) + '" y2="' + mid +
+         '" stroke="' + C.ink + '" stroke-width="1.5" shape-rendering="crispEdges"/>';
+    for (var i = 0; i < 14; i++) {
+      var x = pad + i * (bw + gap);
+      s += rrect(x, mid + 1, bw, heights[i], 3, 'url(#h-streak)',
+        ' class="bar-v-d" style="transition-delay:' + (i * 42) + 'ms"' +
+        tipAttr('Trimestre de ventes nettes', ['Sens du flux : sortie', 'Séquence — montant non détaillé ici']));
+    }
+    var lx = pad + 14 * (bw + gap);
+    s += rrect(lx, mid - 84, bw, 84, 3, C.s1,
+      ' class="bar-v" style="transition-delay:640ms"' +
+      tipAttr('T2 2026', ['Achats nets : +19 774 M$', 'Premier trimestre acheteur depuis 14 trimestres']));
+    s += txt(pad, mid + 76, '← 14 trimestres de ventes nettes', { size: 11, fill: C.s3, weight: 600, cls: 'fade' });
+    s += txt(Math.min(lx + bw + 6, W - 4), mid - 92, '+19,8 Md$', { size: 13, fill: C.s1, weight: 700, mono: true, anchor: 'end', cls: 'fade' });
+    /* Le libellé passe sous la ligne de base : au-dessus il tombait dans la barre. */
+    s += txt(W - 2, mid + 18, 'T2 2026', { size: 10, weight: 700, fill: C.s1, anchor: 'end', cls: 'fade' });
+    return s + '</svg>';
+  };
+
+  /* 3.2 — Achats / ventes ------------------------------------------------- */
+  CHARTS.flux = function (W) {
+    var H = 320, mT = 34, mB = 46, mL = 40, mR = 8;
+    var ph = H - mT - mB, pw = W - mL - mR;
+    var max = 26000;
+    var y = function (v) { return mT + ph - (v / max) * ph; };
+    var s = svgOpen(W, H) + hatchDef('h-flux', C.s3);
+    [0, 5000, 10000, 15000, 20000, 25000].forEach(function (g) {
+      s += gridline(mL, y(g), W - mR);
+      s += txt(mL - 6, y(g) + 4, nf(g / 1000, 0), { size: 10, fill: C.ink3, anchor: 'end', mono: true });
+    });
+    s += txt(mL - 6, mT - 14, 'Md$', { size: 9, fill: C.ink3, anchor: 'end', ls: '.06em' });
+
+    var gw = pw / 2, bw = Math.min(74, gw * 0.31), inner = Math.min(10, gw * 0.05);
+    DATA.flux.forEach(function (d, i) {
+      var cx = mL + gw * i + gw / 2;
+      var xa = cx - bw - inner / 2, xv = cx + inner / 2;
+      s += rrect(xa, y(d.achats), bw, mT + ph - y(d.achats), 4, C.s1,
+        ' class="bar-v" style="transition-delay:' + (i * 130) + 'ms"' +
+        tipAttr(d.q + ' — Achats', [nf(d.achats, 0) + ' M$']));
+      s += rrect(xv, y(d.ventes), bw, mT + ph - y(d.ventes), 4, 'url(#h-flux)',
+        ' class="bar-v" style="transition-delay:' + (i * 130 + 90) + 'ms"' +
+        tipAttr(d.q + ' — Ventes', [nf(d.ventes, 0) + ' M$']));
+      s += txt(xa + bw / 2, y(d.achats) - 7, nf(d.achats / 1000, 1), { size: 12, weight: 700, fill: C.s1, anchor: 'middle', mono: true, cls: 'fade' });
+      s += txt(xv + bw / 2, y(d.ventes) - 7, nf(d.ventes / 1000, 1), { size: 12, weight: 700, fill: C.s3, anchor: 'middle', mono: true, cls: 'fade' });
+      s += txt(cx, H - mB + 20, d.q, { size: 12, weight: 700, fill: C.ink, anchor: 'middle' });
+      s += txt(cx, H - mB + 36, 'net ' + sgn(d.net / 1000, 1) + ' Md$', {
+        size: 11, weight: 700, mono: true, anchor: 'middle', fill: d.net > 0 ? C.s1 : C.s3
+      });
+    });
+    /* Annotation crayon : la division par 6,5 */
+    var cx1 = mL + gw * 0.5 + (gw * 0.31 > 74 ? 74 : gw * 0.31) / 2 + 5;
+    s += '<g class="fade" style="transition-delay:.7s">' +
+      '<path d="M' + (mL + gw * 0.5 + 30) + ' ' + (y(24087) - 22) + ' Q ' + (mL + gw) + ' ' + (mT - 6) + ' ' +
+      (mL + gw * 1.5 + 26) + ' ' + (y(3693) - 26) + '" fill="none" stroke="' + C.pencil +
+      '" stroke-width="2" filter="url(#wobble-soft)" marker-end=""/>' +
+      txt(mL + gw, mT - 12, '÷ 6,5 sur les ventes', { size: 12, weight: 700, fill: C.pencil, anchor: 'middle' }) +
+      '</g>';
+    void cx1;
+    return s + '</svg>';
+  };
+
+  /* 3.3 — Rachats d'actions ---------------------------------------------- */
+  CHARTS.buyback = function (W) {
+    var H = 260, mT = 26, mB = 54, mL = 44, mR = 10;
+    var ph = H - mT - mB, pw = W - mL - mR, max = 5000;
+    var y = function (v) { return mT + ph - (v / max) * ph; };
+    var s = svgOpen(W, H);
+    [0, 1000, 2000, 3000, 4000, 5000].forEach(function (g) {
+      s += gridline(mL, y(g), W - mR);
+      s += txt(mL - 6, y(g) + 4, nf(g, 0), { size: 10, fill: C.ink3, anchor: 'end', mono: true });
+    });
+    s += txt(mL - 6, mT - 10, 'M$', { size: 9, fill: C.ink3, anchor: 'end', ls: '.06em' });
+    var gw = pw / 3, bw = Math.min(88, gw * 0.5);
+    DATA.buyback.forEach(function (d, i) {
+      var cx = mL + gw * i + gw / 2, x = cx - bw / 2;
+      var h = mT + ph - y(d.v);
+      if (d.v === 0) {
+        s += '<line x1="' + x + '" y1="' + (mT + ph) + '" x2="' + (x + bw) + '" y2="' + (mT + ph) +
+             '" stroke="' + C.pencil + '" stroke-width="3.5" class="fade" filter="url(#wobble-soft)"/>';
+        s += txt(cx, mT + ph - 12, 'ZÉRO', { size: 13, weight: 800, fill: C.pencil, anchor: 'middle', ls: '.14em', cls: 'fade' });
+      } else {
+        s += rrect(x, y(d.v), bw, h, 4, C.seq[3 + i],
+          ' class="bar-v" style="transition-delay:' + (i * 140) + 'ms"' +
+          tipAttr(d.k, [nf(d.v, 0) + ' M$', d.note]));
+        s += txt(cx, y(d.v) - 8, nf(d.v, 0), { size: 13, weight: 700, fill: C.ink, anchor: 'middle', mono: true, cls: 'fade' });
+      }
+      s += txt(cx, H - mB + 20, d.k, { size: 11.5, weight: 700, fill: C.ink, anchor: 'middle' });
+      s += txt(cx, H - mB + 35, d.note, { size: 10, fill: C.ink3, anchor: 'middle' });
+    });
+    return s + '</svg>';
+  };
+
+  /* 3.4 — Trésorerie brute vs ajustée ------------------------------------ */
+  CHARTS.cash = function (W) {
+    var narrow = W < 430;
+    var H = 250, mT = 30, mB = 52, mL = narrow ? 34 : 46, mR = narrow ? 8 : 92;
+    var ph = H - mT - mB, pw = W - mL - mR, max = 420;
+    var y = function (v) { return mT + ph - (v / max) * ph; };
+    var s = svgOpen(W, H) + hatchDef('h-cash', C.s3);
+    [0, 100, 200, 300, 400].forEach(function (g) {
+      s += gridline(mL, y(g), W - mR);
+      s += txt(mL - 6, y(g) + 4, nf(g, 0), { size: 10, fill: C.ink3, anchor: 'end', mono: true });
+    });
+    s += txt(mL - 6, mT - 12, 'Md$', { size: 9, fill: C.ink3, anchor: 'end', ls: '.06em' });
+    var gw = pw / 2, bw = Math.min(96, gw * 0.5);
+    DATA.cash.forEach(function (d, i) {
+      var cx = mL + gw * i + gw / 2, x = cx - bw / 2;
+      /* Base = net réel (plein) ; segment supérieur = achats non dénoués (hachuré) */
+      s += rrect(x, y(d.net), bw, mT + ph - y(d.net), 4, C.s1,
+        ' class="bar-v" style="transition-delay:' + (i * 120) + 'ms"' +
+        tipAttr(d.d + ' — trésorerie nette', [nf(d.net, 1) + ' Md$', 'à périmètre comparable']));
+      var hSeg = y(d.net) - y(d.brut);
+      s += rrect(x, y(d.brut), bw, hSeg - 2, 3, 'url(#h-cash)',
+        ' class="fade" style="transition-delay:' + (i * 120 + 380) + 'ms"' +
+        tipAttr(d.d + ' — bons du Trésor non dénoués', [nf(d.nonDenoue, 1) + ' Md$', 'achetés, pas encore payés']));
+      s += txt(cx, y(d.brut) - 9, nf(d.brut, 1) + ' brut', { size: 11.5, weight: 700, fill: C.ink3, anchor: 'middle', mono: true, cls: 'fade' });
+      s += txt(cx, y(d.net) + 18, nf(d.net, 1), { size: 13, weight: 700, fill: '#ffffff', anchor: 'middle', mono: true, cls: 'fade' });
+      s += txt(cx, H - mB + 20, d.d, { size: 11.5, weight: 700, fill: C.ink, anchor: 'middle' });
+      if (d.nonDenoue > 2) {
+        s += txt(cx, H - mB + 35, 'dont ' + nf(d.nonDenoue, 1) + ' non dénoués', { size: 10, fill: C.s3, anchor: 'middle' });
+      }
+    });
+    if (!narrow) {
+      var xr = W - mR + 10;
+      s += '<g class="fade" style="transition-delay:.75s">' +
+        txt(xr, y(400) + 6, 'Variation', { size: 9, fill: C.ink3, ls: '.1em' }) +
+        txt(xr, y(400) + 26, '−31,9', { size: 15, weight: 700, fill: C.ink3, mono: true }) +
+        txt(xr, y(400) + 40, 'annoncé', { size: 9.5, fill: C.ink3 }) +
+        txt(xr, y(400) + 68, '−15,5', { size: 18, weight: 700, fill: C.pencil, mono: true }) +
+        txt(xr, y(400) + 82, 'réel', { size: 9.5, fill: C.pencil, weight: 700 }) +
+        '</g>';
+    }
+    return s + '</svg>';
+  };
+
+  /* 3.5 — Coût / plus-values latentes ------------------------------------ */
+  CHARTS.unrealized = function (W) {
+    var H = 190, mL = 4, mR = 4, mT = 44;
+    var pw = W - mL - mR, total = 323.8, bh = 54;
+    var x = function (v) { return mL + (v / total) * pw; };
+    var s = svgOpen(W, H);
+    var wCost = x(106.5) - mL, wGain = pw - wCost;
+    s += rrect(mL, mT, wCost - 2, bh, 3, C.seq[4],
+      ' class="bar-h"' + tipAttr('Coût de revient', ['106,5 Md$', 'ce que Berkshire a effectivement payé']));
+    s += rrect(mL + wCost, mT, wGain, bh, 3, C.seq[2],
+      ' class="bar-h" style="transform-origin:0 50%;transition-delay:.2s"' +
+      tipAttr('Plus-values latentes', ['217,3 Md$', 'gain non réalisé, donc non imposé']));
+    s += txt(mL + 10, mT + bh / 2 + 5, '106,5', { size: 15, weight: 700, fill: '#ffffff', mono: true, cls: 'fade' });
+    s += txt(mL + wCost + 12, mT + bh / 2 + 5, '217,3 Md$ de plus-values latentes', {
+      size: 14, weight: 700, fill: C.seq[5], mono: false, cls: 'fade'
+    });
+    s += txt(mL, mT - 22, 'Juste valeur au 30 juin 2026 — 323,8 Md$', { size: 12, weight: 700, fill: C.ink });
+    s += txt(mL, mT - 8, 'Coût de revient', { size: 10, fill: C.ink3 });
+    /* Passif d'impôt, au crayon */
+    var ty = mT + bh + 16;
+    s += '<g class="fade" style="transition-delay:.55s">' +
+      '<path d="M' + (mL + wCost) + ' ' + ty + ' L' + (mL + wCost) + ' ' + (ty + 9) +
+      ' L' + (mL + wCost + x(90.2) - mL) + ' ' + (ty + 9) + ' L' + (mL + wCost + x(90.2) - mL) + ' ' + ty +
+      '" fill="none" stroke="' + C.pencil + '" stroke-width="2" filter="url(#wobble-soft)"/>' +
+      txt(mL + wCost + 8, ty + 26, "90,2 Md$ d'impôts, principalement différés — le prix de sortie", {
+        size: 11.5, weight: 700, fill: C.pencil
+      }) + '</g>';
+    return s + '</svg>';
+  };
+
+  /* 3.6 — Portefeuille 13F ------------------------------------------------ */
+  CHARTS.portfolio = function (W) {
+    var lw = W < 520 ? 108 : 168, vw = W < 520 ? 44 : 62, rh = W < 520 ? 21 : 23;
+    var mR = 4, pw = W - lw - vw - mR - 8;
+    var H = DATA.pf.length * rh + 26;
+    var max = DATA.pf[0].w;
+    var s = svgOpen(W, H);
+    s += txt(lw - 6, 12, 'Poids', { size: 9, fill: C.ink3, anchor: 'end', ls: '.08em' });
+    s += txt(W - mR, 12, '%', { size: 9, fill: C.ink3, anchor: 'end', ls: '.08em' });
+    DATA.pf.forEach(function (d, i) {
+      var y0 = 22 + i * rh, bh = rh - 7;
+      var bwid = Math.max(2, (d.w / max) * pw);
+      var ci = d.w > 15 ? 5 : d.w > 8 ? 4 : d.w > 3 ? 3 : d.w > 0.8 ? 2 : 1;
+      s += '<g class="pf-row" data-mv="' + d.mv + '"' +
+        tipAttr(d.k, [nf(d.w, 1) + ' % du portefeuille', nf(d.v, d.v < 1 ? 3 : 1) + ' Md$', d.t + ' titres', 'T1 : ' + d.n]) + '>';
+      s += '<rect x="0" y="' + (y0 - 3.5) + '" width="' + W + '" height="' + rh + '" fill="' +
+           (i % 4 < 2 ? 'rgba(19,122,70,.07)' : 'transparent') + '"/>';
+      s += txt(lw - 8, y0 + bh / 2 + 4, d.k, { size: W < 520 ? 10 : 11.5, fill: C.ink, anchor: 'end', weight: d.mv === 'new' ? 700 : 400 });
+      s += rrect(lw, y0, bwid, bh, 3, C.seq[ci],
+        ' class="bar-h" style="transition-delay:' + Math.min(i * 26, 600) + 'ms"');
+      s += txt(W - mR, y0 + bh / 2 + 4, nf(d.w, 1), { size: 10.5, mono: true, fill: C.ink2, anchor: 'end', weight: 600 });
+      if (d.mv === 'new') {
+        s += txt(lw + bwid + 6, y0 + bh / 2 + 4, 'NOUVEAU', { size: 8.5, weight: 800, fill: C.s1, ls: '.1em', cls: 'fade' });
+      } else if (d.mv === 'down' || d.mv === 'up') {
+        s += txt(lw + bwid + 6, y0 + bh / 2 + 4, d.n, {
+          size: 9, weight: 700, fill: d.mv === 'up' ? C.s1 : C.s3, cls: 'fade'
+        });
+      }
+      s += '</g>';
+    });
+    return s + '</svg>';
+  };
+
+  /* 3.7 — Top 5 ----------------------------------------------------------- */
+  CHARTS.top5 = function (W, state) {
+    var d = (state && state.d) || 'q1';
+    return d === 'q1' ? top5Q1(W) : top5Q2(W);
+  };
+  function top5Q1(W) {
+    var lw = W < 480 ? 118 : 160, rh = 42, H = 5 * rh + 58;
+    var pw = W - lw - 62, max = 58;
+    var s = svgOpen(W, H);
+    s += txt(0, 12, 'Valeur de marché au 31 mars 2026, en Md$ — classement déclaré', { size: 10.5, fill: C.ink3 });
+    DATA.top5q1.forEach(function (d, i) {
+      var y0 = 26 + i * rh, bh = 26;
+      var bwid = Math.max(3, (d.v / max) * pw);
+      s += '<g' + tipAttr(d.k, [nf(d.v, 0) + ' Md$', d.out ? 'sort du top 5 au 30 juin' : 'reste dans le top 5']) + '>';
+      s += txt(lw - 10, y0 + bh / 2 + 5, d.k, { size: 13, weight: 700, fill: d.out ? C.s3 : C.ink, anchor: 'end' });
+      s += rrect(lw, y0, bwid, bh, 3, d.out ? C.s3 : C.seq[4],
+        ' class="bar-h" style="transition-delay:' + (i * 80) + 'ms"');
+      s += txt(lw + bwid + 8, y0 + bh / 2 + 5, nf(d.v, 0), { size: 13, weight: 700, mono: true, fill: C.ink2, cls: 'fade' });
+      if (d.out) {
+        s += txt(lw + bwid + 34, y0 + bh / 2 + 5, '← sort', { size: 11, weight: 700, fill: C.s3, cls: 'fade' });
+      }
+      s += '</g>';
+    });
+    s += txt(0, H - 16, 'Concentration du top 5 : 61 % du portefeuille', { size: 11.5, weight: 700, fill: C.ink });
+    return s + '</svg>';
+  }
+  function top5Q2(W) {
+    var rh = 44, H = 5 * rh + 96;
+    var s = svgOpen(W, H);
+    s += txt(0, 12, 'Au 30 juin 2026 — le 10-Q liste les cinq lignes par ORDRE ALPHABÉTIQUE', {
+      size: 10.5, weight: 700, fill: C.pencil
+    });
+    s += txt(0, 27, 'Aucun rang, aucun montant n’est déclaré. Les plaques ci-dessous ne sont pas un classement.', {
+      size: 10, fill: C.ink3
+    });
+    DATA.top5q2.forEach(function (k, i) {
+      var y0 = 40 + i * rh, isNew = k === 'Alphabet';
+      s += '<g class="fade" style="transition-delay:' + (i * 90) + 'ms"' +
+        tipAttr(k, ['Dans le top 5 au 30 juin 2026', isNew ? 'Entrée — après le placement du 4 juin' : 'Déjà présent au 31 mars']) + '>';
+      s += rrect(0, y0, W, 34, 3, isNew ? 'rgba(19,122,70,.16)' : 'rgba(19,122,70,.06)');
+      s += '<rect x="0" y="' + y0 + '" width="4" height="34" fill="' + (isNew ? C.s1 : C.rule) + '"/>';
+      s += txt(16, y0 + 22, k, { size: 14, weight: 700, fill: C.ink });
+      if (isNew) s += txt(W - 10, y0 + 22, 'ENTRÉE', { size: 9.5, weight: 800, fill: C.s1, anchor: 'end', ls: '.12em' });
+      s += '</g>';
+    });
+    var yy = 40 + 5 * rh + 10;
+    s += '<g class="fade" style="transition-delay:.55s">' +
+      rrect(0, yy, W, 30, 3, 'rgba(192,39,26,.09)') +
+      '<rect x="0" y="' + yy + '" width="4" height="30" fill="' + C.pencil + '"/>' +
+      txt(16, yy + 20, 'Chevron', { size: 14, weight: 700, fill: C.ink3 }) +
+      '<line x1="12" y1="' + (yy + 15) + '" x2="' + (16 + 68) + '" y2="' + (yy + 15) +
+      '" stroke="' + C.pencil + '" stroke-width="2.4" filter="url(#wobble)"/>' +
+      txt(W - 10, yy + 20, 'SORT DU TOP 5', { size: 9.5, weight: 800, fill: C.pencil, anchor: 'end', ls: '.12em' }) +
+      '</g>';
+    s += txt(0, H - 12, 'Concentration du top 5 : 66 % du portefeuille (contre 61 % au 31 mars)', {
+      size: 11.5, weight: 700, fill: C.ink, cls: 'fade'
+    });
+    return s + '</svg>';
+  }
+
+  /* 3.8 — Montée d'Alphabet ---------------------------------------------- */
+  CHARTS.alphabet = function (W) {
+    var H = 280, mT = 34, mB = 62, mL = 40, mR = 10;
+    var ph = H - mT - mB, pw = W - mL - mR, max = 30;
+    var y = function (v) { return mT + ph - (v / max) * ph; };
+    var s = svgOpen(W, H) + hatchOpen('h-abc', C.pencil);
+    [0, 10, 20, 30].forEach(function (g) {
+      s += gridline(mL, y(g), W - mR);
+      s += txt(mL - 6, y(g) + 4, nf(g, 0), { size: 10, fill: C.ink3, anchor: 'end', mono: true });
+    });
+    s += txt(mL - 6, mT - 12, 'Md$', { size: 9, fill: C.ink3, anchor: 'end', ls: '.06em' });
+    var gw = pw / DATA.alphabet.length, bw = Math.min(72, gw * 0.5);
+    DATA.alphabet.forEach(function (d, i) {
+      var cx = mL + gw * i + gw / 2, x = cx - bw / 2;
+      s += rrect(x, y(d.v), bw, mT + ph - y(d.v), 4, d.known ? C.s1 : 'url(#h-abc)',
+        ' class="bar-v" style="transition-delay:' + (i * 120) + 'ms"' + (d.known ? '' : DASHED) +
+        tipAttr(d.d, [d.lab, d.sub]));
+      s += txt(cx, y(d.v) - 8, d.lab, {
+        size: 11, weight: 700, mono: true, anchor: 'middle', cls: 'fade',
+        fill: d.known ? C.s1 : C.pencil
+      });
+      s += txt(cx, H - mB + 18, d.d, { size: 10.5, weight: 700, fill: C.ink, anchor: 'middle' });
+      wrapLines(d.sub, W < 520 ? 18 : 26).forEach(function (ln, j) {
+        s += txt(cx, H - mB + 32 + j * 12, ln, { size: 9, fill: C.ink3, anchor: 'middle' });
+      });
+    });
+    s += txt(W - mR, mT - 12, 'Au 30 juin : dans le top 5, montant non déclaré', {
+      size: 10.5, weight: 700, fill: C.pencil, anchor: 'end', cls: 'fade'
+    });
+    return s + '</svg>';
+  };
+
+  /* 3.9 — Plancher de trésorerie ----------------------------------------- */
+  CHARTS.floor = function (W) {
+    var H = 152, mL = 4, mR = 4, mT = 56, bh = 46;
+    var pw = W - mL - mR, max = 364.7;
+    var s = svgOpen(W, H);
+    s += rrect(mL, mT, pw, bh, 3, C.seq[3], ' class="bar-h"' +
+      tipAttr('Trésorerie nette', ['364,7 Md$ au 30 juin 2026']));
+    var xf = mL + (30 / max) * pw;
+    s += rrect(mL, mT, Math.max(3, xf - mL), bh, 3, C.pencil, ' class="bar-h" style="transition-delay:.35s"' +
+      tipAttr('Plancher déclaré', ['30 Md$', 'Berkshire ne rachètera pas en deçà']));
+    s += '<line x1="' + xf + '" y1="' + (mT - 12) + '" x2="' + xf + '" y2="' + (mT + bh + 12) +
+      '" stroke="' + C.pencil + '" stroke-width="2" class="fade" style="transition-delay:.5s" filter="url(#wobble-soft)"/>';
+    s += txt(mL, mT - 34, 'Trésorerie nette au 30 juin — 364,7 Md$', { size: 12, weight: 700, fill: C.ink });
+    s += txt(Math.max(xf + 8, 40), mT - 12, 'plancher 30 Md$', { size: 10.5, weight: 700, fill: C.pencil, cls: 'fade' });
+    s += txt(mL + pw, mT + bh + 26, 'marge de manœuvre théorique : 334,7 Md$', {
+      size: 12, weight: 700, fill: C.s1, anchor: 'end', cls: 'fade'
+    });
+    return s + '</svg>';
+  };
+
+  /* 3.10 — Variation du coût par bloc ------------------------------------ */
+  CHARTS.blocks = function (W) {
+    var narrow = W < 520;
+    var lw = narrow ? 0 : 190, rh = narrow ? 78 : 56;
+    var H = DATA.blocks.length * rh + (narrow ? 62 : 44);
+    /* Zéro décalé vers la gauche : une seule barre est négative, et il faut
+       réserver la place du libellé chiffré à droite de la plus longue. */
+    var zeroX = lw + (W - lw) * 0.11;
+    var scale = Math.max(1, (W - zeroX - 62)) / 21.5;
+    var s = svgOpen(W, H) + hatchDef('h-blk', C.s3);
+    s += '<line x1="' + zeroX + '" y1="16" x2="' + zeroX + '" y2="' + (H - 26) +
+      '" stroke="' + C.ink + '" stroke-width="1.5" shape-rendering="crispEdges"/>';
+    s += txt(zeroX, H - 12, '0', { size: 10, fill: C.ink3, anchor: 'middle', mono: true });
+    s += txt(zeroX + 6, 12, 'Md$', { size: 9, fill: C.ink3, ls: '.06em' });
+    DATA.blocks.forEach(function (d, i) {
+      var y0 = 24 + i * rh + (narrow ? 22 : 0), bh = 26;
+      var wpx = Math.abs(d.d) * scale, pos = d.d >= 0;
+      if (lw) {
+        s += txt(lw - 10, y0 + bh / 2 + 4, d.k, { size: 11.5, fill: C.ink, anchor: 'end' });
+      } else {
+        s += txt(0, y0 - 8, d.k, { size: 11, weight: 700, fill: C.ink });
+      }
+      s += rrect(pos ? zeroX : zeroX - wpx, y0, wpx, bh, 3, pos ? C.s1 : 'url(#h-blk)',
+        ' class="' + (pos ? 'bar-h' : 'bar-h-r') + '" style="transition-delay:' + (i * 110) + 'ms"' +
+        tipAttr(d.k, ['Variation du coût de revient au T2', sgn(d.d, 2) + ' Md$']));
+      s += txt(pos ? zeroX + wpx + 8 : zeroX - wpx - 8, y0 + bh / 2 + 5, sgn(d.d, 2), {
+        size: 13, weight: 700, mono: true, cls: 'fade',
+        fill: pos ? C.s1 : C.s3, anchor: pos ? 'start' : 'end'
+      });
+    });
+    return s + '</svg>';
+  };
+
+  /* 3.11 — Ventilation du capital ---------------------------------------- */
+  CHARTS.deploy = function (W) {
+    var total = 26.6, bh = 56, mT = 46, H = mT + bh + 116;
+    var s = svgOpen(W, H) + hatchOpen('h-dep', C.pencil);
+    var x = 0;
+    s += txt(0, 16, 'Capital engagé au T2 2026 — 26,6 Md$ identifiés', { size: 12, weight: 700, fill: C.ink });
+    s += txt(0, 31, 'La barre hachurée est la seule inconnue du dossier.', { size: 10.5, fill: C.ink3 });
+    DATA.deploy.forEach(function (d, i) {
+      var wpx = (d.v / total) * W - 2;
+      s += rrect(x, mT, wpx, bh, 3, d.known ? d.c : 'url(#h-dep)',
+        ' class="bar-h" style="transform-origin:0 50%;transition-delay:' + (i * 130) + 'ms"' + (d.known ? '' : DASHED) +
+        tipAttr(d.k, [nf(d.v, 1) + ' Md$', nf(d.v / total * 100, 0) + ' % du capital engagé',
+          d.known ? 'destination connue' : 'destination non déclarée']));
+      if (wpx > 46) {
+        s += txt(x + wpx / 2, mT + bh / 2 + 6, nf(d.v, 1), {
+          size: 16, weight: 700, mono: true, anchor: 'middle', cls: 'fade',
+          fill: d.known ? '#ffffff' : C.ink
+        });
+      }
+      x += wpx + 2;
+    });
+    /* Légende dépliée sous la barre */
+    var ly = mT + bh + 22;
+    DATA.deploy.forEach(function (d, i) {
+      var yy = ly + i * 20;
+      s += '<rect x="0" y="' + (yy - 9) + '" width="11" height="11" rx="2" fill="' +
+        (d.known ? d.c : 'url(#h-dep)') + '" class="fade" style="transition-delay:' + (0.5 + i * 0.06) + 's"/>';
+      s += txt(18, yy, d.k, { size: 11, fill: C.ink2, cls: 'fade' });
+      s += txt(W, yy, nf(d.v, 1) + ' Md$', { size: 11, weight: 700, mono: true, fill: C.ink, anchor: 'end', cls: 'fade' });
+    });
+    return s + '</svg>';
+  };
+
+  /* 3.12 — Berkshire vs S&P 500 ------------------------------------------ */
+  CHARTS.perf = function (W) {
+    var narrow = W < 560;
+    var H = narrow ? 400 : 320, mT = 30, mB = narrow ? 76 : 60, mL = 34, mR = 6;
+    var ph = H - mT - mB, pw = W - mL - mR, max = 22;
+    var y = function (v) { return mT + ph - (v / max) * ph; };
+    var s = svgOpen(W, H);
+    [0, 5, 10, 15, 20].forEach(function (g) {
+      s += gridline(mL, y(g), W - mR);
+      s += txt(mL - 6, y(g) + 4, nf(g, 0), { size: 10, fill: C.ink3, anchor: 'end', mono: true });
+    });
+    s += txt(mL - 6, mT - 12, '%/an', { size: 9, fill: C.ink3, anchor: 'end', ls: '.06em' });
+    var gw = pw / 4, bw = Math.min(38, gw * 0.3), inner = 4;
+    DATA.perf.forEach(function (d, i) {
+      var cx = mL + gw * i + gw / 2;
+      var xb = cx - bw - inner / 2, xs = cx + inner / 2;
+      var beats = d.brk >= d.sp;
+      s += rrect(xb, y(d.brk), bw, mT + ph - y(d.brk), 3, C.s1,
+        ' class="bar-v" style="transition-delay:' + (i * 90) + 'ms"' +
+        tipAttr('Berkshire — ' + d.k + ', ' + d.p, [nf(d.brk, 1) + ' %/an']));
+      s += rrect(xs, y(d.sp), bw, mT + ph - y(d.sp), 3, C.s2,
+        ' class="bar-v" style="transition-delay:' + (i * 90 + 60) + 'ms"' +
+        tipAttr('S&P 500 TR — ' + d.k + ', ' + d.p, [nf(d.sp, 1) + ' %/an']));
+      s += txt(xb + bw / 2, y(d.brk) - 6, nf(d.brk, 1), { size: 10.5, weight: 700, mono: true, fill: C.s1, anchor: 'middle', cls: 'fade' });
+      s += txt(xs + bw / 2, y(d.sp) - 6, nf(d.sp, 1), { size: 10.5, weight: 700, mono: true, fill: C.s2, anchor: 'middle', cls: 'fade' });
+      wrapLines(d.k, narrow ? 13 : 18).forEach(function (ln, j) {
+        s += txt(cx, H - mB + 16 + j * 12, ln, { size: 9.5, fill: C.ink2, anchor: 'middle' });
+      });
+      s += txt(cx, H - mB + (narrow ? 52 : 42), narrow ? d.ps : d.p, {
+        size: narrow ? 9.5 : 10, weight: 700, fill: C.ink, anchor: 'middle'
+      });
+      s += txt(cx, H - mB + (narrow ? 66 : 56), beats ? 'bat l’indice' : 'sous l’indice', {
+        size: narrow ? 8.5 : 9.5, weight: 700, fill: beats ? C.s1 : C.s3, anchor: 'middle'
+      });
+    });
+    return s + '</svg>';
+  };
+
+  function wrapLines(str, max) {
+    var words = String(str).split(' '), out = [], cur = '';
+    words.forEach(function (w) {
+      if ((cur + ' ' + w).trim().length > max && cur) { out.push(cur); cur = w; }
+      else { cur = (cur ? cur + ' ' : '') + w; }
+    });
+    if (cur) out.push(cur);
+    return out;
+  }
+
+  var CHART_LEGENDS = {
+    flux:   [{ k: 'Achats', c: C.s1 }, { k: 'Ventes', c: C.s3, hatch: true }],
+    cash:   [{ k: 'Trésorerie nette réelle', c: C.s1 }, { k: 'Bons du Trésor achetés, non payés', c: C.s3, hatch: true }],
+    unrealized: [{ k: 'Coût de revient', c: C.seq[4] }, { k: 'Plus-values latentes', c: C.seq[2] }],
+    alphabet: [{ k: 'Montant déclaré', c: C.s1 }, { k: 'Dérivé ou non déclaré', c: C.pencil, open: true }],
+    blocks: [{ k: 'Capital engagé', c: C.s1 }, { k: 'Capital retiré', c: C.s3, hatch: true }],
+    perf:   [{ k: 'Berkshire Hathaway', c: C.s1 }, { k: 'S&P 500 (rendement total)', c: C.s2 }],
+    streak: [{ k: 'Trimestre vendeur net', c: C.s3, hatch: true }, { k: 'Trimestre acheteur net', c: C.s1 }],
+    floor:  [{ k: 'Trésorerie disponible', c: C.seq[3] }, { k: 'Plancher de 30 Md$', c: C.pencil }]
+  };
+
+  /* ---------------------------------------------------------------------
+     4. MONTAGE DES FIGURES
+     --------------------------------------------------------------------- */
+  var mounted = [];
+
+  function mountCharts() {
+    $$('[data-chart]').forEach(function (fig) {
+      var name = fig.getAttribute('data-chart');
+      if (!CHARTS[name]) return;
+      var host = $('.chart', fig);
+      if (!host) return;
+      if (CHART_LEGENDS[name]) {
+        host.insertAdjacentHTML('beforebegin', legend(CHART_LEGENDS[name]));
+      }
+      var rec = { fig: fig, host: host, name: name, state: {}, drawn: false };
+      mounted.push(rec);
+      draw(rec);
+    });
+    window.addEventListener('resize', debounce(function () {
+      mounted.forEach(function (r) { draw(r, true); });
+    }, 180));
+  }
+
+  function draw(rec, keepDrawn) {
+    var w = Math.max(240, Math.round(rec.host.clientWidth || rec.host.parentNode.clientWidth || 320));
+    rec.host.innerHTML = CHARTS[rec.name](w, rec.state);
+    var svg = rec.host.querySelector('svg');
+    if (!svg) return;
+    svg.removeAttribute('width'); svg.removeAttribute('height');
+    svg.setAttribute('aria-label', (rec.fig.querySelector('.fig__title') || {}).textContent || rec.name);
+    bindTips(svg);
+    if (REDUCED || (keepDrawn && rec.drawn)) { svg.classList.add('is-drawn'); rec.drawn = true; }
+    else if (isNear(rec.fig)) { requestAnimationFrame(function () { svg.classList.add('is-drawn'); rec.drawn = true; }); }
+  }
+
+  function isNear(el) {
+    var r = el.getBoundingClientRect();
+    return r.top < window.innerHeight * 0.92 && r.bottom > 0;
+  }
+
+  /* Infobulles ----------------------------------------------------------- */
+  var tip = $('#tip');
+  function showTip(el, ev) {
+    var raw = el.getAttribute('data-tip'); if (!raw) return;
+    var parts = raw.split('||');
+    tip.innerHTML = '<span class="tip__k">' + esc(parts[0]) + '</span>' +
+      parts[1].split('|').map(function (l, i) { return i === 0 ? '<b>' + esc(l) + '</b>' : esc(l); }).join('<br>');
+    tip.classList.add('is-on');
+    moveTip(ev, el);
+  }
+  function moveTip(ev, el) {
+    var x, yv;
+    if (ev && ev.clientX != null) { x = ev.clientX; yv = ev.clientY; }
+    else { var r = el.getBoundingClientRect(); x = r.left + r.width / 2; yv = r.top; }
+    var tw = tip.offsetWidth, th = tip.offsetHeight;
+    tip.style.left = Math.max(8, Math.min(x + 14, window.innerWidth - tw - 8)) + 'px';
+    tip.style.top = Math.max(8, yv - th - 12) + 'px';
+  }
+  function hideTip() { tip.classList.remove('is-on'); }
+  function bindTips(root) {
+    $$('[data-tip]', root).forEach(function (el) {
+      el.addEventListener('mouseenter', function (e) { showTip(el, e); });
+      el.addEventListener('mousemove', function (e) { moveTip(e, el); });
+      el.addEventListener('mouseleave', hideTip);
+      el.addEventListener('focus', function () { showTip(el, null); });
+      el.addEventListener('blur', hideTip);
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     5. TABLEAU DE REPLI DU PORTEFEUILLE
+     --------------------------------------------------------------------- */
+  function buildPfTable() {
+    var host = $('[data-pf-table]'); if (!host) return;
+    var rows = DATA.pf.map(function (d) {
+      return '<tr><th scope="row">' + esc(d.k) + '</th><td>' + nf(d.w, 1) + ' %</td><td>' +
+        nf(d.v, d.v < 1 ? 3 : 1) + '</td><td>' + esc(d.t) + '</td><td class="' +
+        (d.mv === 'new' ? 'flag' : d.mv === 'up' ? 'pos' : d.mv === 'down' ? 'neg' : '') + '">' +
+        esc(d.n) + '</td></tr>';
+    }).join('');
+    host.innerHTML = '<div class="tablewrap"><table class="ledger">' +
+      '<caption>13F au 31 mars 2026 — 28 lignes, 263,1 Md$</caption>' +
+      '<thead><tr><th scope="col">Ligne</th><th scope="col">Poids</th><th scope="col">Md$</th>' +
+      '<th scope="col">Titres</th><th scope="col">Mouvement T1</th></tr></thead><tbody>' +
+      rows + '</tbody></table></div>';
+  }
+
+  /* ---------------------------------------------------------------------
+     6. INTERACTIONS
+     --------------------------------------------------------------------- */
+  function initFilters() {
+    var box = $('[data-pf-filter]'); if (!box) return;
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      $$('button', box).forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+      var f = b.getAttribute('data-f');
+      $$('.pf-row').forEach(function (g) {
+        g.classList.toggle('is-dim', f !== 'all' && g.getAttribute('data-mv') !== f);
+      });
+    });
+  }
+
+  function initTop5() {
+    var box = $('[data-top5]'); if (!box) return;
+    var rec = null;
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      $$('button', box).forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+      rec = rec || mounted.filter(function (r) { return r.name === 'top5'; })[0];
+      if (!rec) return;
+      rec.state.d = b.getAttribute('data-d');
+      rec.drawn = false;
+      draw(rec);
+      var svg = rec.host.querySelector('svg');
+      if (svg) requestAnimationFrame(function () { svg.classList.add('is-drawn'); });
+    });
+  }
+
+  function initRevealBlocks() {
+    $$('[data-reveal-block]').forEach(function (b) {
+      var t = $('[data-reveal-trigger]', b); if (!t) return;
+      t.addEventListener('click', function () {
+        b.classList.add('is-open');
+        t.style.display = 'none';
+        mounted.filter(function (r) { return b.contains(r.fig); }).forEach(function (r) {
+          draw(r);
+          var svg = r.host.querySelector('svg');
+          if (svg) requestAnimationFrame(function () { svg.classList.add('is-drawn'); });
+        });
+      });
+    });
+  }
+
+  function initTraps() {
+    $$('[data-trap]').forEach(function (t) {
+      t.addEventListener('click', function () { t.classList.toggle('is-open'); });
+    });
+  }
+
+  function initChecklist() {
+    var l = $('[data-checklist]'); if (!l) return;
+    l.addEventListener('click', function (e) {
+      var li = e.target.closest('li'); if (!li) return;
+      li.classList.toggle('is-done');
+    });
+    $$('li', l).forEach(function (li) {
+      li.setAttribute('tabindex', '0');
+      li.setAttribute('role', 'checkbox');
+      li.setAttribute('aria-checked', 'false');
+      li.addEventListener('keydown', function (e) {
+        if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); li.classList.toggle('is-done'); }
+        li.setAttribute('aria-checked', String(li.classList.contains('is-done')));
+      });
+      li.addEventListener('click', function () {
+        li.setAttribute('aria-checked', String(li.classList.contains('is-done')));
+      });
+    });
+  }
+
+  function initGlossary() {
+    var pop = $('#glpop'), open = null;
+    function close() { pop.classList.remove('is-on'); open = null; }
+    $$('.gl').forEach(function (b) {
+      b.setAttribute('type', 'button');
+      function show() {
+        var g = GLOSSARY[b.getAttribute('data-gl')]; if (!g) return;
+        pop.innerHTML = '<b>' + esc(g[0]) + '</b>' + esc(g[1]);
+        pop.classList.add('is-on');
+        var r = b.getBoundingClientRect();
+        var w = pop.offsetWidth, h = pop.offsetHeight;
+        var left = Math.max(10, Math.min(r.left, window.innerWidth - w - 10));
+        var top = r.top - h - 10;
+        if (top < 10) top = Math.min(r.bottom + 10, window.innerHeight - h - 10);
+        pop.style.left = left + 'px'; pop.style.top = top + 'px';
+        open = b;
+      }
+      b.addEventListener('click', function (e) { e.stopPropagation(); open === b ? close() : show(); });
+      b.addEventListener('mouseenter', show);
+      b.addEventListener('mouseleave', function () { if (open !== b) close(); });
+      b.addEventListener('focus', show);
+    });
+    document.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    window.addEventListener('scroll', function () { if (open) close(); }, { passive: true });
+  }
+
+  /* ---------------------------------------------------------------------
+     7. RÉVÉLATION PROGRESSIVE, COMPTEURS, RAIL, SOMMAIRE
+     --------------------------------------------------------------------- */
+  function initReveal() {
+    var els = $$('.reveal');
+    if (!('IntersectionObserver' in window) || REDUCED) {
+      els.forEach(function (e) { e.classList.add('is-in'); });
+      mounted.forEach(function (r) {
+        var s = r.host.querySelector('svg'); if (s) s.classList.add('is-drawn');
+      });
+      $$('[data-count]').forEach(function (e) { e.classList.add('counted'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add('is-in');
+        io.unobserve(en.target);
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
+    els.forEach(function (e) { io.observe(e); });
+
+    /* Les graphiques se dessinent quand leur figure entre dans le champ */
+    var io2 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var rec = mounted.filter(function (r) { return r.fig === en.target; })[0];
+        if (rec) {
+          var svg = rec.host.querySelector('svg');
+          if (svg) { svg.classList.add('is-drawn'); rec.drawn = true; }
+        }
+        io2.unobserve(en.target);
+      });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0 });
+    mounted.forEach(function (r) { io2.observe(r.fig); });
+
+    /* Compteurs */
+    var io3 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        countUp(en.target); io3.unobserve(en.target);
+      });
+    }, { threshold: 0.25 });
+    $$('[data-count]').forEach(function (e) { io3.observe(e); });
+  }
+
+  function countUp(el) {
+    var to = parseFloat(el.getAttribute('data-count'));
+    var d = parseInt(el.getAttribute('data-dec') || '0', 10);
+    var pre = el.getAttribute('data-prefix') || '';
+    var suf = el.getAttribute('data-suffix') || '';
+    if (isNaN(to)) return;
+    var start = null, dur = 1100;
+    function step(ts) {
+      if (start === null) start = ts;
+      var p = Math.min(1, (ts - start) / dur);
+      var e = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + nf(to * e, d) + suf;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function initRail() {
+    var rail = $('#rail'); if (!rail) return;
+    function upd() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      rail.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    upd();
+  }
+
+  function initTabs() {
+    var tabs = $('#tabs'); if (!tabs || !('IntersectionObserver' in window)) return;
+    var links = $$('a', tabs);
+    var map = {};
+    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) { a.removeAttribute('aria-current'); });
+        var a = map[en.target.id];
+        if (a) {
+          a.setAttribute('aria-current', 'true');
+          var r = a.getBoundingClientRect(), rr = tabs.getBoundingClientRect();
+          if (r.left < rr.left + 8 || r.right > rr.right - 8) {
+            tabs.scrollTo({ left: a.offsetLeft - 24, behavior: REDUCED ? 'auto' : 'smooth' });
+          }
+        }
+      });
+    }, { rootMargin: '-18% 0px -62% 0px' });
+    Object.keys(map).forEach(function (id) {
+      var sec = document.getElementById(id); if (sec) io.observe(sec);
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     8. QUIZ
+     --------------------------------------------------------------------- */
+  var QUIZ = [
+    {
+      q: "Combien de trimestres consécutifs de ventes nettes ont précédé le retournement du T2 2026 ?",
+      o: ["6 trimestres", "10 trimestres", "14 trimestres", "20 trimestres"],
+      a: 2, ref: "Feuillet 01",
+      e: "Quatorze — soit trois ans et demi de retrait continu du marché actions. C'est ce qui rend le T2 2026 remarquable : ce n'est pas un achat isolé, c'est une rupture de séquence."
+    },
+    {
+      q: "Selon ce dossier, quel est le fait le plus révélateur du deuxième trimestre ?",
+      o: ["Les 23,5 Md$ d'achats", "L'effondrement des ventes, de 24,1 à 3,7 Md$", "La baisse de la trésorerie", "Le résultat net de 25,7 Md$"],
+      a: 1, ref: "Feuillets 01 et 08",
+      e: "Un gérant qui achète peut simplement placer du cash. Un gérant qui divise ses ventes par 6,5 change de posture. Le grand nettoyage — les 16 sorties — était un événement du T1, pas une politique continue."
+    },
+    {
+      q: "La presse annonce une baisse de trésorerie de 31,9 Md$. Quel est le chiffre à périmètre comparable ?",
+      o: ["Environ 15,5 Md$", "Environ 25 Md$", "Exactement 31,9 Md$", "Environ 40 Md$"],
+      a: 0, ref: "Feuillet 02.3",
+      e: "380,2 → 364,7 Md$, soit −15,5 Md$. La ponction réelle est deux fois plus faible que le chiffre repris partout."
+    },
+    {
+      q: "Pourquoi le « record historique » de 397,4 Md$ au 31 mars était-il gonflé ?",
+      o: ["Il incluait la trésorerie de BNSF", "Il incluait 17,2 Md$ de bons du Trésor achetés mais pas encore payés", "Il était exprimé avant impôts", "Il incluait les warrants Occidental"],
+      a: 1, ref: "Feuillet 02.3",
+      e: "Les notes du bilan sont explicites : ces montants figurent aussi au passif et ont été payés peu après la clôture. Un pur artefact de règlement-livraison — que CNBC neutralise d'ailleurs de la même façon sur le T4 2025."
+    },
+    {
+      q: "Combien Berkshire a-t-il consacré aux rachats de ses propres actions sur l'ensemble de l'année 2025 ?",
+      o: ["Environ 4,5 Md$", "Environ 2 Md$", "235 M$", "Zéro"],
+      a: 3, ref: "Feuillet 02.2",
+      e: "Zéro sur toute l'année 2025, puis 235 M$ au T1 et 4 527 M$ au T2. Ce n'est pas une accélération : c'est un robinet resté fermé un an, puis rouvert."
+    },
+    {
+      q: "Quelle décote Berkshire a-t-il obtenue sur le placement privé Alphabet du 4 juin ?",
+      o: ["Aucune : prix de marché", "6,5 %", "15 %", "25 %"],
+      a: 1, ref: "Feuillet 04.1",
+      e: "351,81 $ en classe A et 348,20 $ en classe C, contre des clôtures de la veille à 376,37 $ et 372,58 $. Sur 10 Md$, cette décote vaut environ 650 M$ à la signature."
+    },
+    {
+      q: "Que se passe-t-il dans le top 5 entre le 31 mars et le 30 juin 2026 ?",
+      o: ["Apple sort, Alphabet entre", "Chevron sort, Alphabet entre", "Rien ne change", "Coca-Cola sort, Chevron entre"],
+      a: 1, ref: "Feuillet 03.2",
+      e: "Chevron sort, Alphabet entre, et la concentration passe de 61 % à 66 %. Attention : le 10-Q liste les cinq lignes par ordre alphabétique — on sait qu'Alphabet est dans le top 5, pas à quel rang."
+    },
+    {
+      q: "Quelle contrainte explique le mieux qu'Abel ne vende ni Apple ni Coca-Cola ?",
+      o: ["Une clause statutaire de Berkshire", "217,3 Md$ de plus-values latentes, donc une facture fiscale massive", "Un engagement pris envers Buffett", "Le manque de liquidité sur ces titres"],
+      a: 1, ref: "Feuillet 06.2",
+      e: "Vendre déclenche 21 % d'impôt fédéral sur des gains accumulés depuis des décennies. Abel liquide les positions récentes — Visa, Mastercard, Amazon — à faible base de coût. Le noyau historique est en partie prisonnier de sa propre performance."
+    },
+    {
+      q: "Laquelle de ces deux acquisitions a pesé sur la trésorerie du T2 2026 ?",
+      o: ["OxyChem seulement", "Taylor Morrison seulement", "Les deux", "Aucune des deux"],
+      a: 3, ref: "Feuillet 08, piège 2",
+      e: "OxyChem a été clôturé le 2 janvier 2026 — donc au T1. Taylor Morrison le 24 juillet 2026 — donc au T3. Ni l'une ni l'autre n'a touché la trésorerie du deuxième trimestre, contrairement à ce qu'écrivent plusieurs médias."
+    },
+    {
+      q: "Que faut-il conclure de la présence de Macy's, Jefferies ou NVR dans le portefeuille ?",
+      o: ["Qu'Abel parie sur le retail et la finance", "Que ces lignes relèvent probablement de Ted Weschler, pas d'Abel", "Que ce sont les prochaines grosses positions", "Qu'il s'agit d'erreurs de déclaration"],
+      a: 1, ref: "Feuillet 05.4",
+      e: "Abel a confirmé que Weschler continue de gérer une partie du portefeuille. Les très petites lignes relèvent historiquement de son périmètre et de celui de Todd Combs. Sont attribuables à Abel avec certitude : Alphabet, la coupe dans Chevron, les 16 sorties, OxyChem, Taylor Morrison et les rachats."
+    },
+    {
+      q: "Quel plancher de trésorerie la politique de rachat inscrit-elle noir sur blanc ?",
+      o: ["30 Md$", "100 Md$", "150 Md$", "Aucun plancher n'est déclaré"],
+      a: 0, ref: "Feuillet 05.2",
+      e: "30 Md$ — soit, avec 364,7 Md$ au 30 juin, une marge de manœuvre théorique de plus de 330 Md$. Le même texte précise que le directeur général décide « après consultation du président du conseil » : Buffett garde un droit de regard codifié."
+    },
+    {
+      q: "Sur la dernière décennie, la valeur comptable par action de Berkshire progresse de 12,4 %/an. Et le S&P 500 ?",
+      o: ["8,2 %/an — Berkshire domine", "10,5 %/an — Berkshire domine", "14,8 %/an — Berkshire sous-performe", "12,4 %/an — égalité parfaite"],
+      a: 2, ref: "Feuillet 07.2",
+      e: "C'est le vrai cadre du mandat d'Abel : il n'hérite pas d'une machine invaincue, mais d'une machine qui a cessé de battre l'indice depuis dix ans. Le déploiement de capital n'est pas un caprice, c'est une nécessité."
+    }
+  ];
+
+  function initQuiz() {
+    var list = $('#qlist'); if (!list) return;
+    var score = 0, done = 0;
+    list.innerHTML = QUIZ.map(function (q, i) {
+      return '<article class="q" id="q' + i + '">' +
+        '<div class="q__head"><span class="q__n">' + (i + 1) + '</span><p class="q__text">' + esc(q.q) + '</p></div>' +
+        '<ul class="q__opts">' + q.o.map(function (o, j) {
+          return '<li><button class="opt" type="button" data-q="' + i + '" data-o="' + j + '">' +
+            '<span class="opt__k">' + 'ABCD'[j] + '</span><span>' + esc(o) + '</span></button></li>';
+        }).join('') + '</ul>' +
+        '<div class="q__fb"><div class="q__fb-in"><span class="verdict"></span>' +
+        '<span class="q__exp">' + esc(q.e) + '</span>' +
+        '<p class="q__ref">Référence — ' + esc(q.ref) + '</p></div></div>' +
+        '</article>';
+    }).join('');
+
+    list.addEventListener('click', function (e) {
+      var btn = e.target.closest('.opt'); if (!btn) return;
+      var qi = +btn.getAttribute('data-q'), oi = +btn.getAttribute('data-o');
+      var card = document.getElementById('q' + qi);
+      if (card.classList.contains('is-answered')) return;
+
+      var right = QUIZ[qi].a;
+      var ok = oi === right;
+      if (ok) score++;
+      done++;
+
+      $$('.opt', card).forEach(function (b) {
+        var j = +b.getAttribute('data-o');
+        b.disabled = true;
+        if (j === right) b.classList.add('is-right');
+        else if (j === oi) b.classList.add('is-wrong');
+      });
+      var v = $('.verdict', card);
+      v.textContent = ok ? '✓ Exact.' : '✗ Non — la bonne réponse est ' + 'ABCD'[right] + '.';
+      v.classList.toggle('ok', ok);
+      card.classList.add('is-answered');
+
+      $('#qscore').textContent = score + ' / ' + QUIZ.length;
+      $('#qbar').style.width = (done / QUIZ.length * 100) + '%';
+      if (done === QUIZ.length) finish(score);
+    });
+  }
+
+  function finish(score) {
+    var n = QUIZ.length, pct = score / n;
+    var g;
+    if (pct === 1)        g = ['Mention d’honneur', 'Sans faute. Vous pouvez dépouiller le 13F ce soir sans filet — et corriger les articles qui sortiront demain.'];
+    else if (pct >= 0.83) g = ['Très bien', 'Vous maîtrisez le dossier, pièges compris. Relisez le feuillet correspondant à votre erreur et c’est réglé.'];
+    else if (pct >= 0.66) g = ['Bien', 'La structure est acquise. Ce sont les détails de méthode — trésorerie ajustée, attribution des lignes — qui vous ont coûté des points.'];
+    else if (pct >= 0.5)  g = ['Passable', 'Vous avez retenu le récit, pas encore les chiffres. Reprenez les feuillets 02 et 06 : tout s’y joue.'];
+    else if (pct >= 0.33) g = ['Insuffisant', 'Le dossier mérite une seconde lecture. Commencez par les quatre pièges du feuillet 08 : ils font la moitié des questions.'];
+    else                  g = ['Ajourné', 'Pas de panique. Reprenez le dossier depuis le feuillet 01 — il est fait pour être lu deux fois.'];
+
+    var box = $('#qresult');
+    box.innerHTML =
+      '<p class="result__grade">' + score + '<span style="font-size:.45em;color:var(--ink-3)"> / ' + n + '</span></p>' +
+      '<p class="result__label">' + esc(g[0]) + '</p>' +
+      '<p class="result__body">' + esc(g[1]) + '</p>' +
+      '<span class="stamp stamp--big' + (pct >= 0.66 ? ' stamp--ok' : '') + '">' +
+      (pct >= 0.66 ? 'Dossier maîtrisé' : 'À reprendre') + '</span>' +
+      '<p style="margin-top:1.4rem"><button class="btn btn--pencil" type="button" id="qagain">Recommencer l’épreuve</button></p>';
+    box.classList.add('is-on');
+    box.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'nearest' });
+    $('#qagain').addEventListener('click', function () {
+      box.classList.remove('is-on');
+      $('#qscore').textContent = '0 / ' + n;
+      $('#qbar').style.width = '0%';
+      initQuiz();
+      document.getElementById('quiz').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth' });
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     9. DÉMARRAGE
+     --------------------------------------------------------------------- */
+  function boot() {
+    mountCharts();
+    buildPfTable();
+    initFilters();
+    initTop5();
+    initRevealBlocks();
+    initTraps();
+    initChecklist();
+    initGlossary();
+    initQuiz();
+    initReveal();
+    initRail();
+    initTabs();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+
+</script>
+</body>
+</html>
