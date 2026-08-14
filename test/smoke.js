@@ -100,6 +100,11 @@ function check(ok, label, detail) {
         enClair: document.querySelectorAll('.plain').length,
         glossaire: document.querySelectorAll('.gl').length,
         suivants: document.querySelectorAll('.sheet__next').length,
+        bandeauLegal: document.querySelectorAll('.tapeline').length,
+        blocsLegaux: document.querySelectorAll('.legal').length,
+        rappelsPied: document.querySelectorAll('.legal-line').length,
+        mentionsAvis: (document.body.innerText.match(/conseil en investissement/gi) || []).length,
+        mentionsRecherches: (document.body.innerText.match(/propres recherches/gi) || []).length,
         debordement: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         fondBody: getComputedStyle(document.body).backgroundColor
       };
@@ -116,6 +121,17 @@ function check(ok, label, detail) {
     check(etat.glossaire >= 20, 'termes de glossaire présents', String(etat.glossaire));
     check(etat.suivants === 10, 'renvois « feuillet suivant » montés', String(etat.suivants));
     check(etat.fondBody !== 'rgba(0, 0, 0, 0)', 'fond de page explicite', etat.fondBody);
+
+    /* Conformité : l'avertissement doit être présent, permanent et répété. */
+    check(etat.bandeauLegal === 1, 'bandeau légal permanent sous la navigation',
+      String(etat.bandeauLegal));
+    check(etat.blocsLegaux >= 6, 'encadrés d\'avertissement présents', String(etat.blocsLegaux));
+    check(etat.rappelsPied === 10, 'rappel légal au pied de chaque feuillet',
+      etat.rappelsPied + '/10');
+    check(etat.mentionsAvis >= 10, '« conseil en investissement » mentionné au moins 10 fois',
+      String(etat.mentionsAvis));
+    check(etat.mentionsRecherches >= 4, '« faites vos propres recherches » répété',
+      String(etat.mentionsRecherches));
 
     /* Navigation : panneau de sommaire sur les petits écrans */
     if (vp.width <= 880) {

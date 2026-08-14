@@ -233,8 +233,14 @@ body::before {
   border: 1px solid var(--rule);
   box-shadow: 0 20px 42px -28px rgba(0,0,0,.6);
   padding: clamp(1.8rem, 4.5vw, 3.4rem) var(--gutter) clamp(2.4rem, 5vw, 3.6rem);
-  scroll-margin-top: 4.2rem;
+  /* Doit dégager l'en-tête collant, qui a grandi du bandeau légal : rail +
+     onglets + bandeau ≈ 83 px en grand écran, ≈ 100 px en petit (le bandeau
+     y passe sur deux lignes). */
+  scroll-margin-top: 5.6rem;
 }
+@media (max-width: 880px) { .sheet { scroll-margin-top: 7rem; } }
+.contact { scroll-margin-top: 5.6rem; }
+@media (max-width: 880px) { .contact { scroll-margin-top: 7rem; } }
 /* Perforation latérale — décor, masqué sur petit écran */
 .sheet::before {
   content: ""; position: absolute; left: 12px; top: 2.2rem; bottom: 2.2rem; width: 12px;
@@ -668,6 +674,66 @@ table.ledger td.flag { color: var(--pencil); font-weight: 700; }
 .plain--cover { max-width: 44rem; margin: 2.6rem 0 0; }
 
 /* -------------------------------------------------------------------------
+   12a. MENTIONS LÉGALES
+   Troisième voix, distincte des deux autres : ni le doute de l'auditeur
+   (rouge), ni l'explication du guide (vert), mais l'avertissement. Elle
+   emprunte l'ambre, couleur déjà réservée au statut d'alerte, et n'est
+   jamais utilisée ailleurs.
+   ------------------------------------------------------------------------- */
+.legal {
+  border: 2px solid var(--status-warn);
+  background: rgba(138, 99, 0, .07);
+  padding: 1.15rem 1.3rem;
+  margin: 2.1rem 0;
+  max-width: 46rem;
+  font-family: var(--sans);
+  font-size: .92rem;
+  line-height: 1.62;
+  color: #3a2c07;
+}
+.legal__tag {
+  display: flex; align-items: center; gap: .45rem;
+  margin: 0 0 .55rem;
+  font-size: .63rem; font-weight: 800; letter-spacing: .19em;
+  text-transform: uppercase; color: var(--status-warn);
+}
+.legal p { margin: 0 0 .7em; max-width: none; }
+.legal p:last-child { margin-bottom: 0; }
+.legal strong { color: #2b2105; }
+.legal--major {
+  border-width: 3px;
+  background: rgba(138, 99, 0, .11);
+  font-size: .98rem;
+}
+.legal--major .legal__tag { font-size: .7rem; }
+
+/* Rappel court, glissé au pied de chaque feuillet */
+.legal-line {
+  display: flex; align-items: baseline; gap: .5rem;
+  font-family: var(--sans); font-size: .7rem; line-height: 1.5;
+  color: var(--status-warn); font-weight: 600;
+  padding: .7rem var(--gutter) .1rem;
+}
+.legal-line::before { content: "⚠"; font-size: .85em; flex: 0 0 auto; }
+
+/* Bandeau permanent sous les onglets — visible à tout moment de la lecture */
+.tapeline {
+  background: rgba(138, 99, 0, .13);
+  border-top: 1px solid rgba(138, 99, 0, .3);
+  text-align: center;
+  padding: .28rem .8rem;
+  font-family: var(--sans); font-size: .61rem; font-weight: 700;
+  letter-spacing: .11em; text-transform: uppercase; color: #6b4d00;
+}
+@media (max-width: 480px) { .tapeline { font-size: .555rem; letter-spacing: .06em; } }
+
+/* Pied de feuillet : le rappel légal puis le renvoi vers la suite */
+.sheetfoot {
+  margin: 3rem calc(var(--gutter) * -1) calc(clamp(2.4rem, 5vw, 3.6rem) * -1);
+  border-top: 1px solid var(--rule);
+}
+
+/* -------------------------------------------------------------------------
    12b. SOMMAIRE
    ------------------------------------------------------------------------- */
 .toc__time {
@@ -703,9 +769,9 @@ table.ledger td.flag { color: var(--pencil); font-weight: 700; }
 /* Renvoi vers le feuillet suivant, monté par le script */
 .sheet__next {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  margin: 3rem calc(var(--gutter) * -1) calc(clamp(2.4rem, 5vw, 3.6rem) * -1);
+  margin: 0;
   padding: 1.15rem var(--gutter) 1.3rem;
-  border-top: 1px solid var(--rule); background: rgba(19,122,70,.05);
+  background: rgba(19,122,70,.05);
   text-decoration: none; color: inherit; transition: background .15s;
 }
 .sheet__next:hover { background: rgba(19,122,70,.12); }
@@ -865,6 +931,7 @@ footer.colophon strong { color: var(--ink); }
   body { background: #fff; }
   body::before, .rail, .tabs, .navpanel, .totop, .skip,
   .sheet__next, .tip, .gl-pop { display: none !important; }
+  .tapeline, .legal, .legal-line { display: block !important; }
   .sheet, .cover { box-shadow: none; break-inside: auto; page-break-before: always; margin: 0; max-width: none; }
   .cover { page-break-before: avoid; }
   .reveal { opacity: 1 !important; transform: none !important; }
@@ -873,7 +940,7 @@ footer.colophon strong { color: var(--ink); }
   .fig__data > :not(summary) { display: block !important; }
   .tablewrap { overflow: visible; box-shadow: none; }
   table.ledger thead th { position: static; }
-  .fig, .box, .kpi, .trap, .plain, table.ledger tr { break-inside: avoid; }
+  .fig, .box, .kpi, .trap, .plain, .legal, table.ledger tr { break-inside: avoid; }
   .contact { background: #fff; color: #000; border: 2px solid #000; }
   .contact p, .contact__note { color: #333; }
 }
@@ -951,6 +1018,7 @@ footer.colophon strong { color: var(--ink); }
     </button>
     <span class="navbar__here" id="navHere">Couverture</span>
   </div>
+  <p class="tapeline">Analyse pédagogique · Ceci n'est pas un conseil en investissement · Faites vos propres recherches</p>
 </nav>
 
 <div class="navpanel" id="navPanel" hidden>
@@ -983,6 +1051,13 @@ footer.colophon strong { color: var(--ink); }
     <div><dt>Rachats d'actions T2</dt><dd data-count="4.5" data-dec="1" data-suffix=" Md$">4,5 Md$</dd></div>
     <div><dt>Trésorerie 30 juin</dt><dd data-count="364.7" data-dec="1" data-suffix=" Md$">364,7 Md$</dd></div>
   </dl>
+
+  <aside class="legal legal--major">
+    <p class="legal__tag">⚠ Avertissement — à lire avant tout</p>
+    <p><strong>Ce dossier n'est pas un conseil en investissement.</strong> C'est un travail d'analyse et de pédagogie : il décrit et explique ce qu'une entreprise cotée a déclaré dans ses documents officiels. Il ne recommande d'acheter ni de vendre quoi que ce soit.</p>
+    <p><strong>Aucune des sociétés citées n'est recommandée</strong>, ni explicitement ni implicitement. Leur mention sert uniquement à expliquer les décisions de Berkshire Hathaway.</p>
+    <p><strong>Faites vos propres recherches</strong> et, si vous envisagez d'investir, adressez-vous à un conseiller financier agréé. Vous seul êtes responsable de vos décisions. Les performances passées ne préjugent jamais des performances futures, et tout investissement peut entraîner une perte en capital.</p>
+  </aside>
 
   <aside class="plain plain--cover">
     <p class="plain__tag">Avant de commencer</p>
@@ -1050,6 +1125,11 @@ footer.colophon strong { color: var(--ink); }
       </div>
 
       <p class="reveal">Ce dossier va aussi loin que les documents le permettent, puis s'arrête — et le dit.</p>
+
+      <div class="legal reveal">
+        <p class="legal__tag">⚠ Rappel</p>
+        <p style="margin-bottom:0">Lire des documents officiels permet de <em>comprendre</em> une décision, pas de savoir si elle serait bonne pour vous. <strong>Ce dossier n'est pas un conseil en investissement</strong> et ne recommande aucune valeur. Faites vos propres recherches.</p>
+      </div>
     </div>
 
     <aside>
@@ -1270,6 +1350,11 @@ footer.colophon strong { color: var(--ink); }
   </aside>
 
   <p class="reveal">Le point faible est l'assurance&nbsp;: les revenus de placement de la branche reculent de 9 % à 3,06 Md$. Les points forts sont ailleurs — <strong>Berkshire Hathaway Energy progresse de 27 % à 891 M$</strong> et le chemin de fer BNSF de 6 % à 1,56 Md$.</p>
+
+  <div class="legal reveal">
+    <p class="legal__tag">⚠ Rappel</p>
+    <p style="margin-bottom:0">Un bon trimestre ne dit rien du trimestre suivant, et un chiffre en hausse n'est pas un signal d'achat. <strong>Ceci n'est pas un conseil en investissement</strong>&nbsp;: ces données sont présentées pour être comprises, pas pour fonder une décision. Vérifiez-les à la source et faites vos propres recherches.</p>
+  </div>
 </section>
 
 <!-- ══════════════════════════════════════ 04 · PORTEFEUILLE ═══════════════ -->
@@ -1309,6 +1394,11 @@ footer.colophon strong { color: var(--ink); }
     <p>Chaque barre est une société détenue. Sa longueur dit quelle <strong>part du portefeuille</strong> elle représente.</p>
     <p style="margin-bottom:0">Le premier constat saute aux yeux&nbsp;: <strong>quatre sociétés font 60 % du total</strong>. Berkshire n'est pas un fonds diversifié qui étale ses paris — c'est un portefeuille très concentré sur quelques convictions anciennes.</p>
   </aside>
+
+  <div class="legal reveal">
+    <p class="legal__tag">⚠ Rappel</p>
+    <p style="margin-bottom:0">Cette liste décrit ce que <strong>Berkshire</strong> détenait au 31 mars 2026, d'après sa déclaration officielle. <strong>Ce n'est pas une liste de valeurs à acheter.</strong> Ce qui convient à un groupe disposant de 364 milliards de trésorerie et d'un horizon de plusieurs décennies n'a aucune raison de convenir à un particulier. Faites vos propres recherches.</p>
+  </div>
 
   <h3 class="reveal">4.2 — Le basculement du top 5</h3>
   <p class="reveal">C'est le fait structurant du trimestre, et il est confirmé par les deux 10-Q.</p>
@@ -1419,6 +1509,11 @@ footer.colophon strong { color: var(--ink); }
   </figure>
 
   <p class="note reveal">Un rabais de 6,5 % sur 10&nbsp;Md$, c'est 650&nbsp;M$ de valeur créée à la signature. Avant même que l'action bouge.</p>
+
+  <div class="legal reveal">
+    <p class="legal__tag">⚠ Rappel</p>
+    <p style="margin-bottom:0">Ce chapitre explique une opération, il ne la recommande pas. <strong>Ces conditions ne sont accessibles à personne d'autre que Berkshire</strong> : un particulier qui achèterait Alphabet en Bourse paierait le prix du marché, sans rabais ni droits d'enregistrement. Rien ici n'est un conseil d'achat sur Alphabet ou sur toute autre valeur.</p>
+  </div>
 </section>
 
 <!-- ══════════════════════════════════════ 06 · DOCTRINE ═══════════════════ -->
@@ -1600,6 +1695,11 @@ footer.colophon strong { color: var(--ink); }
     <cite>Bill Stone, directeur des investissements de Glenview Trust et actionnaire de Berkshire</cite>
   </div>
 
+  <div class="legal reveal">
+    <p class="legal__tag">⚠ Rappel</p>
+    <p style="margin-bottom:0">Décrire un pari n'est pas le partager, et encore moins le conseiller. <strong>Ce pari peut échouer</strong> : les taux peuvent rester élevés des années, et le cycle immobilier ne se retourner jamais comme prévu. Berkshire a les moyens d'attendre indéfiniment ; ce n'est le cas de presque personne. Ceci n'est pas un conseil en investissement.</p>
+  </div>
+
   <h3 class="reveal">7.5 — Le facteur le plus risqué&nbsp;: la pression de la succession</h3>
   <p class="reveal">Abel doit démontrer qu'il sait investir. Un directeur général qui hérite de 397 Md$ de trésorerie et ne fait rien n'a aucune légitimité, quel que soit le mérite théorique de la patience.</p>
   <p class="reveal">Le passage de zéro rachat en 2025 à 4,5 Md$ en un trimestre, la première grosse acquisition, le placement Alphabet&nbsp;: c'est aussi de la <strong>construction de crédibilité</strong>.</p>
@@ -1660,6 +1760,11 @@ footer.colophon strong { color: var(--ink); }
     <p class="box__label">✎ Le vrai cadre du mandat d'Abel</p>
     <p>Il n'hérite pas d'une machine invaincue. <strong>Il hérite d'une machine qui a cessé de battre le marché depuis dix ans</strong>, avec un problème de taille — il est devenu très difficile de faire bouger 1 200 Md$ de bilan — et une trésorerie qui ne travaille pas.</p>
     <p style="margin-bottom:0">Le déploiement de capital n'est pas un caprice de nouveau patron. <strong>C'est une nécessité.</strong></p>
+  </div>
+
+  <div class="legal reveal">
+    <p class="legal__tag">⚠ Rappel</p>
+    <p style="margin-bottom:0">Ces chiffres sont historiques et n'annoncent rien. <strong>Ni la surperformance de soixante ans, ni la sous-performance de dix ans ne disent quoi que ce soit des rendements à venir.</strong> Ce dossier ne porte aucun jugement sur l'opportunité d'acheter ou de vendre l'action Berkshire Hathaway. Faites vos propres recherches.</p>
   </div>
 </section>
 
@@ -1754,8 +1859,15 @@ footer.colophon strong { color: var(--ink); }
 
   <div class="box box--pencil reveal">
     <p class="box__label">✎ La réserve de fond</p>
-    <p>La stratégie d'Abel n'est validée par personne à ce stade. <strong>Deux trimestres, c'est un échantillon, pas une performance.</strong> Et une part de ce qu'on observe peut relever de la construction de légitimité d'un nouveau dirigeant autant que d'une conviction d'investissement.</p>
-    <p style="margin-bottom:0"><strong>Rien de ce document ne constitue un conseil en investissement.</strong></p>
+    <p style="margin-bottom:0">La stratégie d'Abel n'est validée par personne à ce stade. <strong>Deux trimestres, c'est un échantillon, pas une performance.</strong> Et une part de ce qu'on observe peut relever de la construction de légitimité d'un nouveau dirigeant autant que d'une conviction d'investissement.</p>
+  </div>
+
+  <div class="legal legal--major reveal">
+    <p class="legal__tag">⚠ Avertissement — mention légale</p>
+    <p><strong>Ce document ne constitue pas un conseil en investissement</strong>, ni une recommandation, ni une sollicitation d'achat ou de vente d'un quelconque instrument financier. Il n'a pas été préparé selon les exigences réglementaires visant à promouvoir l'indépendance de la recherche en investissement.</p>
+    <p>Il s'agit d'un contenu <strong>pédagogique et journalistique</strong>, produit à partir de documents publics. Son auteur n'est ni conseiller en investissements financiers agréé, ni analyste réglementé, et n'entretient aucune relation avec les sociétés citées.</p>
+    <p><strong>Faites vos propres recherches avant toute décision.</strong> Lisez les documents d'origine, croisez les sources, et consultez un professionnel agréé si vous envisagez d'investir. Vous êtes seul responsable de vos décisions et de leurs conséquences.</p>
+    <p style="margin-bottom:0"><strong>Tout investissement comporte un risque de perte en capital, pouvant aller jusqu'à la totalité des sommes engagées.</strong> Les performances passées ne préjugent en aucun cas des performances futures.</p>
   </div>
 </section>
 
@@ -1765,6 +1877,7 @@ footer.colophon strong { color: var(--ink); }
 <section class="contact" id="contact" aria-labelledby="h-contact">
   <h2 id="h-contact">Une question sur ce dossier&nbsp;?</h2>
   <p>Un chiffre qui vous paraît faux, un passage encore trop technique, un point que vous voulez qu'on décortique&nbsp;? Écrivez-nous. <strong>On essaiera de répondre au maximum.</strong></p>
+  <p style="font-size:.92rem"><strong>En revanche, nous ne donnons aucun conseil en investissement</strong> et ne répondons pas aux questions du type « faut-il acheter&nbsp;? ». Ce n'est ni notre métier ni notre rôle&nbsp;: pour cela, adressez-vous à un conseiller financier agréé.</p>
   <a class="ig" href="https://www.instagram.com/crypto_comiks?igsi=MWplenpsYXh3ODVwdg%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
       <rect x="2" y="2" width="20" height="20" rx="5.5"/>
@@ -1778,7 +1891,8 @@ footer.colophon strong { color: var(--ink); }
 
 <footer class="colophon">
   <p><strong>Sources.</strong> Documents déposés auprès de la SEC&nbsp;: 10-Q de Berkshire Hathaway du 15 mai et du 8 août 2026, 13F-HR du 15 mai 2026, prospectus et 8-K d'Alphabet de juin 2026, 10-Q d'Alphabet de juillet 2026. Les montants du deuxième trimestre sont obtenus par différence entre le semestre et le premier trimestre.</p>
-  <p><strong>Avertissement.</strong> Travail d'analyse et de pédagogie. Ne constitue pas un conseil en investissement. Les performances passées ne préjugent pas des performances futures. — Dossier clos le 14 août 2026, par <a href="https://www.instagram.com/crypto_comiks?igsi=MWplenpsYXh3ODVwdg%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">Crypto&nbsp;Comiks</a>.</p>
+  <p><strong>Avertissement.</strong> Ce document est un travail d'analyse et de pédagogie réalisé à partir de sources publiques. <strong>Il ne constitue pas un conseil en investissement</strong>, ni une recommandation, ni une sollicitation d'achat ou de vente. Aucune des sociétés citées n'est recommandée. Faites vos propres recherches et consultez un professionnel agréé avant toute décision. Tout investissement comporte un risque de perte en capital, et les performances passées ne préjugent pas des performances futures.</p>
+  <p>Dossier clos le 14 août 2026, par <a href="https://www.instagram.com/crypto_comiks?igsi=MWplenpsYXh3ODVwdg%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">Crypto&nbsp;Comiks</a>.</p>
 </footer>
 
 <button class="totop" id="totop" type="button" hidden aria-label="Revenir au sommaire">↑</button>
@@ -2777,7 +2891,22 @@ footer.colophon strong { color: var(--ink); }
     });
   }
 
-  /* Renvoi vers le feuillet suivant, au pied de chaque feuillet ------------ */
+  /* Rappels légaux de pied de feuillet. Un par feuillet, tous différents :
+     répété à l'identique dix fois, l'avertissement cesserait d'être lu. */
+  var RAPPELS = [
+    "Analyse pédagogique. Ceci n'est pas un conseil en investissement.",
+    "Ce dossier explique ce qui s'est passé. Il ne dit pas quoi faire de votre argent.",
+    "Aucune des valeurs citées n'est recommandée à l'achat ni à la vente.",
+    "Faites vos propres recherches avant toute décision d'investissement.",
+    "Contenu à but éducatif. Aucune recommandation, explicite ou implicite.",
+    "Les performances passées ne préjugent jamais des performances futures.",
+    "Tout investissement comporte un risque de perte en capital.",
+    "Pour investir, adressez-vous à un conseiller financier agréé.",
+    "Décrire une décision n'est pas la conseiller. Ceci n'est pas un conseil en investissement.",
+    "Ceci n'est pas un conseil en investissement. Faites vos propres recherches."
+  ];
+
+  /* Pied de feuillet : rappel légal, puis renvoi vers la suite ------------- */
   function initNext() {
     var secs = sections();
     secs.forEach(function (s, i) {
@@ -2787,13 +2916,16 @@ footer.colophon strong { color: var(--ink); }
       var num = next ? next.num : '✉';
       var titre = next ? next.titre : 'Une question ? Écrivez-nous';
       var lab = next ? 'Feuillet suivant' : 'Pour finir';
-      var a = document.createElement('a');
-      a.className = 'sheet__next';
-      a.href = href;
-      a.innerHTML = '<span><span class="lab">' + lab + '</span><b>' +
+
+      var foot = document.createElement('div');
+      foot.className = 'sheetfoot';
+      foot.innerHTML =
+        '<p class="legal-line">' + esc(RAPPELS[i % RAPPELS.length]) + '</p>' +
+        '<a class="sheet__next" href="' + href + '">' +
+        '<span><span class="lab">' + lab + '</span><b>' +
         (next ? esc(num) + ' — ' : '') + esc(titre) + '</b></span>' +
-        '<span class="arrow" aria-hidden="true">→</span>';
-      sec.appendChild(a);
+        '<span class="arrow" aria-hidden="true">→</span></a>';
+      sec.appendChild(foot);
     });
   }
 

@@ -17,7 +17,7 @@ const CARD = `
     background: #f4f0e1;
     font-family: "Iowan Old Style", Palatino, "Book Antiqua", Georgia, serif;
     color: #1b1e14;
-    padding: 62px 68px;
+    padding: 46px 60px;
     display: flex; flex-direction: column; justify-content: space-between;
   }
   /* Bandes vertes du listing */
@@ -39,29 +39,36 @@ const CARD = `
     font-size: 15px; font-weight: 700; letter-spacing: .3em;
     text-transform: uppercase; color: #127a46;
   }
-  h1 { font-size: 78px; font-weight: 400; letter-spacing: -.025em; line-height: 1.02; margin-top: 26px; }
+  h1 { font-size: 68px; font-weight: 400; letter-spacing: -.025em; line-height: 1.02; margin-top: 26px; }
   h1 em { font-style: normal; display: block; color: #0d4a2c; }
   .sub {
-    font-size: 25px; color: #4b5040; margin-top: 24px; max-width: 780px;
+    font-size: 22px; color: #4b5040; margin-top: 24px; max-width: 780px;
     border-left: 4px solid #c0271a; padding-left: 18px; line-height: 1.32;
   }
   .facts { display: flex; gap: 1px; background: #cdd2bd; border: 1px solid #b7bda6; }
-  .facts div { background: #f4f0e1; padding: 16px 20px; flex: 1; }
+  .facts div { background: #f4f0e1; padding: 13px 18px; flex: 1; }
   .facts dt {
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #6f7561;
   }
   .facts dd {
     font-family: ui-monospace, "DejaVu Sans Mono", Menlo, Consolas, monospace;
-    font-size: 27px; font-weight: 700; color: #0d4a2c; margin-top: 6px;
+    font-size: 24px; font-weight: 700; color: #0d4a2c; margin-top: 6px;
   }
   .foot {
     display: flex; justify-content: space-between; align-items: flex-end;
-    margin-top: 24px;
+    margin-top: 16px;
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 15px; letter-spacing: .16em; text-transform: uppercase; color: #6f7561;
   }
   .foot b { color: #c0271a; font-weight: 700; }
+  .warn {
+    margin-top: 18px; padding: 10px 14px;
+    border: 2px solid #8a6300; background: rgba(138,99,0,.10);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px; font-weight: 700; letter-spacing: .05em; color: #6b4d00;
+    text-align: center;
+  }
   .stamp {
     position: absolute; top: 54px; right: 60px; z-index: 2;
     transform: rotate(11deg);
@@ -84,6 +91,7 @@ const CARD = `
     <div><dt>Rachats d'actions</dt><dd>4,5 Md$</dd></div>
     <div><dt>Trésorerie 30 juin</dt><dd>364,7 Md$</dd></div>
   </dl>
+  <p class="warn">⚠ Analyse pédagogique — ceci n'est pas un conseil en investissement. Faites vos propres recherches.</p>
   <p class="foot"><span>10 feuillets · graphiques · langage clair</span><b>@crypto_comiks</b></p>
 </div>
 `;

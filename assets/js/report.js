@@ -990,7 +990,22 @@
     });
   }
 
-  /* Renvoi vers le feuillet suivant, au pied de chaque feuillet ------------ */
+  /* Rappels légaux de pied de feuillet. Un par feuillet, tous différents :
+     répété à l'identique dix fois, l'avertissement cesserait d'être lu. */
+  var RAPPELS = [
+    "Analyse pédagogique. Ceci n'est pas un conseil en investissement.",
+    "Ce dossier explique ce qui s'est passé. Il ne dit pas quoi faire de votre argent.",
+    "Aucune des valeurs citées n'est recommandée à l'achat ni à la vente.",
+    "Faites vos propres recherches avant toute décision d'investissement.",
+    "Contenu à but éducatif. Aucune recommandation, explicite ou implicite.",
+    "Les performances passées ne préjugent jamais des performances futures.",
+    "Tout investissement comporte un risque de perte en capital.",
+    "Pour investir, adressez-vous à un conseiller financier agréé.",
+    "Décrire une décision n'est pas la conseiller. Ceci n'est pas un conseil en investissement.",
+    "Ceci n'est pas un conseil en investissement. Faites vos propres recherches."
+  ];
+
+  /* Pied de feuillet : rappel légal, puis renvoi vers la suite ------------- */
   function initNext() {
     var secs = sections();
     secs.forEach(function (s, i) {
@@ -1000,13 +1015,16 @@
       var num = next ? next.num : '✉';
       var titre = next ? next.titre : 'Une question ? Écrivez-nous';
       var lab = next ? 'Feuillet suivant' : 'Pour finir';
-      var a = document.createElement('a');
-      a.className = 'sheet__next';
-      a.href = href;
-      a.innerHTML = '<span><span class="lab">' + lab + '</span><b>' +
+
+      var foot = document.createElement('div');
+      foot.className = 'sheetfoot';
+      foot.innerHTML =
+        '<p class="legal-line">' + esc(RAPPELS[i % RAPPELS.length]) + '</p>' +
+        '<a class="sheet__next" href="' + href + '">' +
+        '<span><span class="lab">' + lab + '</span><b>' +
         (next ? esc(num) + ' — ' : '') + esc(titre) + '</b></span>' +
-        '<span class="arrow" aria-hidden="true">→</span>';
-      sec.appendChild(a);
+        '<span class="arrow" aria-hidden="true">→</span></a>';
+      sec.appendChild(foot);
     });
   }
 

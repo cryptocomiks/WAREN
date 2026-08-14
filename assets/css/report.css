@@ -231,8 +231,14 @@ body::before {
   border: 1px solid var(--rule);
   box-shadow: 0 20px 42px -28px rgba(0,0,0,.6);
   padding: clamp(1.8rem, 4.5vw, 3.4rem) var(--gutter) clamp(2.4rem, 5vw, 3.6rem);
-  scroll-margin-top: 4.2rem;
+  /* Doit dégager l'en-tête collant, qui a grandi du bandeau légal : rail +
+     onglets + bandeau ≈ 83 px en grand écran, ≈ 100 px en petit (le bandeau
+     y passe sur deux lignes). */
+  scroll-margin-top: 5.6rem;
 }
+@media (max-width: 880px) { .sheet { scroll-margin-top: 7rem; } }
+.contact { scroll-margin-top: 5.6rem; }
+@media (max-width: 880px) { .contact { scroll-margin-top: 7rem; } }
 /* Perforation latérale — décor, masqué sur petit écran */
 .sheet::before {
   content: ""; position: absolute; left: 12px; top: 2.2rem; bottom: 2.2rem; width: 12px;
@@ -666,6 +672,66 @@ table.ledger td.flag { color: var(--pencil); font-weight: 700; }
 .plain--cover { max-width: 44rem; margin: 2.6rem 0 0; }
 
 /* -------------------------------------------------------------------------
+   12a. MENTIONS LÉGALES
+   Troisième voix, distincte des deux autres : ni le doute de l'auditeur
+   (rouge), ni l'explication du guide (vert), mais l'avertissement. Elle
+   emprunte l'ambre, couleur déjà réservée au statut d'alerte, et n'est
+   jamais utilisée ailleurs.
+   ------------------------------------------------------------------------- */
+.legal {
+  border: 2px solid var(--status-warn);
+  background: rgba(138, 99, 0, .07);
+  padding: 1.15rem 1.3rem;
+  margin: 2.1rem 0;
+  max-width: 46rem;
+  font-family: var(--sans);
+  font-size: .92rem;
+  line-height: 1.62;
+  color: #3a2c07;
+}
+.legal__tag {
+  display: flex; align-items: center; gap: .45rem;
+  margin: 0 0 .55rem;
+  font-size: .63rem; font-weight: 800; letter-spacing: .19em;
+  text-transform: uppercase; color: var(--status-warn);
+}
+.legal p { margin: 0 0 .7em; max-width: none; }
+.legal p:last-child { margin-bottom: 0; }
+.legal strong { color: #2b2105; }
+.legal--major {
+  border-width: 3px;
+  background: rgba(138, 99, 0, .11);
+  font-size: .98rem;
+}
+.legal--major .legal__tag { font-size: .7rem; }
+
+/* Rappel court, glissé au pied de chaque feuillet */
+.legal-line {
+  display: flex; align-items: baseline; gap: .5rem;
+  font-family: var(--sans); font-size: .7rem; line-height: 1.5;
+  color: var(--status-warn); font-weight: 600;
+  padding: .7rem var(--gutter) .1rem;
+}
+.legal-line::before { content: "⚠"; font-size: .85em; flex: 0 0 auto; }
+
+/* Bandeau permanent sous les onglets — visible à tout moment de la lecture */
+.tapeline {
+  background: rgba(138, 99, 0, .13);
+  border-top: 1px solid rgba(138, 99, 0, .3);
+  text-align: center;
+  padding: .28rem .8rem;
+  font-family: var(--sans); font-size: .61rem; font-weight: 700;
+  letter-spacing: .11em; text-transform: uppercase; color: #6b4d00;
+}
+@media (max-width: 480px) { .tapeline { font-size: .555rem; letter-spacing: .06em; } }
+
+/* Pied de feuillet : le rappel légal puis le renvoi vers la suite */
+.sheetfoot {
+  margin: 3rem calc(var(--gutter) * -1) calc(clamp(2.4rem, 5vw, 3.6rem) * -1);
+  border-top: 1px solid var(--rule);
+}
+
+/* -------------------------------------------------------------------------
    12b. SOMMAIRE
    ------------------------------------------------------------------------- */
 .toc__time {
@@ -701,9 +767,9 @@ table.ledger td.flag { color: var(--pencil); font-weight: 700; }
 /* Renvoi vers le feuillet suivant, monté par le script */
 .sheet__next {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  margin: 3rem calc(var(--gutter) * -1) calc(clamp(2.4rem, 5vw, 3.6rem) * -1);
+  margin: 0;
   padding: 1.15rem var(--gutter) 1.3rem;
-  border-top: 1px solid var(--rule); background: rgba(19,122,70,.05);
+  background: rgba(19,122,70,.05);
   text-decoration: none; color: inherit; transition: background .15s;
 }
 .sheet__next:hover { background: rgba(19,122,70,.12); }
@@ -863,6 +929,7 @@ footer.colophon strong { color: var(--ink); }
   body { background: #fff; }
   body::before, .rail, .tabs, .navpanel, .totop, .skip,
   .sheet__next, .tip, .gl-pop { display: none !important; }
+  .tapeline, .legal, .legal-line { display: block !important; }
   .sheet, .cover { box-shadow: none; break-inside: auto; page-break-before: always; margin: 0; max-width: none; }
   .cover { page-break-before: avoid; }
   .reveal { opacity: 1 !important; transform: none !important; }
@@ -871,7 +938,7 @@ footer.colophon strong { color: var(--ink); }
   .fig__data > :not(summary) { display: block !important; }
   .tablewrap { overflow: visible; box-shadow: none; }
   table.ledger thead th { position: static; }
-  .fig, .box, .kpi, .trap, .plain, table.ledger tr { break-inside: avoid; }
+  .fig, .box, .kpi, .trap, .plain, .legal, table.ledger tr { break-inside: avoid; }
   .contact { background: #fff; color: #000; border: 2px solid #000; }
   .contact p, .contact__note { color: #333; }
 }

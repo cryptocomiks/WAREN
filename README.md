@@ -7,6 +7,10 @@ acheteur de Berkshire Hathaway après quatorze trimestres de ventes nettes.
 rouge d'auditeur. Le document se déroule progressivement — chaque feuillet, chaque
 graphique et chaque annotation apparaît à l'entrée dans le champ de lecture.
 
+**Conformité** : le document répète, à intervalles réguliers, qu'il s'agit
+d'une analyse pédagogique et **non d'un conseil en investissement**. Le
+dispositif est décrit plus bas.
+
 **Parti pris éditorial** : le sujet est technique, le texte ne l'est pas. Le
 document porte deux voix distinctes, typographiquement opposées. Le **crayon
 rouge** est celle de l'auditeur : elle doute, elle corrige, elle raye. Les
@@ -45,6 +49,34 @@ Dix feuillets et une page de contact :
 - **Glossaire contextuel** — 22 termes définis sans jargon, au survol ou au clic :
   13F, 10-Q, plus-value latente, impôt différé, mise en équivalence, sogo shosha,
   bon de souscription, placement privé, valeur intrinsèque, coût d'opportunité…
+
+## Conformité
+
+Le sujet touche à des valeurs cotées : l'avertissement ne doit pas être une
+ligne perdue en pied de page. Il est présent à cinq niveaux, dans une
+troisième voix typographique — l'ambre, déjà réservée au statut d'alerte et
+jamais utilisée ailleurs.
+
+1. **Bandeau permanent** sous la navigation, visible à tout instant de la
+   lecture : « Analyse pédagogique · Ceci n'est pas un conseil en
+   investissement · Faites vos propres recherches ».
+2. **Avertissement d'ouverture** sur la couverture, avant tout contenu :
+   pas de conseil, aucune société recommandée, faites vos propres
+   recherches, risque de perte en capital.
+3. **Rappel au pied de chaque feuillet**, engendré par le script — dix
+   formulations différentes, car un même avertissement répété dix fois à
+   l'identique cesse d'être lu.
+4. **Encadrés ciblés** là où le risque de mélecture est le plus fort : la
+   liste des positions n'est pas une liste d'achats (feuillet 04), les
+   conditions du placement Alphabet ne sont accessibles à personne d'autre
+   (05), le pari immobilier peut échouer (07), les performances passées
+   n'annoncent rien (08).
+5. **Mention légale complète** au feuillet 10 et dans le colophon, plus un
+   rappel dans la page de contact et sur l'image de partage.
+
+Le test de fumée vérifie ce dispositif à chaque exécution : présence du
+bandeau, dix rappels de pied, au moins six encadrés, et un décompte minimal
+des occurrences dans le texte visible.
 
 ## Navigation
 
@@ -94,7 +126,7 @@ og.png                  image de partage 1200×630
 vercel.json             en-têtes, cache, URLs propres
 build.js                assemble le tout en un fichier unique dans dist/
 tools/og.js             régénère og.png
-test/smoke.js           test de fumée (3 tailles d'écran + 404 + og)
+test/smoke.js           test de fumée (3 écrans + 404 + og + conformité)
 ```
 
 - Responsive de 320 px à grand écran : les graphiques sont redessinés à la
@@ -166,8 +198,12 @@ tailles d'écran, et vérification que `dist/` est bien à jour.
 
 ## Avertissement
 
-Document d'analyse et de pédagogie. Il ne constitue pas un conseil en
-investissement. Les niveaux de confiance et les limites de chaque affirmation
-sont détaillés au feuillet 10.
+Ce document est un travail d'analyse et de pédagogie réalisé à partir de
+sources publiques. **Il ne constitue pas un conseil en investissement**, ni une
+recommandation, ni une sollicitation d'achat ou de vente. Aucune des sociétés
+citées n'est recommandée. Faites vos propres recherches et consultez un
+professionnel agréé avant toute décision. Tout investissement comporte un
+risque de perte en capital. Les niveaux de confiance et les limites de chaque
+affirmation sont détaillés au feuillet 10.
 
 Questions : [@crypto_comiks](https://www.instagram.com/crypto_comiks) sur Instagram.
