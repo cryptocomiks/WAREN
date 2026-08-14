@@ -7,27 +7,34 @@ acheteur de Berkshire Hathaway après quatorze trimestres de ventes nettes.
 rouge d'auditeur. Le document se déroule progressivement — chaque feuillet, chaque
 graphique et chaque annotation apparaît à l'entrée dans le champ de lecture.
 
+**Parti pris éditorial** : le sujet est technique, le texte ne l'est pas. Le
+document porte deux voix distinctes, typographiquement opposées. Le **crayon
+rouge** est celle de l'auditeur : elle doute, elle corrige, elle raye. Les
+encadrés verts **« en clair »** sont celle du guide : après chaque passage
+dense, ils reformulent l'idée en français courant, sans jargon et avec des
+analogies concrètes. Dix-sept d'entre eux ponctuent le dossier, et vingt-deux
+termes ouvrent leur définition d'un clic.
+
 ## Contenu
 
-Onze feuillets, un quiz de douze questions et une page de contact :
+Dix feuillets et une page de contact :
 
 | # | Feuillet | Ce qu'on y trouve |
 |---|---|---|
-| 00 | Statut du dossier | Ce qui est publié, ce qui ne l'est pas, et les sources primaires |
-| 01 | Le fait central | Les 14 trimestres, la bascule, et pourquoi l'arrêt des ventes prime sur l'achat |
-| 02 | Les chiffres vérifiés | Flux, rachats, le piège de la trésorerie, fiscalité latente, résultats |
-| 03 | Le portefeuille | Les 28 lignes du 13F, le basculement du top 5, ce que le 13F ne montre jamais |
-| 04 | Alphabet | Les termes exacts du placement du 4 juin et leur portée |
-| 05 | La doctrine Abel | Ce qu'il conserve, ce qu'il change, et la nuance Weschler |
-| 06 | Pourquoi maintenant | Coût d'opportunité, contrainte fiscale, ventilation des 23,5 Md$ |
-| 07 | La vision long terme | Rotation structurelle et sous-performance décennale |
-| 08 | Les quatre pièges | Cartes à retourner : l'erreur, puis la correction |
-| 09 | Grille de dépouillement | Six points à cocher à la publication du 13F |
-| 10 | Confiance et limites | Le niveau de preuve de chaque affirmation |
+| 01 | Où on en est | Ce qui est déjà publié, ce qui sort ce soir, et sur quoi ce dossier s'appuie |
+| 02 | Le fait central | Les 14 trimestres, la bascule, et pourquoi l'arrêt des ventes prime sur l'achat |
+| 03 | Les chiffres vérifiés | Flux, rachats, le piège de la trésorerie, impôt latent, résultats |
+| 04 | Le portefeuille | Les 28 sociétés du 13F, le basculement du top 5, l'angle mort du 13F |
+| 05 | Alphabet | Les termes exacts du placement du 4 juin et leur portée |
+| 06 | La doctrine Abel | Ce qu'il conserve, ce qu'il change, et la nuance Weschler |
+| 07 | Pourquoi maintenant | Coût d'opportunité, contrainte fiscale, ventilation des 23,5 Md$ |
+| 08 | La vision long terme | Rotation du portefeuille et sous-performance décennale |
+| 09 | Les quatre pièges | Cartes à retourner : l'erreur, puis la correction |
+| 10 | Ce qu'on sait, ce qu'on ne sait pas | Le niveau de preuve de chaque affirmation |
 
 ## Éléments interactifs
 
-- **Note de bas de page à ouvrir** (§2.3) — le titre de presse, puis le texte
+- **Note de bas de page à ouvrir** (§3.3) — le titre de presse, puis le texte
   du 10-Q qui le contredit et le graphique de réconciliation.
 - **Filtres de portefeuille** — nouvelles / renforcées / réduites / inchangées.
   Les lignes non retenues sont estompées, jamais repeintes : une couleur suit
@@ -35,10 +42,21 @@ Onze feuillets, un quiz de douze questions et une page de contact :
 - **Bascule du top 5** — 31 mars (classement déclaré, en barres) contre 30 juin
   (ordre alphabétique du 10-Q, en plaques : aucun rang n'est déclaré).
 - **Cartes « pièges »** — cliquer révèle la correction, l'affirmation est raturée.
-- **Grille de dépouillement** — cases à cocher au clavier ou à la souris.
-- **Glossaire contextuel** — 13F, 10-Q, 424B5, section 4(a)(2), mise en
-  équivalence, droits d'enregistrement, coût d'opportunité.
-- **Quiz noté** — correction immédiate, explication et renvoi au feuillet.
+- **Glossaire contextuel** — 22 termes définis sans jargon, au survol ou au clic :
+  13F, 10-Q, plus-value latente, impôt différé, mise en équivalence, sogo shosha,
+  bon de souscription, placement privé, valeur intrinsèque, coût d'opportunité…
+
+## Navigation
+
+- **Sommaire d'entrée** — dix feuillets avec un résumé d'une ligne chacun, et le
+  temps de lecture estimé.
+- **Onglets d'intercalaire** en grand écran, qui suivent la lecture ; en petit
+  écran, une barre compacte affichant le feuillet courant et ouvrant un panneau
+  de sommaire plein écran (fermeture au clic extérieur ou par Échap).
+- **Renvoi « feuillet suivant »** au pied de chaque feuillet, engendré depuis la
+  liste des onglets pour rester synchronisé.
+- **Retour au sommaire** flottant, après un défilement suffisant.
+- **Rail de progression** en haut de page.
 
 ## Méthode graphique
 
@@ -68,8 +86,9 @@ Trois fichiers, aucune dépendance, aucune requête externe.
 
 ```
 index.html              le document
-assets/css/report.css   papier, crayon, mise en page, impression
-assets/js/report.js     données, graphiques, révélation progressive, quiz
+assets/css/report.css   papier, crayon, « en clair », navigation, impression
+assets/js/report.js     données, graphiques, glossaire, navigation, révélation
+build.js                assemble le tout en un fichier unique dans dist/
 ```
 
 - Responsive de 320 px à grand écran : les graphiques sont redessinés à la

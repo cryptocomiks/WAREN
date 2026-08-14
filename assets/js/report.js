@@ -116,15 +116,32 @@
     ]
   };
 
+  /* Chaque définition est écrite pour quelqu'un qui n'a jamais lu un bilan. */
   var GLOSSARY = {
-    '13F': ['Formulaire 13F', "Déclaration trimestrielle obligatoire pour tout gérant américain détenant plus de 100 M$ de titres cotés aux États-Unis, à déposer dans les 45 jours suivant la clôture du trimestre. Il donne les positions ligne par ligne — mais uniquement les titres américains, et sans jamais indiquer la date ni le prix des transactions."],
-    '10Q': ['Formulaire 10-Q', "Rapport financier trimestriel déposé auprès de la SEC. Contrairement au 13F, il fournit bilan, compte de résultat et flux de trésorerie : on y lit donc les montants agrégés d'achats et de ventes de titres, mais jamais le nom des sociétés concernées."],
-    '424B5': ['Prospectus 424B5', "Supplément de prospectus déposé lors d'une émission de titres. C'est le document qui donne les termes exacts d'un placement : nombre d'actions, prix unitaire, identité de l'agent placeur."],
-    '4a2': ['Section 4(a)(2)', "Exemption d'enregistrement du Securities Act de 1933 réservée aux placements privés. Elle permet de vendre des titres à un investisseur qualifié sans passer par une offre publique — d'où la rapidité d'exécution de l'opération Alphabet–Berkshire."],
-    'droits': ["Droits d'enregistrement", "Engagement pris par l'émetteur de faire enregistrer les titres auprès de la SEC, ce qui les rend librement négociables. Sans cet engagement, Berkshire resterait porteur de titres difficilement cessibles."],
-    'mee': ['Mise en équivalence', "Méthode comptable appliquée lorsqu'on détient une influence notable — en général au-delà de 20 % du capital — sans contrôler la société. La participation figure au bilan à sa valeur comptable ajustée de la quote-part de résultat, et non à sa valeur de marché."],
-    'cout': ["Coût d'opportunité", "Ce que rapporterait le meilleur emploi alternatif du même capital. Garder 325 Md$ en bons du Trésor ne coûte presque rien tant que les taux courts sont élevés ; cela devient une perte relative mesurable dès qu'ils baissent."]
+    '13F': ['Formulaire 13F', "La liste des actions américaines détenues par un gros investisseur, qu'il doit publier tous les trimestres. Elle donne les noms et les montants — mais uniquement pour les titres cotés aux États-Unis, et sans jamais dire à quelle date ni à quel prix les achats ont été faits."],
+    '10Q': ['Formulaire 10-Q', "Le bulletin financier trimestriel d'une entreprise cotée : ce qu'elle possède, ce qu'elle doit, ce qu'elle a gagné. On y lit combien Berkshire a acheté et vendu d'actions au total, mais jamais le nom des sociétés concernées."],
+    '424B5': ['Prospectus 424B5', "Le document déposé quand une entreprise émet de nouvelles actions. C'est lui qui donne les conditions exactes : combien de titres, à quel prix, par quel intermédiaire."],
+    'droits': ["Droits d'enregistrement", "L'engagement pris par l'entreprise de faire officiellement enregistrer les actions vendues, ce qui permet à l'acheteur de les revendre librement plus tard. Sans cela, Berkshire se retrouverait avec des titres difficiles à céder."],
+    'net': ['Acheteur net / vendeur net', "On additionne tous les achats du trimestre, on retire toutes les ventes. Si le solde est positif, on est « acheteur net » : on a mis plus d'argent sur le marché qu'on n'en a retiré. S'il est négatif, c'est l'inverse."],
+    'pvr': ['Plus-value imposable', "Le gain réellement encaissé quand on vend un titre plus cher qu'on ne l'a payé. Contrairement au gain « sur le papier », celui-ci déclenche immédiatement l'impôt."],
+    'pvl': ['Plus-value latente', "Le gain existe, mais seulement sur le papier : le titre vaut plus cher qu'à l'achat et on ne l'a pas vendu. Aucun impôt n'est dû tant qu'on ne vend pas — mais le gain peut aussi s'évaporer si le cours redescend."],
+    'idiff': ['Impôt différé', "Une facture d'impôt déjà inscrite dans les comptes, mais pas encore payée, parce que l'événement qui la déclenche — la vente — n'a pas eu lieu. Berkshire en porte 90,2 milliards : c'est ce que coûterait, en gros, la sortie de ses positions."],
+    'bt': ['Bon du Trésor', "Un prêt à très court terme consenti à l'État américain. C'est considéré comme le placement le plus sûr au monde ; en échange, il ne rapporte que le taux d'intérêt du moment, sans aucune croissance."],
+    'cp': ['Capitaux propres', "Ce qui reste à l'entreprise une fois toutes ses dettes remboursées. C'est la mesure de ce qui appartient réellement aux actionnaires."],
+    'bop': ['Bénéfice opérationnel', "Ce que gagnent vraiment les entreprises du groupe par leur activité : le chemin de fer, l'énergie, l'assurance, les usines. On en exclut la variation de valeur des actions détenues, qui n'est pas de l'argent encaissé."],
+    'souscr': ['Résultat de souscription', "Le métier de base d'un assureur : les primes encaissées, moins les sinistres remboursés et les frais. C'est différent de ce que l'assureur gagne en plaçant l'argent qu'il détient en attendant."],
+    'mee': ['Mise en équivalence', "Une façon de comptabiliser une participation quand on détient une part importante d'une société — en général plus de 20 % — sans la contrôler. Elle apparaît au bilan à une valeur calculée, et non à son cours de Bourse."],
+    'shosha': ['Sogo shosha', "Les grandes maisons de négoce japonaises. Ce sont des conglomérats qui achètent, transportent et financent à peu près tout : matières premières, énergie, alimentation, industrie. Buffett les décrit comme « gérées d'une manière assez similaire à Berkshire elle-même »."],
+    'pref': ['Action préférentielle', "Un titre à mi-chemin entre l'action et l'obligation : il verse un revenu fixe et garanti — ici 8 % par an — et passe avant les actions ordinaires en cas de problème, mais ne profite pas de la hausse du cours."],
+    'warrant': ['Bon de souscription', "Le droit — jamais l'obligation — d'acheter une action à un prix fixé à l'avance. Si le cours dépasse ce prix, le bon devient rentable ; sinon on ne l'exerce pas et on ne perd rien de plus."],
+    'pp': ['Placement privé', "Vendre des actions directement à un seul investisseur, sans passer par la Bourse. C'est beaucoup plus rapide et discret, mais l'acheteur exige généralement un rabais sur le cours du jour en échange."],
+    'conglo': ['Conglomérat', "Un groupe qui rassemble des entreprises de métiers sans rapport entre eux. Berkshire possède à la fois un chemin de fer, des assureurs, des fabricants de meubles et une compagnie d'électricité."],
+    'vi': ['Valeur intrinsèque', "Ce que l'entreprise vaut vraiment selon ses dirigeants, indépendamment de ce que le marché en dit un jour donné. La règle de Berkshire : ne racheter ses propres actions que si le cours est en dessous de cette valeur."],
+    'deprec': ['Dépréciation', "Reconnaître comptablement qu'un actif vaut durablement moins que ce qu'on a payé, et inscrire la perte dans les comptes. Berkshire dit ne pas y être obligé pour Kraft Heinz — tout en laissant la porte ouverte."],
+    'vcpa': ['Valeur comptable par action', "Ce que l'entreprise possède réellement, une fois ses dettes déduites, divisé par le nombre d'actions. C'est l'indicateur que Buffett a utilisé toute sa vie pour se comparer au marché."],
+    'cout': ["Coût d'opportunité", "Ce que vous perdez en ne faisant pas autre chose. Laisser 325 milliards en placements sans risque ne coûte presque rien tant que les taux sont élevés ; dès qu'ils baissent, l'inaction devient une perte mesurable."]
   };
+;
 
   /* ---------------------------------------------------------------------
      2. PRIMITIVES SVG
@@ -900,183 +917,116 @@
     upd();
   }
 
+  /* Les onglets sont l'unique source de vérité : le panneau mobile et les
+     renvois « feuillet suivant » en sont dérivés, jamais recopiés. */
+  function sections() {
+    return $$('#tabs a').map(function (a) {
+      return {
+        id: a.getAttribute('href').slice(1),
+        num: ($('.t-num', a) || {}).textContent || '',
+        titre: a.textContent.replace(($('.t-num', a) || {}).textContent || '', '').trim(),
+        el: a
+      };
+    });
+  }
+
   function initTabs() {
     var tabs = $('#tabs'); if (!tabs || !('IntersectionObserver' in window)) return;
-    var links = $$('a', tabs);
+    var secs = sections(), here = $('#navHere');
     var map = {};
-    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    secs.forEach(function (s) { map[s.id] = s; });
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
-        links.forEach(function (a) { a.removeAttribute('aria-current'); });
-        var a = map[en.target.id];
-        if (a) {
-          a.setAttribute('aria-current', 'true');
-          var r = a.getBoundingClientRect(), rr = tabs.getBoundingClientRect();
-          if (r.left < rr.left + 8 || r.right > rr.right - 8) {
-            tabs.scrollTo({ left: a.offsetLeft - 24, behavior: REDUCED ? 'auto' : 'smooth' });
-          }
+        var s = map[en.target.id]; if (!s) return;
+        secs.forEach(function (o) { o.el.removeAttribute('aria-current'); });
+        s.el.setAttribute('aria-current', 'true');
+        if (here) here.textContent = s.num + ' · ' + s.titre;
+        $$('#navList a').forEach(function (a) {
+          a.setAttribute('aria-current', String(a.getAttribute('href') === '#' + s.id));
+        });
+        var r = s.el.getBoundingClientRect(), rr = tabs.getBoundingClientRect();
+        if (r.left < rr.left + 8 || r.right > rr.right - 8) {
+          tabs.scrollTo({ left: s.el.offsetLeft - 24, behavior: REDUCED ? 'auto' : 'smooth' });
         }
       });
     }, { rootMargin: '-18% 0px -62% 0px' });
-    Object.keys(map).forEach(function (id) {
-      var sec = document.getElementById(id); if (sec) io.observe(sec);
+    secs.forEach(function (s) {
+      var sec = document.getElementById(s.id); if (sec) io.observe(sec);
     });
   }
 
-  /* ---------------------------------------------------------------------
-     8. QUIZ
-     --------------------------------------------------------------------- */
-  var QUIZ = [
-    {
-      q: "Combien de trimestres consécutifs de ventes nettes ont précédé le retournement du T2 2026 ?",
-      o: ["6 trimestres", "10 trimestres", "14 trimestres", "20 trimestres"],
-      a: 2, ref: "Feuillet 01",
-      e: "Quatorze — soit trois ans et demi de retrait continu du marché actions. C'est ce qui rend le T2 2026 remarquable : ce n'est pas un achat isolé, c'est une rupture de séquence."
-    },
-    {
-      q: "Selon ce dossier, quel est le fait le plus révélateur du deuxième trimestre ?",
-      o: ["Les 23,5 Md$ d'achats", "L'effondrement des ventes, de 24,1 à 3,7 Md$", "La baisse de la trésorerie", "Le résultat net de 25,7 Md$"],
-      a: 1, ref: "Feuillets 01 et 08",
-      e: "Un gérant qui achète peut simplement placer du cash. Un gérant qui divise ses ventes par 6,5 change de posture. Le grand nettoyage — les 16 sorties — était un événement du T1, pas une politique continue."
-    },
-    {
-      q: "La presse annonce une baisse de trésorerie de 31,9 Md$. Quel est le chiffre à périmètre comparable ?",
-      o: ["Environ 15,5 Md$", "Environ 25 Md$", "Exactement 31,9 Md$", "Environ 40 Md$"],
-      a: 0, ref: "Feuillet 02.3",
-      e: "380,2 → 364,7 Md$, soit −15,5 Md$. La ponction réelle est deux fois plus faible que le chiffre repris partout."
-    },
-    {
-      q: "Pourquoi le « record historique » de 397,4 Md$ au 31 mars était-il gonflé ?",
-      o: ["Il incluait la trésorerie de BNSF", "Il incluait 17,2 Md$ de bons du Trésor achetés mais pas encore payés", "Il était exprimé avant impôts", "Il incluait les warrants Occidental"],
-      a: 1, ref: "Feuillet 02.3",
-      e: "Les notes du bilan sont explicites : ces montants figurent aussi au passif et ont été payés peu après la clôture. Un pur artefact de règlement-livraison — que CNBC neutralise d'ailleurs de la même façon sur le T4 2025."
-    },
-    {
-      q: "Combien Berkshire a-t-il consacré aux rachats de ses propres actions sur l'ensemble de l'année 2025 ?",
-      o: ["Environ 4,5 Md$", "Environ 2 Md$", "235 M$", "Zéro"],
-      a: 3, ref: "Feuillet 02.2",
-      e: "Zéro sur toute l'année 2025, puis 235 M$ au T1 et 4 527 M$ au T2. Ce n'est pas une accélération : c'est un robinet resté fermé un an, puis rouvert."
-    },
-    {
-      q: "Quelle décote Berkshire a-t-il obtenue sur le placement privé Alphabet du 4 juin ?",
-      o: ["Aucune : prix de marché", "6,5 %", "15 %", "25 %"],
-      a: 1, ref: "Feuillet 04.1",
-      e: "351,81 $ en classe A et 348,20 $ en classe C, contre des clôtures de la veille à 376,37 $ et 372,58 $. Sur 10 Md$, cette décote vaut environ 650 M$ à la signature."
-    },
-    {
-      q: "Que se passe-t-il dans le top 5 entre le 31 mars et le 30 juin 2026 ?",
-      o: ["Apple sort, Alphabet entre", "Chevron sort, Alphabet entre", "Rien ne change", "Coca-Cola sort, Chevron entre"],
-      a: 1, ref: "Feuillet 03.2",
-      e: "Chevron sort, Alphabet entre, et la concentration passe de 61 % à 66 %. Attention : le 10-Q liste les cinq lignes par ordre alphabétique — on sait qu'Alphabet est dans le top 5, pas à quel rang."
-    },
-    {
-      q: "Quelle contrainte explique le mieux qu'Abel ne vende ni Apple ni Coca-Cola ?",
-      o: ["Une clause statutaire de Berkshire", "217,3 Md$ de plus-values latentes, donc une facture fiscale massive", "Un engagement pris envers Buffett", "Le manque de liquidité sur ces titres"],
-      a: 1, ref: "Feuillet 06.2",
-      e: "Vendre déclenche 21 % d'impôt fédéral sur des gains accumulés depuis des décennies. Abel liquide les positions récentes — Visa, Mastercard, Amazon — à faible base de coût. Le noyau historique est en partie prisonnier de sa propre performance."
-    },
-    {
-      q: "Laquelle de ces deux acquisitions a pesé sur la trésorerie du T2 2026 ?",
-      o: ["OxyChem seulement", "Taylor Morrison seulement", "Les deux", "Aucune des deux"],
-      a: 3, ref: "Feuillet 08, piège 2",
-      e: "OxyChem a été clôturé le 2 janvier 2026 — donc au T1. Taylor Morrison le 24 juillet 2026 — donc au T3. Ni l'une ni l'autre n'a touché la trésorerie du deuxième trimestre, contrairement à ce qu'écrivent plusieurs médias."
-    },
-    {
-      q: "Que faut-il conclure de la présence de Macy's, Jefferies ou NVR dans le portefeuille ?",
-      o: ["Qu'Abel parie sur le retail et la finance", "Que ces lignes relèvent probablement de Ted Weschler, pas d'Abel", "Que ce sont les prochaines grosses positions", "Qu'il s'agit d'erreurs de déclaration"],
-      a: 1, ref: "Feuillet 05.4",
-      e: "Abel a confirmé que Weschler continue de gérer une partie du portefeuille. Les très petites lignes relèvent historiquement de son périmètre et de celui de Todd Combs. Sont attribuables à Abel avec certitude : Alphabet, la coupe dans Chevron, les 16 sorties, OxyChem, Taylor Morrison et les rachats."
-    },
-    {
-      q: "Quel plancher de trésorerie la politique de rachat inscrit-elle noir sur blanc ?",
-      o: ["30 Md$", "100 Md$", "150 Md$", "Aucun plancher n'est déclaré"],
-      a: 0, ref: "Feuillet 05.2",
-      e: "30 Md$ — soit, avec 364,7 Md$ au 30 juin, une marge de manœuvre théorique de plus de 330 Md$. Le même texte précise que le directeur général décide « après consultation du président du conseil » : Buffett garde un droit de regard codifié."
-    },
-    {
-      q: "Sur la dernière décennie, la valeur comptable par action de Berkshire progresse de 12,4 %/an. Et le S&P 500 ?",
-      o: ["8,2 %/an — Berkshire domine", "10,5 %/an — Berkshire domine", "14,8 %/an — Berkshire sous-performe", "12,4 %/an — égalité parfaite"],
-      a: 2, ref: "Feuillet 07.2",
-      e: "C'est le vrai cadre du mandat d'Abel : il n'hérite pas d'une machine invaincue, mais d'une machine qui a cessé de battre l'indice depuis dix ans. Le déploiement de capital n'est pas un caprice, c'est une nécessité."
+  /* Panneau de sommaire pour petit écran ---------------------------------- */
+  function initNav() {
+    var bar = $('#navbar'), panel = $('#navPanel'), list = $('#navList');
+    var open = $('#navOpen'), close = $('#navClose');
+    if (!bar || !panel || !list) return;
+    bar.removeAttribute('hidden');
+
+    list.innerHTML = sections().map(function (s) {
+      return '<a href="#' + s.id + '"><span class="n">' + esc(s.num) + '</span>' + esc(s.titre) + '</a>';
+    }).join('') + '<a href="#contact"><span class="n">✉</span>Nous écrire</a>';
+
+    var lastFocus = null;
+    function show() {
+      lastFocus = document.activeElement;
+      panel.removeAttribute('hidden');
+      open.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('nav-open');
+      close.focus();
     }
-  ];
-
-  function initQuiz() {
-    var list = $('#qlist'); if (!list) return;
-    var score = 0, done = 0;
-    list.innerHTML = QUIZ.map(function (q, i) {
-      return '<article class="q" id="q' + i + '">' +
-        '<div class="q__head"><span class="q__n">' + (i + 1) + '</span><p class="q__text">' + esc(q.q) + '</p></div>' +
-        '<ul class="q__opts">' + q.o.map(function (o, j) {
-          return '<li><button class="opt" type="button" data-q="' + i + '" data-o="' + j + '">' +
-            '<span class="opt__k">' + 'ABCD'[j] + '</span><span>' + esc(o) + '</span></button></li>';
-        }).join('') + '</ul>' +
-        '<div class="q__fb"><div class="q__fb-in"><span class="verdict"></span>' +
-        '<span class="q__exp">' + esc(q.e) + '</span>' +
-        '<p class="q__ref">Référence — ' + esc(q.ref) + '</p></div></div>' +
-        '</article>';
-    }).join('');
-
-    list.addEventListener('click', function (e) {
-      var btn = e.target.closest('.opt'); if (!btn) return;
-      var qi = +btn.getAttribute('data-q'), oi = +btn.getAttribute('data-o');
-      var card = document.getElementById('q' + qi);
-      if (card.classList.contains('is-answered')) return;
-
-      var right = QUIZ[qi].a;
-      var ok = oi === right;
-      if (ok) score++;
-      done++;
-
-      $$('.opt', card).forEach(function (b) {
-        var j = +b.getAttribute('data-o');
-        b.disabled = true;
-        if (j === right) b.classList.add('is-right');
-        else if (j === oi) b.classList.add('is-wrong');
-      });
-      var v = $('.verdict', card);
-      v.textContent = ok ? '✓ Exact.' : '✗ Non — la bonne réponse est ' + 'ABCD'[right] + '.';
-      v.classList.toggle('ok', ok);
-      card.classList.add('is-answered');
-
-      $('#qscore').textContent = score + ' / ' + QUIZ.length;
-      $('#qbar').style.width = (done / QUIZ.length * 100) + '%';
-      if (done === QUIZ.length) finish(score);
+    function hide() {
+      panel.setAttribute('hidden', '');
+      open.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    open.addEventListener('click', show);
+    close.addEventListener('click', hide);
+    panel.addEventListener('click', function (e) { if (e.target === panel) hide(); });
+    list.addEventListener('click', function (e) { if (e.target.closest('a')) hide(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !panel.hasAttribute('hidden')) hide();
     });
   }
 
-  function finish(score) {
-    var n = QUIZ.length, pct = score / n;
-    var g;
-    if (pct === 1)        g = ['Mention d’honneur', 'Sans faute. Vous pouvez dépouiller le 13F ce soir sans filet — et corriger les articles qui sortiront demain.'];
-    else if (pct >= 0.83) g = ['Très bien', 'Vous maîtrisez le dossier, pièges compris. Relisez le feuillet correspondant à votre erreur et c’est réglé.'];
-    else if (pct >= 0.66) g = ['Bien', 'La structure est acquise. Ce sont les détails de méthode — trésorerie ajustée, attribution des lignes — qui vous ont coûté des points.'];
-    else if (pct >= 0.5)  g = ['Passable', 'Vous avez retenu le récit, pas encore les chiffres. Reprenez les feuillets 02 et 06 : tout s’y joue.'];
-    else if (pct >= 0.33) g = ['Insuffisant', 'Le dossier mérite une seconde lecture. Commencez par les quatre pièges du feuillet 08 : ils font la moitié des questions.'];
-    else                  g = ['Ajourné', 'Pas de panique. Reprenez le dossier depuis le feuillet 01 — il est fait pour être lu deux fois.'];
-
-    var box = $('#qresult');
-    box.innerHTML =
-      '<p class="result__grade">' + score + '<span style="font-size:.45em;color:var(--ink-3)"> / ' + n + '</span></p>' +
-      '<p class="result__label">' + esc(g[0]) + '</p>' +
-      '<p class="result__body">' + esc(g[1]) + '</p>' +
-      '<span class="stamp stamp--big' + (pct >= 0.66 ? ' stamp--ok' : '') + '">' +
-      (pct >= 0.66 ? 'Dossier maîtrisé' : 'À reprendre') + '</span>' +
-      '<p style="margin-top:1.4rem"><button class="btn btn--pencil" type="button" id="qagain">Recommencer l’épreuve</button></p>';
-    box.classList.add('is-on');
-    box.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'nearest' });
-    $('#qagain').addEventListener('click', function () {
-      box.classList.remove('is-on');
-      $('#qscore').textContent = '0 / ' + n;
-      $('#qbar').style.width = '0%';
-      initQuiz();
-      document.getElementById('quiz').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth' });
+  /* Renvoi vers le feuillet suivant, au pied de chaque feuillet ------------ */
+  function initNext() {
+    var secs = sections();
+    secs.forEach(function (s, i) {
+      var sec = document.getElementById(s.id); if (!sec) return;
+      var next = secs[i + 1];
+      var href = next ? '#' + next.id : '#contact';
+      var num = next ? next.num : '✉';
+      var titre = next ? next.titre : 'Une question ? Écrivez-nous';
+      var lab = next ? 'Feuillet suivant' : 'Pour finir';
+      var a = document.createElement('a');
+      a.className = 'sheet__next';
+      a.href = href;
+      a.innerHTML = '<span><span class="lab">' + lab + '</span><b>' +
+        (next ? esc(num) + ' — ' : '') + esc(titre) + '</b></span>' +
+        '<span class="arrow" aria-hidden="true">→</span>';
+      sec.appendChild(a);
     });
+  }
+
+  /* Retour au sommaire ---------------------------------------------------- */
+  function initTop() {
+    var btn = $('#totop'); if (!btn) return;
+    function upd() {
+      var show = window.scrollY > window.innerHeight * 1.5;
+      if (show) btn.removeAttribute('hidden'); else btn.setAttribute('hidden', '');
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    btn.addEventListener('click', function () {
+      var t = document.getElementById('sommaire') || document.body;
+      t.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+    });
+    upd();
   }
 
   /* ---------------------------------------------------------------------
-     9. DÉMARRAGE
+     8. DÉMARRAGE
      --------------------------------------------------------------------- */
   function boot() {
     mountCharts();
@@ -1087,10 +1037,12 @@
     initTraps();
     initChecklist();
     initGlossary();
-    initQuiz();
+    initNext();
+    initNav();
     initReveal();
     initRail();
     initTabs();
+    initTop();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
