@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* Fabrique l'image de partage (og.png, 1200×630) dans le style du dossier.
    Usage : node tools/og.js
-   Playwright doit être disponible (dépendance de développement uniquement —
+   Playwright doit être disponible (dépendance de développement uniquement,
    Vercel ne lance jamais ce script).                                       */
 'use strict';
 const path = require('path');
@@ -91,7 +91,7 @@ const CARD = `
     <div><dt>Rachats d'actions</dt><dd>4,5 Md$</dd></div>
     <div><dt>Trésorerie 30 juin</dt><dd>364,7 Md$</dd></div>
   </dl>
-  <p class="warn">⚠ Analyse pédagogique — ceci n'est pas un conseil en investissement. Faites vos propres recherches.</p>
+  <p class="warn">⚠ Analyse pédagogique : ceci n'est pas un conseil en investissement. Faites vos propres recherches.</p>
   <p class="foot"><span>10 feuillets · graphiques · langage clair</span><b>@crypto_comiks</b></p>
 </div>
 `;
@@ -106,5 +106,5 @@ const CARD = `
   const out = path.join(__dirname, '..', 'og.png');
   await page.screenshot({ path: out });
   await browser.close();
-  console.log('og.png écrit — 1200×630');
+  console.log('og.png écrit · 1200×630');
 })();

@@ -41,4 +41,4 @@ fs.writeFileSync(
   '</head>\n<body>\n' + out + '</body>\n</html>\n'
 );
 
-console.log('dist/ écrit — ' + Math.round(Buffer.byteLength(out) / 1024) + ' Ko');
+console.log('dist/ écrit : ' + Math.round(Buffer.byteLength(out) / 1024) + ' Ko');

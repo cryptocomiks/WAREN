@@ -8,7 +8,7 @@
 <title>Dossier Berkshire T2 2026</title>
 <style>
 /* =========================================================================
-   BERKSHIRE HATHAWAY — DOSSIER T2 2026
+   BERKSHIRE HATHAWAY · DOSSIER T2 2026
    Feuille de style : papier comptable à bandes vertes + crayon rouge d'auditeur
    ========================================================================= */
 
@@ -41,15 +41,15 @@
   --pencil-soft:   #d9614f;
   --pencil-wash:   rgba(192, 39, 26, 0.09);
 
-  /* Séries catégorielles — validées sur surface #F4F0E1
+  /* Séries catégorielles · validées sur surface #F4F0E1
      (bande L 0.43–0.77, chroma ≥ 0.1, contraste ≥ 3:1, ΔE normal 19.6) */
-  --series-1:      #127a46;   /* vert grand-livre  — achats / positif */
-  --series-2:      #1a5fa8;   /* bleu encre        — tiers / référence */
-  --series-3:      #c0271a;   /* rouge auditeur    — ventes / négatif */
+  --series-1:      #127a46;   /* vert grand-livre  · achats / positif */
+  --series-2:      #1a5fa8;   /* bleu encre        · tiers / référence */
+  --series-3:      #c0271a;   /* rouge auditeur    · ventes / négatif */
   /* Statut réservé : jamais utilisé comme « série 4 », toujours avec icône + libellé */
   --status-warn:   #8a6300;
 
-  /* Rampe séquentielle — une seule teinte, clair → foncé */
+  /* Rampe séquentielle · une seule teinte, clair → foncé */
   --seq-1:         #d3e5d6;
   --seq-2:         #a9cdb2;
   --seq-3:         #74ad8b;
@@ -97,7 +97,7 @@ a { color: var(--ink-green); text-underline-offset: 3px; text-decoration-thickne
 a:hover { color: var(--pencil); }
 :focus-visible { outline: 3px solid var(--pencil); outline-offset: 3px; border-radius: 2px; }
 
-/* Grain papier — une seule couche fixe, peu coûteuse */
+/* Grain papier · une seule couche fixe, peu coûteuse */
 body::before {
   content: "";
   position: fixed; inset: 0;
@@ -111,7 +111,7 @@ body::before {
 }
 
 /* -------------------------------------------------------------------------
-   3. RAIL DE PROGRESSION — trait de crayon rouge en haut de page
+   3. RAIL DE PROGRESSION · trait de crayon rouge en haut de page
    ------------------------------------------------------------------------- */
 .rail {
   position: fixed; top: 0; left: 0; right: 0; height: 5px;
@@ -125,7 +125,7 @@ body::before {
 }
 
 /* -------------------------------------------------------------------------
-   4. NAVIGATION — onglets d'intercalaire
+   4. NAVIGATION · onglets d'intercalaire
    ------------------------------------------------------------------------- */
 .tabs {
   position: sticky; top: 5px; z-index: 50;
@@ -248,7 +248,7 @@ body::before {
 @media (max-width: 880px) { .sheet { scroll-margin-top: 7rem; } }
 .contact { scroll-margin-top: 5.6rem; }
 @media (max-width: 880px) { .contact { scroll-margin-top: 7rem; } }
-/* Perforation latérale — décor, masqué sur petit écran */
+/* Perforation latérale · décor, masqué sur petit écran */
 .sheet::before {
   content: ""; position: absolute; left: 12px; top: 2.2rem; bottom: 2.2rem; width: 12px;
   background-image: radial-gradient(circle at 6px 6px, var(--desk) 5px, transparent 5.6px);
@@ -417,7 +417,7 @@ strong { font-weight: 700; color: var(--ink); }
 .kpi__note { font-size: .84rem; color: var(--ink-2); margin-top: .4rem; line-height: 1.4; }
 
 /* -------------------------------------------------------------------------
-   9. TABLEAUX — vraies bandes vertes (2 lignes vertes / 2 lignes crème)
+   9. TABLEAUX · vraies bandes vertes (2 lignes vertes / 2 lignes crème)
    ------------------------------------------------------------------------- */
 .tablewrap {
   margin: 1.7rem 0; border: 1px solid var(--rule);
@@ -723,7 +723,7 @@ table.ledger td.flag { color: var(--pencil); font-weight: 700; }
 }
 .legal-line::before { content: "⚠"; font-size: .85em; flex: 0 0 auto; }
 
-/* Bandeau permanent sous les onglets — visible à tout moment de la lecture */
+/* Bandeau permanent sous les onglets · visible à tout moment de la lecture */
 .tapeline {
   background: rgba(138, 99, 0, .13);
   border-top: 1px solid rgba(138, 99, 0, .3);
@@ -744,7 +744,7 @@ table.ledger td.flag { color: var(--pencil); font-weight: 700; }
    12a-bis. ENCART PUBLICITAIRE
    Quatrième voix, et la plus importante à distinguer : ce bloc est payé, il
    ne doit jamais pouvoir être confondu avec le contenu éditorial. D'où une
-   identité entièrement à part — bleu encre (jusqu'ici réservé aux
+   identité entièrement à part · bleu encre (jusqu'ici réservé aux
    graphiques), sans-serif, fond distinct, bandeau « Publicité » en tête et
    liseré rayé façon encart détachable de journal.
    ------------------------------------------------------------------------- */
@@ -780,10 +780,6 @@ table.ledger td.flag { color: var(--pencil); font-weight: 700; }
 }
 .promo__body li::before {
   content: "→"; position: absolute; left: 0; color: var(--series-2); font-weight: 800;
-}
-.promo__gift {
-  background: rgba(26,95,168,.10); border-left: 3px solid var(--series-2);
-  padding: .8rem .95rem; font-size: .93rem !important;
 }
 .promo__cta {
   display: inline-flex; align-items: center; gap: .6rem;
@@ -853,7 +849,7 @@ table.ledger td.flag { color: var(--pencil); font-weight: 700; }
 .sheet__next .arrow { font-size: 1.5rem; color: var(--pencil); flex: 0 0 auto; }
 
 /* -------------------------------------------------------------------------
-   12c. NAVIGATION — barre compacte, panneau, retour en haut
+   12c. NAVIGATION · barre compacte, panneau, retour en haut
    ------------------------------------------------------------------------- */
 .skip { position: absolute; left: -9999px; }
 .skip:focus {
@@ -994,7 +990,7 @@ footer.colophon strong { color: var(--ink); }
 }
 
 /* -------------------------------------------------------------------------
-   15. IMPRESSION — c'est un rapport, il doit s'imprimer proprement
+   15. IMPRESSION · c'est un rapport, il doit s'imprimer proprement
    ------------------------------------------------------------------------- */
 @media print {
   body { background: #fff; }
@@ -1112,7 +1108,7 @@ footer.colophon strong { color: var(--ink); }
 
   <p class="cover__kicker">Analyse de documents primaires</p>
   <h1>Berkshire&nbsp;Hathaway<em>l'année où l'on a cessé de vendre.</em></h1>
-  <p class="cover__sub">Après <strong>14 trimestres consécutifs</strong> de ventes nettes, Greg Abel a rouvert le carnet d'achats. Ce dossier reconstitue l'opération ligne à ligne — et démonte quatre erreurs de lecture répandues.</p>
+  <p class="cover__sub">Après <strong>14 trimestres consécutifs</strong> de ventes nettes, Greg Abel a rouvert le carnet d'achats. Ce dossier reconstitue l'opération ligne à ligne, et démonte quatre erreurs de lecture répandues.</p>
 
   <dl class="cover__facts">
     <div><dt>Achats nets T2</dt><dd data-count="19.8" data-dec="1" data-suffix=" Md$" data-prefix="+">+19,8 Md$</dd></div>
@@ -1122,37 +1118,31 @@ footer.colophon strong { color: var(--ink); }
   </dl>
 
   <aside class="legal legal--major">
-    <p class="legal__tag">⚠ Avertissement — à lire avant tout</p>
+    <p class="legal__tag">⚠ Avertissement à lire avant tout</p>
     <p><strong>Ce dossier n'est pas un conseil en investissement.</strong> C'est un travail d'analyse et de pédagogie : il décrit et explique ce qu'une entreprise cotée a déclaré dans ses documents officiels. Il ne recommande d'acheter ni de vendre quoi que ce soit.</p>
     <p><strong>Aucune des sociétés citées n'est recommandée</strong>, ni explicitement ni implicitement. Leur mention sert uniquement à expliquer les décisions de Berkshire Hathaway.</p>
     <p><strong>Faites vos propres recherches</strong> et, si vous envisagez d'investir, adressez-vous à un conseiller financier agréé. Vous seul êtes responsable de vos décisions. Les performances passées ne préjugent jamais des performances futures, et tout investissement peut entraîner une perte en capital.</p>
   </aside>
 
-  <!-- ═══ ENCART PUBLICITAIRE ═══════════════════════════════════════════
-       ⚠ À FAIRE AVANT MISE EN LIGNE : remplacer LIEN-AFFILIE-A-REMPLACER
-       ci-dessous par votre véritable lien de parrainage Trade Republic.
-       Le test de fumée (npm test) échoue tant que ce n'est pas fait.
-       Le lien porte rel="sponsored" : c'est ce que Google exige d'un lien
-       rémunéré, et ne pas le mettre expose à une sanction de référencement.
-       ══════════════════════════════════════════════════════════════════ -->
+  <!-- Encart publicitaire : identité visuelle volontairement distincte du
+       dossier, et lien porteur de rel="sponsored", exigé par Google sur tout
+       lien rémunéré. -->
   <aside class="promo">
     <p class="promo__tag">Publicité · Collaboration commerciale <span>Lien affilié rémunéré</span></p>
     <div class="promo__body">
       <h3>💶 Tu veux te positionner sur ce narratif&nbsp;?</h3>
       <p>Notre partenaire <strong>Trade Republic</strong> te permet d'y accéder dès 1&nbsp;€&nbsp;:</p>
       <ul>
-        <li><strong>Actions fractionnées</strong> — investis les montants que tu veux, sans acheter l'action entière</li>
+        <li><strong>Actions fractionnées</strong> : investis les montants que tu veux, sans acheter l'action entière</li>
         <li><strong>1&nbsp;€ par ordre</strong>, quel que soit le montant</li>
-        <li><strong>Des intérêts sur ton cash</strong> non investi, en attendant les opportunités — le taux suit celui de la BCE et évolue&nbsp;: vérifie le taux en vigueur sur leur site</li>
+        <li><strong>Des intérêts sur ton cash</strong> non investi, en attendant les opportunités. Le taux suit celui de la BCE et évolue, vérifie donc le taux en vigueur sur leur site</li>
         <li><strong>Des milliers d'actions et d'ETF</strong> disponibles</li>
-        <li><strong>Compte ouvert en quelques minutes</strong>, établissement allemand régulé par la <abbr title="Bundesanstalt für Finanzdienstleistungsaufsicht — l'autorité de supervision financière allemande">BaFin</abbr></li>
+        <li><strong>Compte ouvert en quelques minutes</strong>, établissement allemand régulé par la <abbr title="Bundesanstalt für Finanzdienstleistungsaufsicht, l'autorité de supervision financière allemande">BaFin</abbr></li>
       </ul>
-      <p class="promo__gift">🎁 <strong>Offre en cours pour les lecteurs Crypto Comiks</strong>&nbsp;: une action gratuite d'une valeur comprise entre 5&nbsp;€ et 1&nbsp;000&nbsp;€ pour toute inscription via notre lien. Envoie-nous un DM une fois ton compte ouvert, on s'occupe du reste. <em>Offre soumise aux conditions de Trade Republic, susceptible d'évoluer ou de prendre fin sans préavis.</em></p>
-
-      <p style="margin-bottom:0"><a class="promo__cta" href="LIEN-AFFILIE-A-REMPLACER" target="_blank" rel="sponsored nofollow noopener noreferrer">👉 Ouvrir un compte Trade Republic</a></p>
+      <p style="margin-bottom:0"><a class="promo__cta" href="https://trade.re/CryptoComiks" target="_blank" rel="sponsored nofollow noopener noreferrer">👉 Ouvrir un compte Trade Republic</a></p>
 
       <p class="promo__legal">
-        <strong>Ce bloc est une publicité, pas un contenu éditorial.</strong> Crypto Comiks perçoit une rémunération si vous ouvrez un compte via ce lien. Cette rémunération n'a influencé ni le contenu, ni les chiffres, ni les conclusions du dossier qui suit — lequel ne porte pas sur Trade Republic.<br><br>
+        <strong>Ce bloc est une publicité, pas un contenu éditorial.</strong> Crypto Comiks perçoit une rémunération si vous ouvrez un compte via ce lien. Cette rémunération n'a influencé ni le contenu, ni les chiffres, ni les conclusions du dossier qui suit, lequel ne porte pas sur Trade Republic.<br><br>
         <strong>Investir comporte un risque de perte en capital</strong>, pouvant aller jusqu'à la totalité des sommes engagées. Les performances passées ne préjugent pas des performances futures. <strong>Ceci n'est pas un conseil en investissement</strong>&nbsp;: le choix d'un courtier et celui d'un placement vous appartiennent. Comparez les offres, lisez les conditions tarifaires et le document d'informations clés, et faites vos propres recherches avant d'ouvrir un compte.
       </p>
     </div>
@@ -1178,7 +1168,7 @@ footer.colophon strong { color: var(--ink); }
     <li><a href="#chiffres"><span class="toc__n">03</span><span><b>Les chiffres vérifiés</b>Achats, ventes, rachats, trésorerie, impôt latent. Avec un piège majeur au milieu.</span></a></li>
     <li><a href="#portefeuille"><span class="toc__n">04</span><span><b>Le portefeuille</b>Les 28 sociétés déclarées, le basculement du top 5, et l'angle mort du 13F.</span></a></li>
     <li><a href="#alphabet"><span class="toc__n">05</span><span><b>Alphabet</b>Dix milliards placés en une opération. Pourquoi c'est le fait marquant du trimestre.</span></a></li>
-    <li><a href="#doctrine"><span class="toc__n">06</span><span><b>La doctrine Abel</b>Ce qu'il garde de Buffett, ce qu'il change — et ce qui n'est pas de lui.</span></a></li>
+    <li><a href="#doctrine"><span class="toc__n">06</span><span><b>La doctrine Abel</b>Ce qu'il garde de Buffett, ce qu'il change, et ce qui n'est pas de lui.</span></a></li>
     <li><a href="#pourquoi"><span class="toc__n">07</span><span><b>Pourquoi maintenant</b>Taux d'intérêt, contrainte fiscale, et où sont vraiment passés les 23,5 milliards.</span></a></li>
     <li><a href="#vision"><span class="toc__n">08</span><span><b>La vision long terme</b>La rotation du portefeuille, et dix ans de sous-performance dont personne ne parle.</span></a></li>
     <li><a href="#pieges"><span class="toc__n">09</span><span><b>Les quatre pièges</b>Les erreurs les plus répandues dans la presse. À retourner d'un clic.</span></a></li>
@@ -1200,7 +1190,7 @@ footer.colophon strong { color: var(--ink); }
 
   <div class="with-margin">
     <div>
-      <p class="reveal">L'échéance réglementaire tombe aujourd'hui, 14 août — 45 jours après la clôture du trimestre. Berkshire dépose traditionnellement en fin de journée américaine, soit vers <strong>22 h heure française</strong>.</p>
+      <p class="reveal">L'échéance réglementaire tombe aujourd'hui, 14 août, soit 45 jours après la clôture du trimestre. Berkshire dépose traditionnellement en fin de journée américaine, soit vers <strong>22 h heure française</strong>.</p>
 
       <p class="reveal">Le dernier détail société par société officiellement disponible date donc du <strong>31 mars 2026</strong>. Tout ce que l'on sait du deuxième trimestre provient du <button class="gl" data-gl="10Q">10-Q</button> déposé le 8 août&nbsp;: il donne les <em>totaux</em>, jamais les noms.</p>
 
@@ -1215,15 +1205,15 @@ footer.colophon strong { color: var(--ink); }
       <div class="box reveal">
         <p class="box__label">Sources utilisées</p>
         <ul>
-          <li>10-Q de Berkshire du T1 — déposé le 15 mai 2026</li>
-          <li>10-Q de Berkshire du T2 — déposé le 8 août 2026</li>
-          <li>13F-HR du T1 — déposé le 15 mai 2026</li>
-          <li>Prospectus <button class="gl" data-gl="424B5">424B5</button> et 8-K d'Alphabet — juin 2026</li>
-          <li>10-Q d'Alphabet — juillet 2026</li>
+          <li>10-Q de Berkshire du T1, déposé le 15 mai 2026</li>
+          <li>10-Q de Berkshire du T2, déposé le 8 août 2026</li>
+          <li>13F-HR du T1, déposé le 15 mai 2026</li>
+          <li>Prospectus <button class="gl" data-gl="424B5">424B5</button> et 8-K d'Alphabet, juin 2026</li>
+          <li>10-Q d'Alphabet, juillet 2026</li>
         </ul>
       </div>
 
-      <p class="reveal">Ce dossier va aussi loin que les documents le permettent, puis s'arrête — et le dit.</p>
+      <p class="reveal">Ce dossier va aussi loin que les documents le permettent, puis s'arrête, et le dit.</p>
 
       <div class="legal reveal">
         <p class="legal__tag">⚠ Rappel</p>
@@ -1253,12 +1243,12 @@ footer.colophon strong { color: var(--ink); }
       <aside class="plain reveal">
         <p class="plain__tag">En clair</p>
         <p><strong>« Acheteur net »</strong> veut simplement dire&nbsp;: sur le trimestre, Berkshire a acheté plus d'actions qu'il n'en a vendu.</p>
-        <p style="margin-bottom:0">Pendant trois ans et demi, c'était l'inverse à <em>chaque</em> trimestre — le groupe sortait du marché, encaissait, et empilait du cash. Quatorze fois de suite. Puis, d'un coup, plus.</p>
+        <p style="margin-bottom:0">Pendant trois ans et demi, c'était l'inverse à <em>chaque</em> trimestre : le groupe sortait du marché, encaissait, et empilait du cash. Quatorze fois de suite. Puis, d'un coup, plus.</p>
       </aside>
 
       <figure class="fig reveal" data-chart="streak">
         <p class="fig__title">Quatorze trimestres, puis la bascule</p>
-        <p class="fig__sub">Sens du flux net sur actions cotées, trimestre par trimestre. Schéma de séquence — seule la dernière barre est chiffrée par les documents ci-dessous.</p>
+        <p class="fig__sub">Sens du flux net sur actions cotées, trimestre par trimestre. Schéma de séquence : seule la dernière barre est chiffrée par les documents ci-dessous.</p>
         <div class="chart"></div>
         <figcaption>Lecture&nbsp;: chaque trait vers le bas est un trimestre où Berkshire a plus vendu qu'acheté. Le dernier, vers le haut, est le T2&nbsp;2026 à +19,8&nbsp;Md$.</figcaption>
       </figure>
@@ -1287,7 +1277,7 @@ footer.colophon strong { color: var(--ink); }
     <span class="stamp stamp--ok">Rapproché</span>
   </div>
 
-  <h3 class="reveal">3.1 — Ce que Berkshire a acheté et vendu</h3>
+  <h3 class="reveal">3.1 · Ce que Berkshire a acheté et vendu</h3>
   <p class="reveal">Ces montants sont obtenus par différence entre le 10-Q du semestre et celui du premier trimestre.</p>
 
   <figure class="fig reveal" data-chart="flux">
@@ -1319,7 +1309,7 @@ footer.colophon strong { color: var(--ink); }
     <p style="margin-bottom:0">Au deuxième, il n'a presque plus rien vendu. Ce n'était donc pas une nouvelle habitude&nbsp;: c'était un ménage ponctuel, fait une fois. <strong>La presse ne fait pas cette distinction</strong>, et c'est pour ça qu'elle décrit mal ce qui s'est passé.</p>
   </aside>
 
-  <h3 class="reveal">3.2 — Berkshire rachète ses propres actions</h3>
+  <h3 class="reveal">3.2 · Berkshire rachète ses propres actions</h3>
 
   <aside class="plain reveal">
     <p class="plain__tag">En clair</p>
@@ -1331,7 +1321,7 @@ footer.colophon strong { color: var(--ink); }
     <p class="fig__title">Rachats d'actions Berkshire</p>
     <p class="fig__sub">Ce n'est pas une accélération. C'est un robinet resté fermé toute une année, puis rouvert.</p>
     <div class="chart"></div>
-    <figcaption>Source&nbsp;: 10-Q du T1 et du T2 2026. Le programme est explicitement conditionné au prix — voir §6.2.</figcaption>
+    <figcaption>Source&nbsp;: 10-Q du T1 et du T2 2026. Le programme est explicitement conditionné au prix (voir §6.2).</figcaption>
   </figure>
 
   <p class="reveal">La séquence est <strong>0 → 235 M$ → 4 527 M$</strong>. Abel a rouvert un robinet resté fermé pendant <strong>toute l'année 2025</strong>. C'est un signal de valorisation bien plus net qu'une simple « accélération ».</p>
@@ -1341,11 +1331,11 @@ footer.colophon strong { color: var(--ink); }
     <p>Berkshire ne fait que <strong>+3 % en 2026</strong>, contre <strong>+13 % pour le S&amp;P 500</strong>. Autrement dit&nbsp;: l'action est en retard sur le marché. Racheter massivement à ce moment-là, c'est déclarer qu'on la trouve sous-évaluée.</p>
   </div>
 
-  <h3 class="reveal">3.3 — La trésorerie&nbsp;: attention, piège majeur</h3>
+  <h3 class="reveal">3.3 · La trésorerie&nbsp;: attention, piège majeur</h3>
 
   <div class="reveal-block reveal" data-reveal-block>
     <p class="trap__tag">Ce que titrent tous les journaux</p>
-    <p style="font-size:1.3rem;line-height:1.35;margin-bottom:1rem">« La trésorerie de Berkshire fond de <strong>397,4</strong> à <strong>365,5&nbsp;Md$</strong> — une ponction de <strong class="down">31,9&nbsp;Md$</strong>. »</p>
+    <p style="font-size:1.3rem;line-height:1.35;margin-bottom:1rem">« La trésorerie de Berkshire fond de <strong>397,4</strong> à <strong>365,5&nbsp;Md$</strong>, une ponction de <strong class="down">31,9&nbsp;Md$</strong>. »</p>
     <button class="btn btn--pencil" data-reveal-trigger>Ouvrir la note de bas de page ⟶</button>
 
     <div class="reveal-block__body">
@@ -1365,7 +1355,7 @@ footer.colophon strong { color: var(--ink); }
         <p class="fig__title">Trésorerie&nbsp;: chiffre brut contre chiffre comparable</p>
         <p class="fig__sub">On retire des deux dates les bons du Trésor commandés mais pas encore payés.</p>
         <div class="chart"></div>
-        <figcaption>La vraie baisse est de <strong>~15,5 Md$, pas 32</strong> — soit deux fois moins que le chiffre repris partout.</figcaption>
+        <figcaption>La vraie baisse est de <strong>~15,5 Md$, pas 32</strong>, soit deux fois moins que le chiffre repris partout.</figcaption>
       </figure>
 
       <div class="tablewrap">
@@ -1375,7 +1365,7 @@ footer.colophon strong { color: var(--ink); }
           <tbody>
             <tr><th scope="row">31 mars 2026</th><td>397,4</td><td class="neg">−17,2</td><td class="flag">380,2</td></tr>
             <tr><th scope="row">30 juin 2026</th><td>365,5</td><td class="neg">−0,8</td><td class="flag">364,7</td></tr>
-            <tr class="is-total"><th scope="row">Variation</th><td class="neg">−31,9</td><td>—</td><td class="flag">−15,5</td></tr>
+            <tr class="is-total"><th scope="row">Variation</th><td class="neg">−31,9</td><td>·</td><td class="flag">−15,5</td></tr>
           </tbody>
         </table>
       </div>
@@ -1386,20 +1376,20 @@ footer.colophon strong { color: var(--ink); }
     </div>
   </div>
 
-  <h3 class="reveal">3.4 — L'impôt qui dort dans le portefeuille</h3>
+  <h3 class="reveal">3.4 · L'impôt qui dort dans le portefeuille</h3>
 
   <figure class="fig reveal" data-chart="unrealized">
     <p class="fig__title">Portefeuille au 30 juin 2026&nbsp;: ce qui a été payé, ce qui a été gagné</p>
     <p class="fig__sub">323,8 Md$ de valeur pour 106,5 Md$ dépensés. L'écart est le poste le plus structurant du dossier.</p>
     <div class="chart"></div>
-    <figcaption>Le passif d'impôts, principalement différés, s'élève à 90,2 Md$ — voir §7.2.</figcaption>
+    <figcaption>Le passif d'impôts, principalement différés, s'élève à 90,2 Md$ (voir §7.2).</figcaption>
   </figure>
 
   <aside class="plain reveal">
     <p class="plain__tag">En clair</p>
     <p>Berkshire a dépensé <strong>106,5 milliards</strong> pour constituer un portefeuille qui en vaut aujourd'hui <strong>323,8</strong>.</p>
     <p>Les <strong>217,3 milliards</strong> d'écart sont un gain « sur le papier »&nbsp;: on l'appelle une <button class="gl" data-gl="pvl">plus-value latente</button>. Tant qu'on ne vend pas, on ne paie pas d'impôt dessus.</p>
-    <p style="margin-bottom:0">Mais le jour où on vend, l'État prend sa part — 21 % au niveau fédéral. C'est pour ça que le bilan porte 90,2 milliards d'<button class="gl" data-gl="idiff">impôts différés</button>&nbsp;: une facture déjà comptée, pas encore payée. Retenez ce chiffre, il explique presque tout au feuillet 07.</p>
+    <p style="margin-bottom:0">Mais le jour où on vend, l'État prend sa part, 21 % au niveau fédéral. C'est pour ça que le bilan porte 90,2 milliards d'<button class="gl" data-gl="idiff">impôts différés</button>&nbsp;: une facture déjà comptée, pas encore payée. Retenez ce chiffre, il explique presque tout au feuillet 07.</p>
   </aside>
 
   <div class="tablewrap reveal">
@@ -1417,13 +1407,13 @@ footer.colophon strong { color: var(--ink); }
     </table>
   </div>
 
-  <h3 class="reveal">3.5 — Les résultats du trimestre</h3>
+  <h3 class="reveal">3.5 · Les résultats du trimestre</h3>
 
   <div class="kpis reveal">
     <div class="kpi">
       <p class="kpi__label"><button class="gl" data-gl="bop">Bénéfice opérationnel</button></p>
       <p class="kpi__value" data-count="12.98" data-dec="2" data-suffix=" Md$">12,98 Md$</p>
-      <p class="kpi__note"><span class="up">+16 %</span> — contre 11,16 Md$ un an plus tôt</p>
+      <p class="kpi__note"><span class="up">+16 %</span>, contre 11,16 Md$ un an plus tôt</p>
     </div>
     <div class="kpi">
       <p class="kpi__label">Résultat net</p>
@@ -1433,7 +1423,7 @@ footer.colophon strong { color: var(--ink); }
     <div class="kpi">
       <p class="kpi__label"><button class="gl" data-gl="souscr">Résultat de souscription</button></p>
       <p class="kpi__value is-neg" data-count="1.73" data-dec="2" data-suffix=" Md$">1,73 Md$</p>
-      <p class="kpi__note"><span class="down">−13 %</span> — le point faible du trimestre</p>
+      <p class="kpi__note"><span class="down">−13 %</span>, le point faible du trimestre</p>
     </div>
     <div class="kpi">
       <p class="kpi__label">Industrie, services, distribution</p>
@@ -1443,12 +1433,12 @@ footer.colophon strong { color: var(--ink); }
   </div>
 
   <aside class="plain reveal">
-    <p class="plain__tag">En clair — quel chiffre regarder</p>
+    <p class="plain__tag">En clair · quel chiffre regarder</p>
     <p>Le <strong>bénéfice opérationnel</strong> est ce que gagnent réellement les entreprises du groupe&nbsp;: le chemin de fer, l'énergie, l'assurance, les usines. C'est le chiffre à suivre, et il progresse de 16 %.</p>
-    <p style="margin-bottom:0">Le <strong>résultat net</strong>, lui, inclut la variation de valeur des actions détenues. Sur les 16,1 Md$ de gains d'investissement du trimestre, <strong>15,6 sont de la simple variation de cours</strong> — pas un centime encaissé. Ce chiffre monte et descend au rythme d'Apple, il ne dit presque rien sur la marche des affaires.</p>
+    <p style="margin-bottom:0">Le <strong>résultat net</strong>, lui, inclut la variation de valeur des actions détenues. Sur les 16,1 Md$ de gains d'investissement du trimestre, <strong>15,6 sont de la simple variation de cours</strong>, pas un centime encaissé. Ce chiffre monte et descend au rythme d'Apple, il ne dit presque rien sur la marche des affaires.</p>
   </aside>
 
-  <p class="reveal">Le point faible est l'assurance&nbsp;: les revenus de placement de la branche reculent de 9 % à 3,06 Md$. Les points forts sont ailleurs — <strong>Berkshire Hathaway Energy progresse de 27 % à 891 M$</strong> et le chemin de fer BNSF de 6 % à 1,56 Md$.</p>
+  <p class="reveal">Le point faible est l'assurance&nbsp;: les revenus de placement de la branche reculent de 9 % à 3,06 Md$. Les points forts sont ailleurs&nbsp;: <strong>Berkshire Hathaway Energy progresse de 27 % à 891 M$</strong> et le chemin de fer BNSF de 6 % à 1,56 Md$.</p>
 
   <div class="legal reveal">
     <p class="legal__tag">⚠ Rappel</p>
@@ -1491,7 +1481,7 @@ footer.colophon strong { color: var(--ink); }
   <aside class="plain reveal">
     <p class="plain__tag">En clair</p>
     <p>Chaque barre est une société détenue. Sa longueur dit quelle <strong>part du portefeuille</strong> elle représente.</p>
-    <p style="margin-bottom:0">Le premier constat saute aux yeux&nbsp;: <strong>quatre sociétés font 60 % du total</strong>. Berkshire n'est pas un fonds diversifié qui étale ses paris — c'est un portefeuille très concentré sur quelques convictions anciennes.</p>
+    <p style="margin-bottom:0">Le premier constat saute aux yeux&nbsp;: <strong>quatre sociétés font 60 % du total</strong>. Berkshire n'est pas un fonds diversifié qui étale ses paris, c'est un portefeuille très concentré sur quelques convictions anciennes.</p>
   </aside>
 
   <div class="legal reveal">
@@ -1499,7 +1489,7 @@ footer.colophon strong { color: var(--ink); }
     <p style="margin-bottom:0">Cette liste décrit ce que <strong>Berkshire</strong> détenait au 31 mars 2026, d'après sa déclaration officielle. <strong>Ce n'est pas une liste de valeurs à acheter.</strong> Ce qui convient à un groupe disposant de 364 milliards de trésorerie et d'un horizon de plusieurs décennies n'a aucune raison de convenir à un particulier. Faites vos propres recherches.</p>
   </div>
 
-  <h3 class="reveal">4.2 — Le basculement du top 5</h3>
+  <h3 class="reveal">4.2 · Le basculement du top 5</h3>
   <p class="reveal">C'est le fait structurant du trimestre, et il est confirmé par les deux 10-Q.</p>
 
   <figure class="fig reveal" data-chart="top5">
@@ -1518,7 +1508,7 @@ footer.colophon strong { color: var(--ink); }
     <p>Le 10-Q liste les cinq sociétés <strong>par ordre alphabétique</strong>, sans montant ni classement. On sait donc qu'Alphabet est dans le top 5&nbsp;; <strong>on ne sait pas à quelle place</strong>. Dessiner des barres reviendrait à inventer un classement.</p>
   </div>
 
-  <h3 class="reveal">4.3 — L'énorme angle mort du 13F</h3>
+  <h3 class="reveal">4.3 · L'énorme angle mort du 13F</h3>
   <p class="reveal">Le 13F ne couvre que les actions cotées aux États-Unis. Une part considérable du patrimoine d'investissement de Berkshire lui échappe&nbsp;:</p>
 
   <div class="tablewrap reveal">
@@ -1526,10 +1516,10 @@ footer.colophon strong { color: var(--ink); }
       <caption>Positions invisibles dans le 13F</caption>
       <thead><tr><th scope="col">Position</th><th scope="col">De quoi il s'agit</th><th scope="col">Repère de valeur</th></tr></thead>
       <tbody>
-        <tr><th scope="row">5 <button class="gl" data-gl="shosha">sogo shosha</button> japonaises</th><td>Itochu, Marubeni, Mitsubishi, Mitsui, Sumitomo — cotées au Japon, donc hors périmètre</td><td class="flag">~35,4 Md$ pour ~15,4 Md$ dépensés</td></tr>
-        <tr><th scope="row">Occidental — actions ordinaires</th><td>26,7 % du capital, comptabilisé en <button class="gl" data-gl="mee">mise en équivalence</button></td><td class="neg">12,9 Md$ au 30/06, contre 17,2 au 31/03</td></tr>
-        <tr><th scope="row">Occidental — actions préférentielles</th><td><button class="gl" data-gl="pref">Titre à revenu fixe</button>&nbsp;: 8 %/an, remboursable dès 2029 à 105 %</td><td>8,5 Md$ de valeur de remboursement</td></tr>
-        <tr><th scope="row">Occidental — bons de souscription</th><td><button class="gl" data-gl="warrant">Droit d'acheter</button> 83,9 M d'actions à prix fixé d'avance</td><td>Prix d'exercice&nbsp;: 59,59 $</td></tr>
+        <tr><th scope="row">5 <button class="gl" data-gl="shosha">sogo shosha</button> japonaises</th><td>Itochu, Marubeni, Mitsubishi, Mitsui, Sumitomo. Cotées au Japon, donc hors périmètre</td><td class="flag">~35,4 Md$ pour ~15,4 Md$ dépensés</td></tr>
+        <tr><th scope="row">Occidental, actions ordinaires</th><td>26,7 % du capital, comptabilisé en <button class="gl" data-gl="mee">mise en équivalence</button></td><td class="neg">12,9 Md$ au 30/06, contre 17,2 au 31/03</td></tr>
+        <tr><th scope="row">Occidental, actions préférentielles</th><td><button class="gl" data-gl="pref">Titre à revenu fixe</button>&nbsp;: 8 %/an, remboursable dès 2029 à 105 %</td><td>8,5 Md$ de valeur de remboursement</td></tr>
+        <tr><th scope="row">Occidental, bons de souscription</th><td><button class="gl" data-gl="warrant">Droit d'acheter</button> 83,9 M d'actions à prix fixé d'avance</td><td>Prix d'exercice&nbsp;: 59,59 $</td></tr>
         <tr><th scope="row">Kraft Heinz</th><td>27,5 % du capital, mise en équivalence</td><td>Désavouée publiquement par Abel</td></tr>
       </tbody>
     </table>
@@ -1537,7 +1527,7 @@ footer.colophon strong { color: var(--ink); }
 
   <aside class="plain reveal">
     <p class="plain__tag">En clair</p>
-    <p>Le 13F que tout le monde va commenter ce soir <strong>ne liste que les actions américaines</strong>. Tout le reste en est absent&nbsp;: le Japon, les montages sur Occidental, et surtout les dizaines d'entreprises que Berkshire possède à 100 % — le chemin de fer, l'assurance, l'énergie.</p>
+    <p>Le 13F que tout le monde va commenter ce soir <strong>ne liste que les actions américaines</strong>. Tout le reste en est absent&nbsp;: le Japon, les montages sur Occidental, et surtout les dizaines d'entreprises que Berkshire possède à 100 %&nbsp;: le chemin de fer, l'assurance, l'énergie.</p>
     <p style="margin-bottom:0">Il ne racontera donc qu'une partie de l'histoire. Utile, mais partielle.</p>
   </aside>
 
@@ -1547,7 +1537,7 @@ footer.colophon strong { color: var(--ink); }
 
       <p class="reveal">Sur le Japon&nbsp;: Berkshire détient ces cinq maisons de négoce depuis 2019-2020 et a <strong>franchi les 10 % dans les cinq en mai 2026</strong>. Mitsubishi était au-dessus de 11 % au 30 avril.</p>
 
-      <p class="reveal">Sur Occidental&nbsp;: la valeur de la participation est passée de 17,2 à 12,9 Md$ en un trimestre, soit <span class="circle">−25 %</span>. Le pétrole a lourdement pesé — un point à garder en tête au moment de lire la coupe dans Chevron.</p>
+      <p class="reveal">Sur Occidental&nbsp;: la valeur de la participation est passée de 17,2 à 12,9 Md$ en un trimestre, soit <span class="circle">−25 %</span>. Le pétrole a lourdement pesé, un point à garder en tête au moment de lire la coupe dans Chevron.</p>
     </div>
     <aside>
       <p class="note note--margin reveal reveal-d1">15,4 dépensés, 35,4 aujourd'hui sur le Japon. Et rien de tout cela n'apparaîtra ce soir.</p>
@@ -1559,20 +1549,20 @@ footer.colophon strong { color: var(--ink); }
 <section class="sheet" id="alphabet" aria-labelledby="h-abc">
   <div class="sheet__head reveal">
     <span class="sheet__num">05</span>
-    <h2 id="h-abc">Alphabet — l'opération décisive</h2>
+    <h2 id="h-abc">Alphabet, l'opération décisive</h2>
     <span class="stamp">Pièce maîtresse</span>
   </div>
 
   <p class="lede reveal">Le 1<sup>er</sup> juin 2026, Alphabet lève 80 Md$ pour financer ses centres de données dédiés à l'intelligence artificielle. Dedans&nbsp;: <strong>10 Md$ vendus directement à Berkshire</strong>.</p>
 
   <aside class="plain reveal">
-    <p class="plain__tag">En clair — ce qui s'est passé</p>
-    <p>Alphabet avait besoin d'argent, beaucoup et vite. Plutôt que de vendre ses actions en Bourse — ce qui prend du temps et fait baisser le cours — elle en a vendu un gros paquet <strong>directement à un seul acheteur</strong>&nbsp;: Berkshire. C'est ce qu'on appelle un <button class="gl" data-gl="pp">placement privé</button>.</p>
+    <p class="plain__tag">En clair · ce qui s'est passé</p>
+    <p>Alphabet avait besoin d'argent, beaucoup et vite. Plutôt que de vendre ses actions en Bourse (ce qui prend du temps et fait baisser le cours), elle en a vendu un gros paquet <strong>directement à un seul acheteur</strong>&nbsp;: Berkshire. C'est ce qu'on appelle un <button class="gl" data-gl="pp">placement privé</button>.</p>
     <p>En échange de cette rapidité, Alphabet a consenti un rabais&nbsp;: Berkshire a payé <strong>6,5 % moins cher que le cours du jour</strong>. Sur 10 milliards, cela fait environ <strong>650 M$ gagnés à la signature</strong>, avant même que l'action ne bouge.</p>
-    <p style="margin-bottom:0">Pourquoi Alphabet accepte-t-elle&nbsp;? Parce qu'avoir Berkshire à son capital rassure tous les autres investisseurs. <strong>Berkshire ne vend pas de l'argent — il vend sa réputation.</strong></p>
+    <p style="margin-bottom:0">Pourquoi Alphabet accepte-t-elle&nbsp;? Parce qu'avoir Berkshire à son capital rassure tous les autres investisseurs. <strong>Berkshire ne vend pas de l'argent, il vend sa réputation.</strong></p>
   </aside>
 
-  <h3 class="reveal">5.1 — Les faits, sur pièces</h3>
+  <h3 class="reveal">5.1 · Les faits, sur pièces</h3>
 
   <div class="kpis reveal">
     <div class="kpi"><p class="kpi__label">Actions de classe A</p><p class="kpi__value">351,81 $</p><p class="kpi__note">14 212 035 titres, pour 5 Md$</p></div>
@@ -1583,11 +1573,11 @@ footer.colophon strong { color: var(--ink); }
 
   <p class="reveal">L'opération est bouclée le <strong>4 juin 2026</strong>. Berkshire a par ailleurs obtenu des <button class="gl" data-gl="droits">droits d'enregistrement</button>, et détient désormais environ <strong>68,2 M d'actions A et 18,0 M d'actions C</strong>, soit <span class="circle">~86 M de titres</span>.</p>
 
-  <h3 class="reveal">5.2 — Pourquoi c'est important</h3>
+  <h3 class="reveal">5.2 · Pourquoi c'est important</h3>
 
   <div class="box reveal">
     <p class="box__label">a · Le retour du Berkshire « pompier de service »</p>
-    <p>C'est le rôle joué avec Goldman Sachs en 2008, Bank of America en 2011, Occidental en 2019&nbsp;: apporter des milliards en urgence, contre des conditions avantageuses. Alphabet — plus de 2 000 milliards de capitalisation — <strong>n'avait aucun besoin de Berkshire pour trouver de l'argent</strong>. Elle avait besoin de son <em>sceau</em>. C'est le modèle économique le plus rentable et le moins réplicable de la maison.</p>
+    <p>C'est le rôle joué avec Goldman Sachs en 2008, Bank of America en 2011, Occidental en 2019&nbsp;: apporter des milliards en urgence, contre des conditions avantageuses. Alphabet, avec plus de 2 000 milliards de capitalisation, <strong>n'avait aucun besoin de Berkshire pour trouver de l'argent</strong>. Elle avait besoin de son <em>sceau</em>. C'est le modèle économique le plus rentable et le moins réplicable de la maison.</p>
   </div>
 
   <div class="box reveal">
@@ -1597,12 +1587,12 @@ footer.colophon strong { color: var(--ink); }
 
   <div class="box reveal">
     <p class="box__label">c · L'idée vient de Buffett, l'ampleur vient d'Abel</p>
-    <p>Buffett a publiquement revendiqué l'idée de la position Alphabet. Mais c'est Abel qui l'a <strong>triplée au premier trimestre</strong>, puis <strong>doublée au deuxième</strong>. C'est la signature d'un successeur qui ne rompt pas — mais qui appuie beaucoup plus fort.</p>
+    <p>Buffett a publiquement revendiqué l'idée de la position Alphabet. Mais c'est Abel qui l'a <strong>triplée au premier trimestre</strong>, puis <strong>doublée au deuxième</strong>. C'est la signature d'un successeur qui ne rompt pas, mais qui appuie beaucoup plus fort.</p>
   </div>
 
   <figure class="fig reveal" data-chart="alphabet">
     <p class="fig__title">Montée en puissance d'Alphabet dans le portefeuille</p>
-    <p class="fig__sub">De position secondaire à membre du top 5 en deux trimestres. Trois niveaux comparables — le placement de juin est intégré au dernier point, jamais affiché comme une barre séparée.</p>
+    <p class="fig__sub">De position secondaire à membre du top 5 en deux trimestres. Trois niveaux comparables&nbsp;: le placement de juin est intégré au dernier point, jamais affiché comme une barre séparée.</p>
     <div class="chart"></div>
     <figcaption>Seule la valeur du 31 mars est déclarée. Le point de fin décembre est reconstitué à partir de la hausse de 203 % du premier trimestre&nbsp;; le dernier est un minimum, hors variation de cours.</figcaption>
   </figure>
@@ -1622,11 +1612,11 @@ footer.colophon strong { color: var(--ink); }
     <h2 id="h-doc">La doctrine Abel</h2>
   </div>
 
-  <h3 class="reveal">6.1 — Ce qu'il conserve de Buffett</h3>
+  <h3 class="reveal">6.1 · Ce qu'il conserve de Buffett</h3>
   <ul class="reveal">
-    <li><strong>L'autonomie des filiales, mais avec des comptes à rendre.</strong> Elle est « fondée sur une confiance méritée » — là où Buffett déléguait, selon sa propre formule, presque jusqu'à l'abdication. En revanche, <strong>les décisions d'investissement restent centralisées</strong>.</li>
+    <li><strong>L'autonomie des filiales, mais avec des comptes à rendre.</strong> Elle est « fondée sur une confiance méritée », là où Buffett déléguait, selon sa propre formule, presque jusqu'à l'abdication. En revanche, <strong>les décisions d'investissement restent centralisées</strong>.</li>
     <li><strong>Le même filtre.</strong> Comprendre l'entreprise et ses risques, se faire une idée de ses profits futurs, s'appuyer sur des dirigeants compétents et honnêtes, et ne payer qu'un prix qui laisse une marge d'erreur.</li>
-    <li><strong>La trésorerie comme choix, pas comme échec.</strong> Indépendance, souplesse — et refus des « ABC »&nbsp;: arrogance, bureaucratie, complaisance.</li>
+    <li><strong>La trésorerie comme choix, pas comme échec.</strong> Indépendance, souplesse, et refus des « ABC »&nbsp;: arrogance, bureaucratie, complaisance.</li>
     <li><strong>La souplesse du <button class="gl" data-gl="conglo">conglomérat</button>.</strong> Déplacer l'argent de l'assurance vers l'industrie, vers les actions, ou le garder en cash.</li>
   </ul>
 
@@ -1635,7 +1625,7 @@ footer.colophon strong { color: var(--ink); }
     <cite>Greg Abel</cite>
   </div>
 
-  <h3 class="reveal">6.2 — La règle de rachat, dans le texte</h3>
+  <h3 class="reveal">6.2 · La règle de rachat, dans le texte</h3>
 
   <div class="box box--quote reveal">
     <p>Le programme de rachat autorise Berkshire à racheter ses actions A et B à des prix inférieurs à sa <button class="gl" data-gl="vi">valeur intrinsèque</button>, déterminée de manière conservatrice par le directeur général <strong>après consultation du président du conseil</strong>. Nous ne sommes soumis ni à un minimum ni à un maximum. Nous ne rachèterons pas nos actions si cela ramène nos liquidités et bons du Trésor consolidés <strong>sous 30 milliards de dollars</strong>.</p>
@@ -1643,7 +1633,7 @@ footer.colophon strong { color: var(--ink); }
   </div>
 
   <aside class="plain reveal">
-    <p class="plain__tag">En clair — deux choses que personne ne relève</p>
+    <p class="plain__tag">En clair · deux choses que personne ne relève</p>
     <p><strong>1.</strong> « Après consultation du président du conseil » n'est pas une politesse, c'est une clause écrite. Autrement dit&nbsp;: <strong>Buffett garde un droit de regard officiel sur les rachats</strong>, même s'il n'est plus directeur général.</p>
     <p style="margin-bottom:0"><strong>2.</strong> Berkshire promet de ne jamais descendre sous 30 milliards de trésorerie. Comme il en a 364,7, cette « limite » lui laisse <strong>plus de 330 milliards de marge</strong>. Ce n'est pas une contrainte, c'est une formule rassurante.</p>
   </aside>
@@ -1655,24 +1645,24 @@ footer.colophon strong { color: var(--ink); }
     <figcaption>Trésorerie réelle au 30 juin 2026 (364,7 Md$) rapportée à la limite de 30 Md$ inscrite dans la politique de rachat.</figcaption>
   </figure>
 
-  <h3 class="reveal">6.3 — Ce qu'il change</h3>
+  <h3 class="reveal">6.3 · Ce qu'il change</h3>
   <ul class="reveal">
-    <li><strong>Un noyau dur nommé explicitement.</strong> Dans sa lettre&nbsp;: « <em>Apple, American Express, Coca-Cola et Moody's — des entreprises que nous comprenons bien, dont nous estimons les dirigeants, et qui devraient composer pendant des décennies.</em> » Tout ce qui n'est pas dans cette liste est, de fait, mis en jeu.</li>
+    <li><strong>Un noyau dur nommé explicitement.</strong> Dans sa lettre&nbsp;: « <em>Apple, American Express, Coca-Cola et Moody's, des entreprises que nous comprenons bien, dont nous estimons les dirigeants, et qui devraient composer pendant des décennies.</em> » Tout ce qui n'est pas dans cette liste est, de fait, mis en jeu.</li>
     <li><strong>Une franchise inhabituelle sur les échecs.</strong> « <em>Notre investissement dans Kraft Heinz a été décevant… notre rendement a été bien en deçà de l'acceptable.</em> » Buffett n'aurait pas formulé cela ainsi.</li>
     <li><strong>Une ère « pilotée par l'opérateur ».</strong> Centrée sur l'exécution et le déploiement discipliné du capital, dans un monde où les très grosses acquisitions sont rares.</li>
     <li><strong>Sur l'IA, une prudence assumée.</strong> Berkshire cherche à l'utiliser pour créer de la valeur, mais ne va pas « faire de l'IA pour faire de l'IA ».</li>
   </ul>
 
   <div class="box box--warn reveal">
-    <p class="box__label">⚠ Kraft Heinz — un avertissement à peine voilé</p>
-    <p>L'écart entre la valeur comptabilisée et la valeur réelle s'est <strong>réduit</strong>, de 1,4 Md$ (15,7 %) au 31 mars à 1,1 Md$ (12,2 %) au 30 juin. Berkshire écrit qu'aucune <button class="gl" data-gl="deprec">dépréciation</button> n'était requise — tout en précisant que « nos attentes et intentions actuelles concernant cet investissement peuvent changer à l'avenir ».</p>
+    <p class="box__label">⚠ Kraft Heinz · un avertissement à peine voilé</p>
+    <p>L'écart entre la valeur comptabilisée et la valeur réelle s'est <strong>réduit</strong>, de 1,4 Md$ (15,7 %) au 31 mars à 1,1 Md$ (12,2 %) au 30 juin. Berkshire écrit qu'aucune <button class="gl" data-gl="deprec">dépréciation</button> n'était requise, tout en précisant que « nos attentes et intentions actuelles concernant cet investissement peuvent changer à l'avenir ».</p>
   </div>
 
-  <h3 class="reveal">6.4 — Nuance capitale&nbsp;: tout n'est pas Abel</h3>
+  <h3 class="reveal">6.4 · Nuance capitale&nbsp;: tout n'est pas Abel</h3>
 
   <div class="box box--pencil reveal">
     <p class="box__label">✎ Le garde-fou le plus utile de ce dossier</p>
-    <p>Abel a précisé que <strong>Ted Weschler continuerait de gérer une partie du portefeuille</strong>. Conséquence pratique&nbsp;: les petites positions — Macy's (55 M$), Jefferies (18 M$), NVR (73 M$), Louisiana-Pacific, Ally, VeriSign, New York Times — ne sont <strong>probablement pas</strong> des décisions d'Abel. C'est historiquement le domaine de Weschler et de Todd Combs.</p>
+    <p>Abel a précisé que <strong>Ted Weschler continuerait de gérer une partie du portefeuille</strong>. Conséquence pratique&nbsp;: les petites positions ne sont <strong>probablement pas</strong> des décisions d'Abel. Macy's (55 M$), Jefferies (18 M$), NVR (73 M$), Louisiana-Pacific, Ally, VeriSign, New York Times&nbsp;: c'est historiquement le domaine de Weschler et de Todd Combs.</p>
     <p style="margin-bottom:0">Lire Macy's comme « un signal sur la vision d'Abel pour le commerce » serait donc une surinterprétation.</p>
   </div>
 
@@ -1681,11 +1671,11 @@ footer.colophon strong { color: var(--ink); }
       <caption>Qui a décidé quoi</caption>
       <thead><tr><th scope="col">Décision</th><th scope="col">Attribution</th></tr></thead>
       <tbody>
-        <tr><th scope="row">Alphabet (premier trimestre + placement de juin)</th><td class="pos">Abel — certain</td></tr>
-        <tr><th scope="row">Coupe de 35 % dans Chevron</th><td class="pos">Abel — certain</td></tr>
-        <tr><th scope="row">Les 16 sociétés entièrement vendues</th><td class="pos">Abel — certain</td></tr>
-        <tr><th scope="row">Acquisitions d'OxyChem et Taylor Morrison</th><td class="pos">Abel — certain</td></tr>
-        <tr><th scope="row">Reprise des rachats d'actions</th><td class="pos">Abel — certain</td></tr>
+        <tr><th scope="row">Alphabet (premier trimestre + placement de juin)</th><td class="pos">Abel, certain</td></tr>
+        <tr><th scope="row">Coupe de 35 % dans Chevron</th><td class="pos">Abel, certain</td></tr>
+        <tr><th scope="row">Les 16 sociétés entièrement vendues</th><td class="pos">Abel, certain</td></tr>
+        <tr><th scope="row">Acquisitions d'OxyChem et Taylor Morrison</th><td class="pos">Abel, certain</td></tr>
+        <tr><th scope="row">Reprise des rachats d'actions</th><td class="pos">Abel, certain</td></tr>
         <tr><th scope="row">Macy's, Jefferies, NVR, Ally, New York Times…</th><td class="flag">Probablement Weschler ou Combs</td></tr>
       </tbody>
     </table>
@@ -1699,7 +1689,7 @@ footer.colophon strong { color: var(--ink); }
     <h2 id="h-why">Pourquoi maintenant</h2>
   </div>
 
-  <h3 class="reveal">7.1 — Un problème de rendement, pas de conviction</h3>
+  <h3 class="reveal">7.1 · Un problème de rendement, pas de conviction</h3>
   <div class="with-margin">
     <div>
       <p class="reveal">325 Md$ placés en bons du Trésor, c'est un actif sans risque… et sans croissance. Tant que les taux d'intérêt étaient élevés, l'attente se justifiait toute seule&nbsp;: <strong>Buffett était payé pour ne rien faire</strong>.</p>
@@ -1716,26 +1706,26 @@ footer.colophon strong { color: var(--ink); }
     </aside>
   </div>
 
-  <h3 class="reveal">7.2 — La contrainte fiscale qui dicte tout</h3>
+  <h3 class="reveal">7.2 · La contrainte fiscale qui dicte tout</h3>
   <p class="reveal">C'est le mécanisme le moins compris et le plus déterminant de tout le dossier.</p>
 
   <aside class="plain reveal">
-    <p class="plain__tag">En clair — pourquoi Abel ne vend pas Coca-Cola</p>
+    <p class="plain__tag">En clair · pourquoi Abel ne vend pas Coca-Cola</p>
     <p>Berkshire a acheté Coca-Cola il y a près de quarante ans, pour une misère par rapport à sa valeur actuelle. <strong>La vendre déclencherait des milliards d'impôt</strong> sur un gain accumulé depuis des décennies.</p>
     <p>Amazon ou Visa, achetées récemment, ont beaucoup moins monté depuis leur achat&nbsp;: les vendre ne coûte presque rien en impôt.</p>
-    <p style="margin-bottom:0">D'où ce qu'on observe&nbsp;: <strong>Abel vend le récent et garde l'ancien.</strong> Ce n'est pas seulement de la conviction — c'est en partie une obligation fiscale.</p>
+    <p style="margin-bottom:0">D'où ce qu'on observe&nbsp;: <strong>Abel vend le récent et garde l'ancien.</strong> Ce n'est pas seulement de la conviction, c'est en partie une obligation fiscale.</p>
   </aside>
 
   <p class="reveal">Les chiffres&nbsp;: 323,8 Md$ de valeur pour 106,5 Md$ dépensés, soit <strong>217,3 Md$ de gain non réalisé</strong>. Les ventes du seul premier semestre ont déjà généré <strong>9,5 Md$ de plus-values imposables</strong>.</p>
 
   <p class="reveal">Corollaire à retenir&nbsp;: méfiez-vous des lectures du type « Abel garde Coca-Cola, donc il y croit ». <span class="mark">Il la garde peut-être surtout parce qu'il ne peut pas se permettre de la vendre.</span></p>
 
-  <h3 class="reveal">7.3 — Où sont vraiment passés les 23,5 Md$</h3>
+  <h3 class="reveal">7.3 · Où sont vraiment passés les 23,5 Md$</h3>
 
   <aside class="plain reveal">
-    <p class="plain__tag">En clair — comment on peut le savoir</p>
+    <p class="plain__tag">En clair · comment on peut le savoir</p>
     <p>Berkshire ne dit pas <em>ce qu'il a acheté</em>. Mais il publie <strong>combien il a dépensé au total dans trois grandes catégories</strong>&nbsp;: la finance, la consommation, et l'industrie/technologie.</p>
-    <p style="margin-bottom:0">En comparant ces trois totaux entre deux trimestres, on déduit où l'argent est parti — sans savoir dans quelle société exactement. C'est un travail que personne ne fait dans la presse, et c'est ce que montre le graphique ci-dessous.</p>
+    <p style="margin-bottom:0">En comparant ces trois totaux entre deux trimestres, on déduit où l'argent est parti, sans savoir dans quelle société exactement. C'est un travail que personne ne fait dans la presse, et c'est ce que montre le graphique ci-dessous.</p>
   </aside>
 
   <figure class="fig reveal" data-chart="blocks">
@@ -1765,7 +1755,7 @@ footer.colophon strong { color: var(--ink); }
       − ce qui sort avec les ventes <strong>1,39</strong><br>
       = attendu <strong>22,08</strong><br>
       constaté <strong>21,93</strong><br>
-      <span style="border-top:2px solid var(--ink-green);display:inline-block;padding-top:.4rem;margin-top:.2rem">écart <strong class="flag">150 M$</strong> — <span class="up">le calcul tient.</span></span>
+      <span style="border-top:2px solid var(--ink-green);display:inline-block;padding-top:.4rem;margin-top:.2rem">écart <strong class="flag">150 M$</strong>&nbsp;: <span class="up">le calcul tient.</span></span>
     </p>
   </div>
 
@@ -1780,13 +1770,13 @@ footer.colophon strong { color: var(--ink); }
 
   <p class="note reveal">C'est plus précis que le « mystère à 13,5&nbsp;Md$ » repris partout, qui n'est qu'une soustraction&nbsp;: 23,5 − 10.</p>
 
-  <h3 class="reveal">7.4 — Un pari clair&nbsp;: le logement américain</h3>
+  <h3 class="reveal">7.4 · Un pari clair&nbsp;: le logement américain</h3>
   <p class="reveal">Taylor Morrison + Lennar + NVR + Louisiana-Pacific + Clayton Homes + Berkshire Hathaway HomeServices&nbsp;: c'est une <strong>seule idée, jouée par six véhicules différents</strong>.</p>
 
   <aside class="plain reveal">
-    <p class="plain__tag">En clair — l'idée derrière</p>
+    <p class="plain__tag">En clair · l'idée derrière</p>
     <p>Les taux d'intérêt élevés ont gelé la construction et l'achat de maisons aux États-Unis&nbsp;: emprunter coûte trop cher, les gens reportent.</p>
-    <p style="margin-bottom:0">Le pari de Berkshire&nbsp;: quand les taux baisseront, tous ces projets reportés se débloqueront d'un coup. Il achète donc le secteur pendant qu'il est déprimé — et il a les moyens d'attendre <em>aussi longtemps qu'il faut</em>. C'est du Berkshire canonique.</p>
+    <p style="margin-bottom:0">Le pari de Berkshire&nbsp;: quand les taux baisseront, tous ces projets reportés se débloqueront d'un coup. Il achète donc le secteur pendant qu'il est déprimé, et il a les moyens d'attendre <em>aussi longtemps qu'il faut</em>. C'est du Berkshire canonique.</p>
   </aside>
 
   <div class="box box--quote reveal">
@@ -1799,7 +1789,7 @@ footer.colophon strong { color: var(--ink); }
     <p style="margin-bottom:0">Décrire un pari n'est pas le partager, et encore moins le conseiller. <strong>Ce pari peut échouer</strong> : les taux peuvent rester élevés des années, et le cycle immobilier ne se retourner jamais comme prévu. Berkshire a les moyens d'attendre indéfiniment ; ce n'est le cas de presque personne. Ceci n'est pas un conseil en investissement.</p>
   </div>
 
-  <h3 class="reveal">7.5 — Le facteur le plus risqué&nbsp;: la pression de la succession</h3>
+  <h3 class="reveal">7.5 · Le facteur le plus risqué&nbsp;: la pression de la succession</h3>
   <p class="reveal">Abel doit démontrer qu'il sait investir. Un directeur général qui hérite de 397 Md$ de trésorerie et ne fait rien n'a aucune légitimité, quel que soit le mérite théorique de la patience.</p>
   <p class="reveal">Le passage de zéro rachat en 2025 à 4,5 Md$ en un trimestre, la première grosse acquisition, le placement Alphabet&nbsp;: c'est aussi de la <strong>construction de crédibilité</strong>.</p>
 
@@ -1816,17 +1806,17 @@ footer.colophon strong { color: var(--ink); }
     <h2 id="h-vision">La vision long terme</h2>
   </div>
 
-  <p class="lede reveal">Le fil conducteur, une fois toutes les pièces recollées&nbsp;: <strong>sortir du pétrole coté, entrer dans les infrastructures — numériques et physiques.</strong></p>
+  <p class="lede reveal">Le fil conducteur, une fois toutes les pièces recollées&nbsp;: <strong>sortir du pétrole coté, entrer dans les infrastructures, numériques et physiques.</strong></p>
 
   <ul class="reveal">
-    <li><strong>Sortie du pétrole en Bourse, entrée dans la chimie en direct.</strong> Chevron réduit de 35 %, sorti du top 5 — mais rachat d'OxyChem, une usine chimique. Abel troque une action volatile contre un actif industriel aux revenus réguliers. C'est cohérent avec son parcours dans l'énergie&nbsp;: c'est le métier qu'il connaît.</li>
+    <li><strong>Sortie du pétrole en Bourse, entrée dans la chimie en direct.</strong> Chevron réduit de 35 %, sorti du top 5, mais rachat d'OxyChem, une usine chimique. Abel troque une action volatile contre un actif industriel aux revenus réguliers. C'est cohérent avec son parcours dans l'énergie&nbsp;: c'est le métier qu'il connaît.</li>
     <li><strong>Entrée dans la tech par les « péages ».</strong> Alphabet, VeriSign&nbsp;: des positions incontournables qui prélèvent au passage, pas des paris sur une technologie précise.</li>
     <li><strong>Le Japon comme socle permanent.</strong> Les cinq maisons de négoce sont, selon Buffett, gérées « d'une manière assez similaire à Berkshire elle-même ». Abel a poussé au-delà de 10 % dans les cinq&nbsp;: c'est un engagement de plusieurs décennies, et probablement la partie la plus sous-estimée du portefeuille.</li>
     <li><strong>Le logement américain</strong> comme grand pari cyclique.</li>
     <li><strong>Une trésorerie qui reste énorme</strong>&nbsp;: 365 Md$ après tout cela.</li>
   </ul>
 
-  <h3 class="reveal">8.2 — Le contexte que personne ne mentionne</h3>
+  <h3 class="reveal">8.2 · Le contexte que personne ne mentionne</h3>
   <p class="reveal">Berkshire sous-performe déjà. Pas depuis un trimestre&nbsp;: depuis dix ans.</p>
 
   <figure class="fig reveal" data-chart="perf">
@@ -1837,7 +1827,7 @@ footer.colophon strong { color: var(--ink); }
   </figure>
 
   <aside class="plain reveal">
-    <p class="plain__tag">En clair — comment lire ce graphique</p>
+    <p class="plain__tag">En clair · comment lire ce graphique</p>
     <p>La <button class="gl" data-gl="vcpa">valeur comptable par action</button> mesure ce que l'entreprise possède réellement, divisé par le nombre d'actions. C'est l'indicateur que Buffett a utilisé toute sa vie pour se juger.</p>
     <p style="margin-bottom:0">Sur soixante ans, Berkshire écrase l'indice&nbsp;: 18,1 % par an contre 10,5 %. <strong>Mais sur les dix dernières années, il ne le bat plus</strong>&nbsp;: 12,4 % contre 14,8 %. Les deux barres de droite racontent le même retournement sur le cours de Bourse.</p>
   </aside>
@@ -1857,7 +1847,7 @@ footer.colophon strong { color: var(--ink); }
 
   <div class="box box--pencil reveal">
     <p class="box__label">✎ Le vrai cadre du mandat d'Abel</p>
-    <p>Il n'hérite pas d'une machine invaincue. <strong>Il hérite d'une machine qui a cessé de battre le marché depuis dix ans</strong>, avec un problème de taille — il est devenu très difficile de faire bouger 1 200 Md$ de bilan — et une trésorerie qui ne travaille pas.</p>
+    <p>Il n'hérite pas d'une machine invaincue. <strong>Il hérite d'une machine qui a cessé de battre le marché depuis dix ans</strong>, avec un problème de taille (il est devenu très difficile de faire bouger 1 200 Md$ de bilan) et une trésorerie qui ne travaille pas.</p>
     <p style="margin-bottom:0">Le déploiement de capital n'est pas un caprice de nouveau patron. <strong>C'est une nécessité.</strong></p>
   </div>
 
@@ -1883,7 +1873,7 @@ footer.colophon strong { color: var(--ink); }
       <p class="trap__claim">« La trésorerie a fondu de 32 Md$. »</p>
       <p class="trap__hint">Cliquez pour corriger ✎</p>
       <div class="trap__truth">
-        <span class="trap__verdict">Faux — annoter.</span>
+        <span class="trap__verdict">Faux. À annoter.</span>
         <p style="margin:0">La vraie baisse est de ~15,5 Md$, une fois retirés les bons du Trésor commandés mais pas encore payés (17,2 Md$ au 31 mars, 0,8 au 30 juin). Le « record » de 397,4 Md$ était lui-même gonflé par ce décalage. Voir §3.3.</p>
       </div>
     </button>
@@ -1893,7 +1883,7 @@ footer.colophon strong { color: var(--ink); }
       <p class="trap__claim">« Taylor Morrison et OxyChem expliquent la baisse du cash au T2. »</p>
       <p class="trap__hint">Cliquez pour corriger ✎</p>
       <div class="trap__truth">
-        <span class="trap__verdict">Faux — erreur de date.</span>
+        <span class="trap__verdict">Faux. Erreur de date.</span>
         <p style="margin:0">Le 10-Q est sans ambiguïté&nbsp;: <strong>OxyChem bouclé le 2 janvier 2026</strong> (premier trimestre), <strong>Taylor Morrison le 24 juillet 2026</strong> (troisième trimestre). Ni l'une ni l'autre n'a touché la trésorerie du deuxième trimestre. Plusieurs médias reprennent cette erreur.</p>
       </div>
     </button>
@@ -1913,14 +1903,14 @@ footer.colophon strong { color: var(--ink); }
       <p class="trap__claim">« Chaque position reflète la vision d'Abel. »</p>
       <p class="trap__hint">Cliquez pour corriger ✎</p>
       <div class="trap__truth">
-        <span class="trap__verdict">Faux — deux mains sur le volant.</span>
+        <span class="trap__verdict">Faux. Deux mains sur le volant.</span>
         <p style="margin:0">Ted Weschler gère toujours une partie du portefeuille. Les petites positions (Macy's, Jefferies, NVR, Ally…) relèvent historiquement de son domaine et de celui de Todd Combs. Voir §6.4.</p>
       </div>
     </button>
   </div>
 
   <div class="box box--warn reveal">
-    <p class="box__label">⚠ Bonus — le prix d'OxyChem</p>
+    <p class="box__label">⚠ Bonus · le prix d'OxyChem</p>
     <p>Trois chiffres circulent&nbsp;: <strong>9,7 Md$</strong> annoncés le 2 janvier, <strong>~9,5 Md$</strong> dans le 10-Q du premier trimestre, <strong>~9,4 Md$</strong> dans celui du deuxième après ajustements. Le chiffre à jour est <strong>9,4 Md$</strong>.</p>
   </div>
 </section>
@@ -1948,7 +1938,7 @@ footer.colophon strong { color: var(--ink); }
     <div class="conf__col conf__col--doubt">
       <h4>⚠ Encore incertain</h4>
       <ul>
-        <li>Le mot-à-mot des citations d'Abel — le sens est confirmé par trois analystes, le texte original n'a pas pu être consulté</li>
+        <li>Le mot-à-mot des citations d'Abel&nbsp;: le sens est confirmé par trois analystes, le texte original n'a pas pu être consulté</li>
         <li>La valeur des positions japonaises au 30 juin</li>
         <li>La valeur exacte de la position Alphabet au 30 juin</li>
         <li>L'âge de Greg Abel (63 ou 64 selon les sources)</li>
@@ -1962,7 +1952,7 @@ footer.colophon strong { color: var(--ink); }
   </div>
 
   <div class="legal legal--major reveal">
-    <p class="legal__tag">⚠ Avertissement — mention légale</p>
+    <p class="legal__tag">⚠ Avertissement · mention légale</p>
     <p><strong>Ce document ne constitue pas un conseil en investissement</strong>, ni une recommandation, ni une sollicitation d'achat ou de vente d'un quelconque instrument financier. Il n'a pas été préparé selon les exigences réglementaires visant à promouvoir l'indépendance de la recherche en investissement.</p>
     <p>Il s'agit d'un contenu <strong>pédagogique et journalistique</strong>, produit à partir de documents publics. Son auteur n'est ni conseiller en investissements financiers agréé, ni analyste réglementé, et n'entretient aucune relation avec les sociétés citées.</p>
     <p><strong>Faites vos propres recherches avant toute décision.</strong> Lisez les documents d'origine, croisez les sources, et consultez un professionnel agréé si vous envisagez d'investir. Vous êtes seul responsable de vos décisions et de leurs conséquences.</p>
@@ -1999,7 +1989,7 @@ footer.colophon strong { color: var(--ink); }
 <div class="gl-pop" id="glpop" role="dialog" aria-label="Définition"></div>
 <script>
 /* =========================================================================
-   BERKSHIRE HATHAWAY — DOSSIER T2 2026
+   BERKSHIRE HATHAWAY · DOSSIER T2 2026
    Moteur du rapport : données, graphiques SVG, révélation progressive, quiz.
    Aucune dépendance externe.
    ========================================================================= */
@@ -2062,16 +2052,16 @@ footer.colophon strong { color: var(--ink); }
       { k: 'Produits de consommation',         d: -0.20 }
     ],
     deploy: [
-      { k: 'Alphabet — placement du 4 juin',             v: 10.0, c: C.s1, known: true },
+      { k: 'Alphabet, placement du 4 juin',             v: 10.0, c: C.s1, known: true },
       { k: 'Autres achats industriels / technologiques', v: 11.1, known: false },
       { k: 'Achats, bloc financier',                     v: 1.0,  known: false },
       { k: "Rachats d'actions Berkshire",                v: 4.5,  c: C.s2, known: true }
     ],
-    /* Trois niveaux comparables — jamais un niveau et un incrément sur le
+    /* Trois niveaux comparables : jamais un niveau et un incrément sur le
        même axe. Le placement de juin est intégré au troisième point.        */
     alphabet: [
       { d: '31 déc. 2025',      v: 5.5,  known: false, lab: '~5,5 Md$',  sub: 'rétro-calculé depuis le +203 % du T1' },
-      { d: '31 mars 2026',      v: 16.6, known: true,  lab: '16,6 Md$',  sub: '13F — seule valeur déclarée' },
+      { d: '31 mars 2026',      v: 16.6, known: true,  lab: '16,6 Md$',  sub: '13F, seule valeur déclarée' },
       { d: 'après le 4 juin',   v: 26.6, known: false, lab: '≥ 26,6 Md$', sub: '16,6 + 10,0 souscrits, hors variation de cours' }
     ],
     top5q1: [
@@ -2082,62 +2072,62 @@ footer.colophon strong { color: var(--ink); }
       { k: 'Chevron',          v: 18, out: true }
     ],
     top5q2: ['Alphabet', 'American Express', 'Apple', 'Bank of America', 'Coca-Cola'],
-    /* 13F au 31 mars 2026 — 28 lignes déclarées, 263,1 Md$
-       mv : mouvement du trimestre — new | up | down | flat                */
+    /* 13F au 31 mars 2026 : 28 lignes déclarées, 263,1 Md$
+       mv : mouvement du trimestre : new | up | down | flat                */
     pf: [
-      { k: 'Apple',                w: 22.0, v: 58,    t: '228 M',  mv: 'flat', n: '—' },
-      { k: 'American Express',     w: 17.4, v: 46,    t: '152 M',  mv: 'flat', n: '—' },
-      { k: 'Coca-Cola',            w: 11.6, v: 30,    t: '400 M',  mv: 'flat', n: '—' },
-      { k: 'Bank of America',      w: 9.5,  v: 25,    t: '514 M',  mv: 'flat', n: '—' },
+      { k: 'Apple',                w: 22.0, v: 58,    t: '228 M',  mv: 'flat', n: 'inchangé' },
+      { k: 'American Express',     w: 17.4, v: 46,    t: '152 M',  mv: 'flat', n: 'inchangé' },
+      { k: 'Coca-Cola',            w: 11.6, v: 30,    t: '400 M',  mv: 'flat', n: 'inchangé' },
+      { k: 'Bank of America',      w: 9.5,  v: 25,    t: '514 M',  mv: 'flat', n: 'inchangé' },
       { k: 'Chevron',              w: 6.6,  v: 18,    t: '84 M',   mv: 'down', n: '−35 %' },
-      { k: 'Occidental (commun)',  w: 6.5,  v: 17,    t: '265 M',  mv: 'flat', n: '—' },
+      { k: 'Occidental (commun)',  w: 6.5,  v: 17,    t: '265 M',  mv: 'flat', n: 'inchangé' },
       { k: 'Alphabet A + C',       w: 6.3,  v: 16.6,  t: '54 + 3,6 M', mv: 'up', n: '+203 %, classe C nouvelle' },
-      { k: 'Chubb',                w: 4.2,  v: 11,    t: '34 M',   mv: 'flat', n: '—' },
-      { k: "Moody's",              w: 4.1,  v: 11,    t: '25 M',   mv: 'flat', n: '—' },
-      { k: 'Kraft Heinz',          w: 2.8,  v: 7.3,   t: '326 M',  mv: 'flat', n: '—' },
+      { k: 'Chubb',                w: 4.2,  v: 11,    t: '34 M',   mv: 'flat', n: 'inchangé' },
+      { k: "Moody's",              w: 4.1,  v: 11,    t: '25 M',   mv: 'flat', n: 'inchangé' },
+      { k: 'Kraft Heinz',          w: 2.8,  v: 7.3,   t: '326 M',  mv: 'flat', n: 'inchangé' },
       { k: 'DaVita',               w: 1.8,  v: 4.6,   t: '30 M',   mv: 'down', n: '−5 %' },
-      { k: 'Kroger',               w: 1.4,  v: 3.6,   t: '50 M',   mv: 'flat', n: '—' },
-      { k: 'SiriusXM',             w: 1.1,  v: 2.9,   t: '125 M',  mv: 'flat', n: '—' },
+      { k: 'Kroger',               w: 1.4,  v: 3.6,   t: '50 M',   mv: 'flat', n: 'inchangé' },
+      { k: 'SiriusXM',             w: 1.1,  v: 2.9,   t: '125 M',  mv: 'flat', n: 'inchangé' },
       { k: 'Delta Air Lines',      w: 1.0,  v: 2.6,   t: '40 M',   mv: 'new',  n: 'NOUVEAU' },
-      { k: 'VeriSign',             w: 0.8,  v: 2.2,   t: '9,0 M',  mv: 'flat', n: '—' },
-      { k: 'Capital One',          w: 0.5,  v: 1.3,   t: '7,2 M',  mv: 'flat', n: '—' },
+      { k: 'VeriSign',             w: 0.8,  v: 2.2,   t: '9,0 M',  mv: 'flat', n: 'inchangé' },
+      { k: 'Capital One',          w: 0.5,  v: 1.3,   t: '7,2 M',  mv: 'flat', n: 'inchangé' },
       { k: 'New York Times',       w: 0.5,  v: 1.3,   t: '15 M',   mv: 'up',   n: '+198 %' },
-      { k: 'Ally Financial',       w: 0.4,  v: 1.1,   t: '29 M',   mv: 'flat', n: '—' },
+      { k: 'Ally Financial',       w: 0.4,  v: 1.1,   t: '29 M',   mv: 'flat', n: 'inchangé' },
       { k: 'Liberty Live C',       w: 0.4,  v: 0.996, t: '11 M',   mv: 'down', n: '−3 %' },
       { k: 'Lennar A',             w: 0.3,  v: 0.877, t: '10 M',   mv: 'up',   n: '+43 %' },
       { k: 'Nucor',                w: 0.3,  v: 0.661, t: '3,9 M',  mv: 'down', n: '−39 %' },
-      { k: 'Liberty Live A',       w: 0.2,  v: 0.457, t: '5,0 M',  mv: 'flat', n: '—' },
-      { k: 'Louisiana-Pacific',    w: 0.2,  v: 0.412, t: '5,7 M',  mv: 'flat', n: '—' },
+      { k: 'Liberty Live A',       w: 0.2,  v: 0.457, t: '5,0 M',  mv: 'flat', n: 'inchangé' },
+      { k: 'Louisiana-Pacific',    w: 0.2,  v: 0.412, t: '5,7 M',  mv: 'flat', n: 'inchangé' },
       { k: 'Constellation Brands', w: 0.04, v: 0.095, t: '633 k',  mv: 'down', n: '−95 %' },
-      { k: 'NVR',                  w: 0.03, v: 0.073, t: '11 k',   mv: 'flat', n: '—' },
+      { k: 'NVR',                  w: 0.03, v: 0.073, t: '11 k',   mv: 'flat', n: 'inchangé' },
       { k: "Macy's",               w: 0.02, v: 0.055, t: '3,0 M',  mv: 'new',  n: 'NOUVEAU' },
       { k: 'Lennar B',             w: 0.01, v: 0.020, t: '238 k',  mv: 'up',   n: '+31 %' },
-      { k: 'Jefferies',            w: 0.01, v: 0.018, t: '434 k',  mv: 'flat', n: '—' }
+      { k: 'Jefferies',            w: 0.01, v: 0.018, t: '434 k',  mv: 'flat', n: 'inchangé' }
     ]
   };
 
   /* Chaque définition est écrite pour quelqu'un qui n'a jamais lu un bilan. */
   var GLOSSARY = {
-    '13F': ['Formulaire 13F', "La liste des actions américaines détenues par un gros investisseur, qu'il doit publier tous les trimestres. Elle donne les noms et les montants — mais uniquement pour les titres cotés aux États-Unis, et sans jamais dire à quelle date ni à quel prix les achats ont été faits."],
+    '13F': ['Formulaire 13F', "La liste des actions américaines détenues par un gros investisseur, qu'il doit publier tous les trimestres. Elle donne les noms et les montants, mais uniquement pour les titres cotés aux États-Unis, et sans jamais dire à quelle date ni à quel prix les achats ont été faits."],
     '10Q': ['Formulaire 10-Q', "Le bulletin financier trimestriel d'une entreprise cotée : ce qu'elle possède, ce qu'elle doit, ce qu'elle a gagné. On y lit combien Berkshire a acheté et vendu d'actions au total, mais jamais le nom des sociétés concernées."],
     '424B5': ['Prospectus 424B5', "Le document déposé quand une entreprise émet de nouvelles actions. C'est lui qui donne les conditions exactes : combien de titres, à quel prix, par quel intermédiaire."],
     'droits': ["Droits d'enregistrement", "L'engagement pris par l'entreprise de faire officiellement enregistrer les actions vendues, ce qui permet à l'acheteur de les revendre librement plus tard. Sans cela, Berkshire se retrouverait avec des titres difficiles à céder."],
     'net': ['Acheteur net / vendeur net', "On additionne tous les achats du trimestre, on retire toutes les ventes. Si le solde est positif, on est « acheteur net » : on a mis plus d'argent sur le marché qu'on n'en a retiré. S'il est négatif, c'est l'inverse."],
     'pvr': ['Plus-value imposable', "Le gain réellement encaissé quand on vend un titre plus cher qu'on ne l'a payé. Contrairement au gain « sur le papier », celui-ci déclenche immédiatement l'impôt."],
-    'pvl': ['Plus-value latente', "Le gain existe, mais seulement sur le papier : le titre vaut plus cher qu'à l'achat et on ne l'a pas vendu. Aucun impôt n'est dû tant qu'on ne vend pas — mais le gain peut aussi s'évaporer si le cours redescend."],
-    'idiff': ['Impôt différé', "Une facture d'impôt déjà inscrite dans les comptes, mais pas encore payée, parce que l'événement qui la déclenche — la vente — n'a pas eu lieu. Berkshire en porte 90,2 milliards : c'est ce que coûterait, en gros, la sortie de ses positions."],
+    'pvl': ['Plus-value latente', "Le gain existe, mais seulement sur le papier : le titre vaut plus cher qu'à l'achat et on ne l'a pas vendu. Aucun impôt n'est dû tant qu'on ne vend pas, mais le gain peut aussi s'évaporer si le cours redescend."],
+    'idiff': ['Impôt différé', "Une facture d'impôt déjà inscrite dans les comptes, mais pas encore payée, parce que l'événement qui la déclenche, la vente, n'a pas eu lieu. Berkshire en porte 90,2 milliards : c'est ce que coûterait, en gros, la sortie de ses positions."],
     'bt': ['Bon du Trésor', "Un prêt à très court terme consenti à l'État américain. C'est considéré comme le placement le plus sûr au monde ; en échange, il ne rapporte que le taux d'intérêt du moment, sans aucune croissance."],
     'cp': ['Capitaux propres', "Ce qui reste à l'entreprise une fois toutes ses dettes remboursées. C'est la mesure de ce qui appartient réellement aux actionnaires."],
     'bop': ['Bénéfice opérationnel', "Ce que gagnent vraiment les entreprises du groupe par leur activité : le chemin de fer, l'énergie, l'assurance, les usines. On en exclut la variation de valeur des actions détenues, qui n'est pas de l'argent encaissé."],
     'souscr': ['Résultat de souscription', "Le métier de base d'un assureur : les primes encaissées, moins les sinistres remboursés et les frais. C'est différent de ce que l'assureur gagne en plaçant l'argent qu'il détient en attendant."],
-    'mee': ['Mise en équivalence', "Une façon de comptabiliser une participation quand on détient une part importante d'une société — en général plus de 20 % — sans la contrôler. Elle apparaît au bilan à une valeur calculée, et non à son cours de Bourse."],
+    'mee': ['Mise en équivalence', "Une façon de comptabiliser une participation quand on détient une part importante d'une société, en général plus de 20 %, sans la contrôler. Elle apparaît au bilan à une valeur calculée, et non à son cours de Bourse."],
     'shosha': ['Sogo shosha', "Les grandes maisons de négoce japonaises. Ce sont des conglomérats qui achètent, transportent et financent à peu près tout : matières premières, énergie, alimentation, industrie. Buffett les décrit comme « gérées d'une manière assez similaire à Berkshire elle-même »."],
-    'pref': ['Action préférentielle', "Un titre à mi-chemin entre l'action et l'obligation : il verse un revenu fixe et garanti — ici 8 % par an — et passe avant les actions ordinaires en cas de problème, mais ne profite pas de la hausse du cours."],
-    'warrant': ['Bon de souscription', "Le droit — jamais l'obligation — d'acheter une action à un prix fixé à l'avance. Si le cours dépasse ce prix, le bon devient rentable ; sinon on ne l'exerce pas et on ne perd rien de plus."],
+    'pref': ['Action préférentielle', "Un titre à mi-chemin entre l'action et l'obligation : il verse un revenu fixe et garanti, ici 8 % par an, et passe avant les actions ordinaires en cas de problème, mais ne profite pas de la hausse du cours."],
+    'warrant': ['Bon de souscription', "Le droit, jamais l'obligation, d'acheter une action à un prix fixé à l'avance. Si le cours dépasse ce prix, le bon devient rentable ; sinon on ne l'exerce pas et on ne perd rien de plus."],
     'pp': ['Placement privé', "Vendre des actions directement à un seul investisseur, sans passer par la Bourse. C'est beaucoup plus rapide et discret, mais l'acheteur exige généralement un rabais sur le cours du jour en échange."],
     'conglo': ['Conglomérat', "Un groupe qui rassemble des entreprises de métiers sans rapport entre eux. Berkshire possède à la fois un chemin de fer, des assureurs, des fabricants de meubles et une compagnie d'électricité."],
     'vi': ['Valeur intrinsèque', "Ce que l'entreprise vaut vraiment selon ses dirigeants, indépendamment de ce que le marché en dit un jour donné. La règle de Berkshire : ne racheter ses propres actions que si le cours est en dessous de cette valeur."],
-    'deprec': ['Dépréciation', "Reconnaître comptablement qu'un actif vaut durablement moins que ce qu'on a payé, et inscrire la perte dans les comptes. Berkshire dit ne pas y être obligé pour Kraft Heinz — tout en laissant la porte ouverte."],
+    'deprec': ['Dépréciation', "Reconnaître comptablement qu'un actif vaut durablement moins que ce qu'on a payé, et inscrire la perte dans les comptes. Berkshire dit ne pas y être obligé pour Kraft Heinz, tout en laissant la porte ouverte."],
     'vcpa': ['Valeur comptable par action', "Ce que l'entreprise possède réellement, une fois ses dettes déduites, divisé par le nombre d'actions. C'est l'indicateur que Buffett a utilisé toute sa vie pour se comparer au marché."],
     'cout': ["Coût d'opportunité", "Ce que vous perdez en ne faisant pas autre chose. Laisser 325 milliards en placements sans risque ne coûte presque rien tant que les taux sont élevés ; dès qu'ils baissent, l'inaction devient une perte mesurable."]
   };
@@ -2197,7 +2187,7 @@ footer.colophon strong { color: var(--ink); }
       '<rect width="6" height="6" fill="' + color + '"/>' +
       '<line x1="0" y1="0" x2="0" y2="6" stroke="' + C.paper + '" stroke-width="2.2"/></pattern></defs>';
   }
-  /* Hachure ouverte : réservée aux montants dérivés ou non déclarés — la forme
+  /* Hachure ouverte : réservée aux montants dérivés ou non déclarés : la forme
      reste lisible mais « vide », et un libellé sombre y garde son contraste. */
   function hatchOpen(id, color) {
     /* Le trait est centré dans la tuile : posé sur x=0 il serait écrêté de
@@ -2214,7 +2204,7 @@ footer.colophon strong { color: var(--ink); }
      --------------------------------------------------------------------- */
   var CHARTS = {};
 
-  /* 3.1 — Séquence des 14 trimestres -------------------------------------- */
+  /* 3.1 · Séquence des 14 trimestres -------------------------------------- */
   CHARTS.streak = function (W) {
     var H = 200, mid = 108, n = 15;
     var pad = 8, gap = 3;
@@ -2227,7 +2217,7 @@ footer.colophon strong { color: var(--ink); }
       var x = pad + i * (bw + gap);
       s += rrect(x, mid + 1, bw, heights[i], 3, 'url(#h-streak)',
         ' class="bar-v-d" style="transition-delay:' + (i * 42) + 'ms"' +
-        tipAttr('Trimestre de ventes nettes', ['Sens du flux : sortie', 'Séquence — montant non détaillé ici']));
+        tipAttr('Trimestre de ventes nettes', ['Sens du flux : sortie', 'Séquence, montant non détaillé ici']));
     }
     var lx = pad + 14 * (bw + gap);
     s += rrect(lx, mid - 84, bw, 84, 3, C.s1,
@@ -2240,7 +2230,7 @@ footer.colophon strong { color: var(--ink); }
     return s + '</svg>';
   };
 
-  /* 3.2 — Achats / ventes ------------------------------------------------- */
+  /* 3.2 · Achats / ventes ------------------------------------------------- */
   CHARTS.flux = function (W) {
     var H = 320, mT = 34, mB = 46, mL = 40, mR = 8;
     var ph = H - mT - mB, pw = W - mL - mR;
@@ -2259,10 +2249,10 @@ footer.colophon strong { color: var(--ink); }
       var xa = cx - bw - inner / 2, xv = cx + inner / 2;
       s += rrect(xa, y(d.achats), bw, mT + ph - y(d.achats), 4, C.s1,
         ' class="bar-v" style="transition-delay:' + (i * 130) + 'ms"' +
-        tipAttr(d.q + ' — Achats', [nf(d.achats, 0) + ' M$']));
+        tipAttr(d.q + ' · Achats', [nf(d.achats, 0) + ' M$']));
       s += rrect(xv, y(d.ventes), bw, mT + ph - y(d.ventes), 4, 'url(#h-flux)',
         ' class="bar-v" style="transition-delay:' + (i * 130 + 90) + 'ms"' +
-        tipAttr(d.q + ' — Ventes', [nf(d.ventes, 0) + ' M$']));
+        tipAttr(d.q + ' · Ventes', [nf(d.ventes, 0) + ' M$']));
       s += txt(xa + bw / 2, y(d.achats) - 7, nf(d.achats / 1000, 1), { size: 12, weight: 700, fill: C.s1, anchor: 'middle', mono: true, cls: 'fade' });
       s += txt(xv + bw / 2, y(d.ventes) - 7, nf(d.ventes / 1000, 1), { size: 12, weight: 700, fill: C.s3, anchor: 'middle', mono: true, cls: 'fade' });
       s += txt(cx, H - mB + 20, d.q, { size: 12, weight: 700, fill: C.ink, anchor: 'middle' });
@@ -2282,7 +2272,7 @@ footer.colophon strong { color: var(--ink); }
     return s + '</svg>';
   };
 
-  /* 3.3 — Rachats d'actions ---------------------------------------------- */
+  /* 3.3 · Rachats d'actions ---------------------------------------------- */
   CHARTS.buyback = function (W) {
     var H = 260, mT = 26, mB = 54, mL = 44, mR = 10;
     var ph = H - mT - mB, pw = W - mL - mR, max = 5000;
@@ -2313,7 +2303,7 @@ footer.colophon strong { color: var(--ink); }
     return s + '</svg>';
   };
 
-  /* 3.4 — Trésorerie brute vs ajustée ------------------------------------ */
+  /* 3.4 · Trésorerie brute vs ajustée ------------------------------------ */
   CHARTS.cash = function (W) {
     var narrow = W < 430;
     var H = 250, mT = 30, mB = 52, mL = narrow ? 34 : 46, mR = narrow ? 8 : 92;
@@ -2331,11 +2321,11 @@ footer.colophon strong { color: var(--ink); }
       /* Base = net réel (plein) ; segment supérieur = achats non dénoués (hachuré) */
       s += rrect(x, y(d.net), bw, mT + ph - y(d.net), 4, C.s1,
         ' class="bar-v" style="transition-delay:' + (i * 120) + 'ms"' +
-        tipAttr(d.d + ' — trésorerie nette', [nf(d.net, 1) + ' Md$', 'à périmètre comparable']));
+        tipAttr(d.d + ' · trésorerie nette', [nf(d.net, 1) + ' Md$', 'à périmètre comparable']));
       var hSeg = y(d.net) - y(d.brut);
       s += rrect(x, y(d.brut), bw, hSeg - 2, 3, 'url(#h-cash)',
         ' class="fade" style="transition-delay:' + (i * 120 + 380) + 'ms"' +
-        tipAttr(d.d + ' — bons du Trésor non dénoués', [nf(d.nonDenoue, 1) + ' Md$', 'achetés, pas encore payés']));
+        tipAttr(d.d + ' · bons du Trésor non dénoués', [nf(d.nonDenoue, 1) + ' Md$', 'achetés, pas encore payés']));
       s += txt(cx, y(d.brut) - 9, nf(d.brut, 1) + ' brut', { size: 11.5, weight: 700, fill: C.ink3, anchor: 'middle', mono: true, cls: 'fade' });
       s += txt(cx, y(d.net) + 18, nf(d.net, 1), { size: 13, weight: 700, fill: '#ffffff', anchor: 'middle', mono: true, cls: 'fade' });
       s += txt(cx, H - mB + 20, d.d, { size: 11.5, weight: 700, fill: C.ink, anchor: 'middle' });
@@ -2356,7 +2346,7 @@ footer.colophon strong { color: var(--ink); }
     return s + '</svg>';
   };
 
-  /* 3.5 — Coût / plus-values latentes ------------------------------------ */
+  /* 3.5 · Coût / plus-values latentes ------------------------------------ */
   CHARTS.unrealized = function (W) {
     var H = 190, mL = 4, mR = 4, mT = 44;
     var pw = W - mL - mR, total = 323.8, bh = 54;
@@ -2372,7 +2362,7 @@ footer.colophon strong { color: var(--ink); }
     s += txt(mL + wCost + 12, mT + bh / 2 + 5, '217,3 Md$ de plus-values latentes', {
       size: 14, weight: 700, fill: C.seq[5], mono: false, cls: 'fade'
     });
-    s += txt(mL, mT - 22, 'Juste valeur au 30 juin 2026 — 323,8 Md$', { size: 12, weight: 700, fill: C.ink });
+    s += txt(mL, mT - 22, 'Juste valeur au 30 juin 2026 : 323,8 Md$', { size: 12, weight: 700, fill: C.ink });
     s += txt(mL, mT - 8, 'Coût de revient', { size: 10, fill: C.ink3 });
     /* Passif d'impôt, au crayon */
     var ty = mT + bh + 16;
@@ -2380,13 +2370,13 @@ footer.colophon strong { color: var(--ink); }
       '<path d="M' + (mL + wCost) + ' ' + ty + ' L' + (mL + wCost) + ' ' + (ty + 9) +
       ' L' + (mL + wCost + x(90.2) - mL) + ' ' + (ty + 9) + ' L' + (mL + wCost + x(90.2) - mL) + ' ' + ty +
       '" fill="none" stroke="' + C.pencil + '" stroke-width="2" filter="url(#wobble-soft)"/>' +
-      txt(mL + wCost + 8, ty + 26, "90,2 Md$ d'impôts, principalement différés — le prix de sortie", {
+      txt(mL + wCost + 8, ty + 26, "90,2 Md$ d'impôts, principalement différés : le prix de sortie", {
         size: 11.5, weight: 700, fill: C.pencil
       }) + '</g>';
     return s + '</svg>';
   };
 
-  /* 3.6 — Portefeuille 13F ------------------------------------------------ */
+  /* 3.6 · Portefeuille 13F ------------------------------------------------ */
   CHARTS.portfolio = function (W) {
     var lw = W < 520 ? 108 : 168, vw = W < 520 ? 44 : 62, rh = W < 520 ? 21 : 23;
     var mR = 4, pw = W - lw - vw - mR - 8;
@@ -2419,7 +2409,7 @@ footer.colophon strong { color: var(--ink); }
     return s + '</svg>';
   };
 
-  /* 3.7 — Top 5 ----------------------------------------------------------- */
+  /* 3.7 · Top 5 ----------------------------------------------------------- */
   CHARTS.top5 = function (W, state) {
     var d = (state && state.d) || 'q1';
     return d === 'q1' ? top5Q1(W) : top5Q2(W);
@@ -2428,7 +2418,7 @@ footer.colophon strong { color: var(--ink); }
     var lw = W < 480 ? 118 : 160, rh = 42, H = 5 * rh + 58;
     var pw = W - lw - 62, max = 58;
     var s = svgOpen(W, H);
-    s += txt(0, 12, 'Valeur de marché au 31 mars 2026, en Md$ — classement déclaré', { size: 10.5, fill: C.ink3 });
+    s += txt(0, 12, 'Valeur de marché au 31 mars 2026, en Md$, classement déclaré', { size: 10.5, fill: C.ink3 });
     DATA.top5q1.forEach(function (d, i) {
       var y0 = 26 + i * rh, bh = 26;
       var bwid = Math.max(3, (d.v / max) * pw);
@@ -2448,7 +2438,7 @@ footer.colophon strong { color: var(--ink); }
   function top5Q2(W) {
     var rh = 44, H = 5 * rh + 96;
     var s = svgOpen(W, H);
-    s += txt(0, 12, 'Au 30 juin 2026 — le 10-Q liste les cinq lignes par ORDRE ALPHABÉTIQUE', {
+    s += txt(0, 12, 'Au 30 juin 2026, le 10-Q liste les cinq lignes par ORDRE ALPHABÉTIQUE', {
       size: 10.5, weight: 700, fill: C.pencil
     });
     s += txt(0, 27, 'Aucun rang, aucun montant n’est déclaré. Les plaques ci-dessous ne sont pas un classement.', {
@@ -2457,7 +2447,7 @@ footer.colophon strong { color: var(--ink); }
     DATA.top5q2.forEach(function (k, i) {
       var y0 = 40 + i * rh, isNew = k === 'Alphabet';
       s += '<g class="fade" style="transition-delay:' + (i * 90) + 'ms"' +
-        tipAttr(k, ['Dans le top 5 au 30 juin 2026', isNew ? 'Entrée — après le placement du 4 juin' : 'Déjà présent au 31 mars']) + '>';
+        tipAttr(k, ['Dans le top 5 au 30 juin 2026', isNew ? 'Entrée, après le placement du 4 juin' : 'Déjà présent au 31 mars']) + '>';
       s += rrect(0, y0, W, 34, 3, isNew ? 'rgba(19,122,70,.16)' : 'rgba(19,122,70,.06)');
       s += '<rect x="0" y="' + y0 + '" width="4" height="34" fill="' + (isNew ? C.s1 : C.rule) + '"/>';
       s += txt(16, y0 + 22, k, { size: 14, weight: 700, fill: C.ink });
@@ -2479,7 +2469,7 @@ footer.colophon strong { color: var(--ink); }
     return s + '</svg>';
   }
 
-  /* 3.8 — Montée d'Alphabet ---------------------------------------------- */
+  /* 3.8 · Montée d'Alphabet ---------------------------------------------- */
   CHARTS.alphabet = function (W) {
     var H = 280, mT = 34, mB = 62, mL = 40, mR = 10;
     var ph = H - mT - mB, pw = W - mL - mR, max = 30;
@@ -2511,7 +2501,7 @@ footer.colophon strong { color: var(--ink); }
     return s + '</svg>';
   };
 
-  /* 3.9 — Plancher de trésorerie ----------------------------------------- */
+  /* 3.9 · Plancher de trésorerie ----------------------------------------- */
   CHARTS.floor = function (W) {
     var H = 152, mL = 4, mR = 4, mT = 56, bh = 46;
     var pw = W - mL - mR, max = 364.7;
@@ -2523,7 +2513,7 @@ footer.colophon strong { color: var(--ink); }
       tipAttr('Plancher déclaré', ['30 Md$', 'Berkshire ne rachètera pas en deçà']));
     s += '<line x1="' + xf + '" y1="' + (mT - 12) + '" x2="' + xf + '" y2="' + (mT + bh + 12) +
       '" stroke="' + C.pencil + '" stroke-width="2" class="fade" style="transition-delay:.5s" filter="url(#wobble-soft)"/>';
-    s += txt(mL, mT - 34, 'Trésorerie nette au 30 juin — 364,7 Md$', { size: 12, weight: 700, fill: C.ink });
+    s += txt(mL, mT - 34, 'Trésorerie nette au 30 juin : 364,7 Md$', { size: 12, weight: 700, fill: C.ink });
     s += txt(Math.max(xf + 8, 40), mT - 12, 'plancher 30 Md$', { size: 10.5, weight: 700, fill: C.pencil, cls: 'fade' });
     s += txt(mL + pw, mT + bh + 26, 'marge de manœuvre théorique : 334,7 Md$', {
       size: 12, weight: 700, fill: C.s1, anchor: 'end', cls: 'fade'
@@ -2531,7 +2521,7 @@ footer.colophon strong { color: var(--ink); }
     return s + '</svg>';
   };
 
-  /* 3.10 — Variation du coût par bloc ------------------------------------ */
+  /* 3.10 · Variation du coût par bloc ------------------------------------ */
   CHARTS.blocks = function (W) {
     var narrow = W < 520;
     var lw = narrow ? 0 : 190, rh = narrow ? 78 : 56;
@@ -2564,12 +2554,12 @@ footer.colophon strong { color: var(--ink); }
     return s + '</svg>';
   };
 
-  /* 3.11 — Ventilation du capital ---------------------------------------- */
+  /* 3.11 · Ventilation du capital ---------------------------------------- */
   CHARTS.deploy = function (W) {
     var total = 26.6, bh = 56, mT = 46, H = mT + bh + 116;
     var s = svgOpen(W, H) + hatchOpen('h-dep', C.pencil);
     var x = 0;
-    s += txt(0, 16, 'Capital engagé au T2 2026 — 26,6 Md$ identifiés', { size: 12, weight: 700, fill: C.ink });
+    s += txt(0, 16, 'Capital engagé au T2 2026 : 26,6 Md$ identifiés', { size: 12, weight: 700, fill: C.ink });
     s += txt(0, 31, 'La barre hachurée est la seule inconnue du dossier.', { size: 10.5, fill: C.ink3 });
     DATA.deploy.forEach(function (d, i) {
       var wpx = (d.v / total) * W - 2;
@@ -2597,7 +2587,7 @@ footer.colophon strong { color: var(--ink); }
     return s + '</svg>';
   };
 
-  /* 3.12 — Berkshire vs S&P 500 ------------------------------------------ */
+  /* 3.12 · Berkshire vs S&P 500 ------------------------------------------ */
   CHARTS.perf = function (W) {
     var narrow = W < 560;
     var H = narrow ? 400 : 320, mT = 30, mB = narrow ? 76 : 60, mL = 34, mR = 6;
@@ -2616,10 +2606,10 @@ footer.colophon strong { color: var(--ink); }
       var beats = d.brk >= d.sp;
       s += rrect(xb, y(d.brk), bw, mT + ph - y(d.brk), 3, C.s1,
         ' class="bar-v" style="transition-delay:' + (i * 90) + 'ms"' +
-        tipAttr('Berkshire — ' + d.k + ', ' + d.p, [nf(d.brk, 1) + ' %/an']));
+        tipAttr('Berkshire · ' + d.k + ', ' + d.p, [nf(d.brk, 1) + ' %/an']));
       s += rrect(xs, y(d.sp), bw, mT + ph - y(d.sp), 3, C.s2,
         ' class="bar-v" style="transition-delay:' + (i * 90 + 60) + 'ms"' +
-        tipAttr('S&P 500 TR — ' + d.k + ', ' + d.p, [nf(d.sp, 1) + ' %/an']));
+        tipAttr('S&P 500 TR · ' + d.k + ', ' + d.p, [nf(d.sp, 1) + ' %/an']));
       s += txt(xb + bw / 2, y(d.brk) - 6, nf(d.brk, 1), { size: 10.5, weight: 700, mono: true, fill: C.s1, anchor: 'middle', cls: 'fade' });
       s += txt(xs + bw / 2, y(d.sp) - 6, nf(d.sp, 1), { size: 10.5, weight: 700, mono: true, fill: C.s2, anchor: 'middle', cls: 'fade' });
       wrapLines(d.k, narrow ? 13 : 18).forEach(function (ln, j) {
@@ -2737,7 +2727,7 @@ footer.colophon strong { color: var(--ink); }
         esc(d.n) + '</td></tr>';
     }).join('');
     host.innerHTML = '<div class="tablewrap"><table class="ledger">' +
-      '<caption>13F au 31 mars 2026 — 28 lignes, 263,1 Md$</caption>' +
+      '<caption>13F au 31 mars 2026 : 28 lignes, 263,1 Md$</caption>' +
       '<thead><tr><th scope="col">Ligne</th><th scope="col">Poids</th><th scope="col">Md$</th>' +
       '<th scope="col">Titres</th><th scope="col">Mouvement T1</th></tr></thead><tbody>' +
       rows + '</tbody></table></div>';
@@ -3022,7 +3012,7 @@ footer.colophon strong { color: var(--ink); }
         '<p class="legal-line">' + esc(RAPPELS[i % RAPPELS.length]) + '</p>' +
         '<a class="sheet__next" href="' + href + '">' +
         '<span><span class="lab">' + lab + '</span><b>' +
-        (next ? esc(num) + ' — ' : '') + esc(titre) + '</b></span>' +
+        (next ? esc(num) + ' · ' : '') + esc(titre) + '</b></span>' +
         '<span class="arrow" aria-hidden="true">→</span></a>';
       sec.appendChild(foot);
     });

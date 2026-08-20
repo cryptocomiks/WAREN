@@ -1,5 +1,5 @@
 /* =========================================================================
-   BERKSHIRE HATHAWAY — DOSSIER T2 2026
+   BERKSHIRE HATHAWAY · DOSSIER T2 2026
    Feuille de style : papier comptable à bandes vertes + crayon rouge d'auditeur
    ========================================================================= */
 
@@ -32,15 +32,15 @@
   --pencil-soft:   #d9614f;
   --pencil-wash:   rgba(192, 39, 26, 0.09);
 
-  /* Séries catégorielles — validées sur surface #F4F0E1
+  /* Séries catégorielles · validées sur surface #F4F0E1
      (bande L 0.43–0.77, chroma ≥ 0.1, contraste ≥ 3:1, ΔE normal 19.6) */
-  --series-1:      #127a46;   /* vert grand-livre  — achats / positif */
-  --series-2:      #1a5fa8;   /* bleu encre        — tiers / référence */
-  --series-3:      #c0271a;   /* rouge auditeur    — ventes / négatif */
+  --series-1:      #127a46;   /* vert grand-livre  · achats / positif */
+  --series-2:      #1a5fa8;   /* bleu encre        · tiers / référence */
+  --series-3:      #c0271a;   /* rouge auditeur    · ventes / négatif */
   /* Statut réservé : jamais utilisé comme « série 4 », toujours avec icône + libellé */
   --status-warn:   #8a6300;
 
-  /* Rampe séquentielle — une seule teinte, clair → foncé */
+  /* Rampe séquentielle · une seule teinte, clair → foncé */
   --seq-1:         #d3e5d6;
   --seq-2:         #a9cdb2;
   --seq-3:         #74ad8b;
@@ -88,7 +88,7 @@ a { color: var(--ink-green); text-underline-offset: 3px; text-decoration-thickne
 a:hover { color: var(--pencil); }
 :focus-visible { outline: 3px solid var(--pencil); outline-offset: 3px; border-radius: 2px; }
 
-/* Grain papier — une seule couche fixe, peu coûteuse */
+/* Grain papier · une seule couche fixe, peu coûteuse */
 body::before {
   content: "";
   position: fixed; inset: 0;
@@ -102,7 +102,7 @@ body::before {
 }
 
 /* -------------------------------------------------------------------------
-   3. RAIL DE PROGRESSION — trait de crayon rouge en haut de page
+   3. RAIL DE PROGRESSION · trait de crayon rouge en haut de page
    ------------------------------------------------------------------------- */
 .rail {
   position: fixed; top: 0; left: 0; right: 0; height: 5px;
@@ -116,7 +116,7 @@ body::before {
 }
 
 /* -------------------------------------------------------------------------
-   4. NAVIGATION — onglets d'intercalaire
+   4. NAVIGATION · onglets d'intercalaire
    ------------------------------------------------------------------------- */
 .tabs {
   position: sticky; top: 5px; z-index: 50;
@@ -239,7 +239,7 @@ body::before {
 @media (max-width: 880px) { .sheet { scroll-margin-top: 7rem; } }
 .contact { scroll-margin-top: 5.6rem; }
 @media (max-width: 880px) { .contact { scroll-margin-top: 7rem; } }
-/* Perforation latérale — décor, masqué sur petit écran */
+/* Perforation latérale · décor, masqué sur petit écran */
 .sheet::before {
   content: ""; position: absolute; left: 12px; top: 2.2rem; bottom: 2.2rem; width: 12px;
   background-image: radial-gradient(circle at 6px 6px, var(--desk) 5px, transparent 5.6px);
@@ -408,7 +408,7 @@ strong { font-weight: 700; color: var(--ink); }
 .kpi__note { font-size: .84rem; color: var(--ink-2); margin-top: .4rem; line-height: 1.4; }
 
 /* -------------------------------------------------------------------------
-   9. TABLEAUX — vraies bandes vertes (2 lignes vertes / 2 lignes crème)
+   9. TABLEAUX · vraies bandes vertes (2 lignes vertes / 2 lignes crème)
    ------------------------------------------------------------------------- */
 .tablewrap {
   margin: 1.7rem 0; border: 1px solid var(--rule);
@@ -714,7 +714,7 @@ table.ledger td.flag { color: var(--pencil); font-weight: 700; }
 }
 .legal-line::before { content: "⚠"; font-size: .85em; flex: 0 0 auto; }
 
-/* Bandeau permanent sous les onglets — visible à tout moment de la lecture */
+/* Bandeau permanent sous les onglets · visible à tout moment de la lecture */
 .tapeline {
   background: rgba(138, 99, 0, .13);
   border-top: 1px solid rgba(138, 99, 0, .3);
@@ -735,7 +735,7 @@ table.ledger td.flag { color: var(--pencil); font-weight: 700; }
    12a-bis. ENCART PUBLICITAIRE
    Quatrième voix, et la plus importante à distinguer : ce bloc est payé, il
    ne doit jamais pouvoir être confondu avec le contenu éditorial. D'où une
-   identité entièrement à part — bleu encre (jusqu'ici réservé aux
+   identité entièrement à part · bleu encre (jusqu'ici réservé aux
    graphiques), sans-serif, fond distinct, bandeau « Publicité » en tête et
    liseré rayé façon encart détachable de journal.
    ------------------------------------------------------------------------- */
@@ -771,10 +771,6 @@ table.ledger td.flag { color: var(--pencil); font-weight: 700; }
 }
 .promo__body li::before {
   content: "→"; position: absolute; left: 0; color: var(--series-2); font-weight: 800;
-}
-.promo__gift {
-  background: rgba(26,95,168,.10); border-left: 3px solid var(--series-2);
-  padding: .8rem .95rem; font-size: .93rem !important;
 }
 .promo__cta {
   display: inline-flex; align-items: center; gap: .6rem;
@@ -844,7 +840,7 @@ table.ledger td.flag { color: var(--pencil); font-weight: 700; }
 .sheet__next .arrow { font-size: 1.5rem; color: var(--pencil); flex: 0 0 auto; }
 
 /* -------------------------------------------------------------------------
-   12c. NAVIGATION — barre compacte, panneau, retour en haut
+   12c. NAVIGATION · barre compacte, panneau, retour en haut
    ------------------------------------------------------------------------- */
 .skip { position: absolute; left: -9999px; }
 .skip:focus {
@@ -985,7 +981,7 @@ footer.colophon strong { color: var(--ink); }
 }
 
 /* -------------------------------------------------------------------------
-   15. IMPRESSION — c'est un rapport, il doit s'imprimer proprement
+   15. IMPRESSION · c'est un rapport, il doit s'imprimer proprement
    ------------------------------------------------------------------------- */
 @media print {
   body { background: #fff; }

@@ -1,10 +1,10 @@
-# Berkshire Hathaway — Le retournement acheteur du T2 2026
+# Berkshire Hathaway : Le retournement acheteur du T2 2026
 
 Site de rapport financier long format, en français, sur le premier trimestre
 acheteur de Berkshire Hathaway après quatorze trimestres de ventes nettes.
 
 **Parti pris visuel** : listing comptable à bandes vertes, annoté au crayon
-rouge d'auditeur. Le document se déroule progressivement — chaque feuillet, chaque
+rouge d'auditeur. Le document se déroule progressivement : chaque feuillet, chaque
 graphique et chaque annotation apparaît à l'entrée dans le champ de lecture.
 
 **Conformité** : le document répète, à intervalles réguliers, qu'il s'agit
@@ -38,15 +38,15 @@ Dix feuillets et une page de contact :
 
 ## Éléments interactifs
 
-- **Note de bas de page à ouvrir** (§3.3) — le titre de presse, puis le texte
+- **Note de bas de page à ouvrir** (§3.3) : le titre de presse, puis le texte
   du 10-Q qui le contredit et le graphique de réconciliation.
-- **Filtres de portefeuille** — nouvelles / renforcées / réduites / inchangées.
+- **Filtres de portefeuille** : nouvelles / renforcées / réduites / inchangées.
   Les lignes non retenues sont estompées, jamais repeintes : une couleur suit
   toujours la même entité.
-- **Bascule du top 5** — 31 mars (classement déclaré, en barres) contre 30 juin
+- **Bascule du top 5** : 31 mars (classement déclaré, en barres) contre 30 juin
   (ordre alphabétique du 10-Q, en plaques : aucun rang n'est déclaré).
-- **Cartes « pièges »** — cliquer révèle la correction, l'affirmation est raturée.
-- **Glossaire contextuel** — 22 termes définis sans jargon, au survol ou au clic :
+- **Cartes « pièges »** : cliquer révèle la correction, l'affirmation est raturée.
+- **Glossaire contextuel** : 22 termes définis sans jargon, au survol ou au clic :
   13F, 10-Q, plus-value latente, impôt différé, mise en équivalence, sogo shosha,
   bon de souscription, placement privé, valeur intrinsèque, coût d'opportunité…
 
@@ -54,7 +54,7 @@ Dix feuillets et une page de contact :
 
 Le sujet touche à des valeurs cotées : l'avertissement ne doit pas être une
 ligne perdue en pied de page. Il est présent à cinq niveaux, dans une
-troisième voix typographique — l'ambre, déjà réservée au statut d'alerte et
+troisième voix typographique : l'ambre, déjà réservée au statut d'alerte et
 jamais utilisée ailleurs.
 
 1. **Bandeau permanent** sous la navigation, visible à tout instant de la
@@ -63,7 +63,7 @@ jamais utilisée ailleurs.
 2. **Avertissement d'ouverture** sur la couverture, avant tout contenu :
    pas de conseil, aucune société recommandée, faites vos propres
    recherches, risque de perte en capital.
-3. **Rappel au pied de chaque feuillet**, engendré par le script — dix
+3. **Rappel au pied de chaque feuillet**, engendré par le script : dix
    formulations différentes, car un même avertissement répété dix fois à
    l'identique cesse d'être lu.
 4. **Encadrés ciblés** là où le risque de mélecture est le plus fort : la
@@ -81,14 +81,13 @@ des occurrences dans le texte visible.
 ## Encart publicitaire
 
 La couverture porte un **encart affilié Trade Republic**, volontairement doté
-d'une identité visuelle entièrement distincte du dossier — bleu encre,
-sans-serif, fond différent, liseré tireté façon coupon détachable — pour qu'il
+d'une identité visuelle entièrement distincte du dossier : bleu encre,
+sans-serif, fond différent, liseré tireté façon coupon détachable : pour qu'il
 ne puisse jamais être confondu avec le contenu éditorial.
 
-⚠️ **Avant la mise en ligne**, remplacer dans `index.html` la chaîne
-`LIEN-AFFILIE-A-REMPLACER` par le véritable lien de parrainage. **Le test de
-fumée échoue tant que ce n'est pas fait** — c'est volontaire : un encart qui
-promet une offre derrière un lien mort est pire que pas d'encart du tout.
+Le lien de parrainage est `https://trade.re/CryptoComiks`. Le test de fumée
+échoue si ce lien est vidé ou remplacé par un gabarit : un encart qui appelle
+à l'action derrière un lien mort est pire que pas d'encart du tout.
 
 Ce qui est en place côté conformité :
 
@@ -96,19 +95,24 @@ Ce qui est en place côté conformité :
   France pour une promotion rémunérée par un créateur de contenu.
 - **Divulgation explicite** de la rémunération et de son absence d'influence
   sur le dossier.
-- `rel="sponsored nofollow noopener noreferrer"` sur le lien — `sponsored` est
+- `rel="sponsored nofollow noopener noreferrer"` sur le lien : `sponsored` est
   ce que Google exige d'un lien rémunéré ; l'omettre expose à une sanction de
   référencement.
 - **Avertissement de risque** de perte en capital et rappel que le choix d'un
   courtier n'est pas conseillé ici.
-- Mentions d'offre **soumises à conditions et susceptibles d'évoluer**.
+Le test vérifie l'étiquetage, la présence de `rel="sponsored"` et la validité
+du lien.
 
-Le test vérifie l'étiquetage, la présence de `rel="sponsored"` et le
-remplacement du lien.
+## Typographie
+
+Le document n'emploie **aucun tiret cadratin** (—). La ponctuation reste celle
+du français courant : virgule, deux-points, parenthèses, point. Le point médian
+(·) sert de séparateur dans les titres de sous-section et les étiquettes. Le
+test de fumée vérifie l'absence de cadratin dans le texte affiché.
 
 ## Navigation
 
-- **Sommaire d'entrée** — dix feuillets avec un résumé d'une ligne chacun, et le
+- **Sommaire d'entrée** : dix feuillets avec un résumé d'une ligne chacun, et le
   temps de lecture estimé.
 - **Onglets d'intercalaire** en grand écran, qui suivent la lecture ; en petit
   écran, une barre compacte affichant le feuillet courant et ouvrant un panneau
@@ -127,7 +131,7 @@ Douze graphiques SVG construits à la main, sans bibliothèque.
   (bande de clarté, plancher de chroma, contraste ≥ 3:1 et séparation en
   vision normale tous conformes).
 - La paire rouge/vert se situe dans la bande de séparation 6–8 pour le
-  daltonisme : elle porte donc systématiquement un **encodage secondaire** —
+  daltonisme : elle porte donc systématiquement un **encodage secondaire** 
   hachure à 45° et étiquette chiffrée directe sur chaque marque.
 - Deux hachures distinctes : **pleine** pour une valeur réelle (ventes, bons du
   Trésor non dénoués), **ouverte avec contour tireté** pour un montant dérivé
@@ -136,7 +140,7 @@ Douze graphiques SVG construits à la main, sans bibliothèque.
 - L'ambre `#8A6300` est réservé au statut d'avertissement et n'est jamais
   utilisé comme série.
 - Un seul axe par graphique. Niveaux et incréments ne sont jamais mélangés sur
-  le même axe — le placement Alphabet de juin est intégré au niveau cumulé.
+  le même axe : le placement Alphabet de juin est intégré au niveau cumulé.
 - Chaque marque est atteignable au clavier et porte son étiquette accessible ;
   les valeurs figurent aussi en clair dans les tableaux et les légendes.
 
@@ -162,7 +166,7 @@ test/smoke.js           test de fumée (3 écrans + 404 + og + conformité)
 - `prefers-reduced-motion` respecté : tout est affiché d'emblée, sans animation.
 - Feuille d'impression : le dossier sort proprement en papier, tous les blocs
   repliés dépliés.
-- Le document assume un rendu unique — du papier. Pas de mode sombre : la
+- Le document assume un rendu unique : du papier. Pas de mode sombre : la
   métaphore est une feuille de listing.
 
 ## Déployer sur Vercel
@@ -172,7 +176,7 @@ commande de compilation, ni variable d'environnement, ni réglage à saisir.
 
 1. Sur [vercel.com/new](https://vercel.com/new), importer le dépôt
    `cryptocomiks/WAREN`.
-2. Laisser tous les champs tels quels — Vercel lit `vercel.json` et sert la
+2. Laisser tous les champs tels quels : Vercel lit `vercel.json` et sert la
    racine. Le préréglage de framework doit rester **Other**.
 3. Cliquer sur **Deploy**.
 
@@ -181,15 +185,15 @@ sa propre URL de prévisualisation.
 
 Ce que `vercel.json` met en place :
 
-- **URLs propres** — `/` au lieu de `/index.html`.
-- **Cache** — le HTML est toujours revalidé, donc un nouveau déploiement est
+- **URLs propres** : `/` au lieu de `/index.html`.
+- **Cache** : le HTML est toujours revalidé, donc un nouveau déploiement est
   visible tout de suite ; les assets sont mis en cache une heure puis revalidés
   en tâche de fond. Pas de cache immuable : les fichiers gardent le même nom
   d'un déploiement à l'autre, un visiteur de retour resterait bloqué sur
   l'ancienne version.
-- **En-têtes de sécurité** — `nosniff`, `Referrer-Policy`, `X-Frame-Options`,
+- **En-têtes de sécurité** : `nosniff`, `Referrer-Policy`, `X-Frame-Options`,
   `Permissions-Policy`.
-- **Installation neutralisée** — `installCommand` est un simple `echo`, pour que
+- **Installation neutralisée** : `installCommand` est un simple `echo`, pour que
   Vercel ne télécharge pas Playwright (utile en développement seulement) à
   chaque déploiement.
 - **`.vercelignore`** écarte du déploiement les tests, les outils et `dist/`.

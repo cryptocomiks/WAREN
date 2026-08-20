@@ -114,8 +114,10 @@ function check(ok, label, detail) {
           return (a.getAttribute('rel') || '').indexOf('sponsored') !== -1;
         }),
         lienPubNonRenseigne: [].some.call(document.querySelectorAll('.promo a[href]'), function (a) {
-          return /A-REMPLACER/i.test(a.getAttribute('href') || '');
+          var h = a.getAttribute('href') || '';
+          return /A-REMPLACER/i.test(h) || h === '#' || h === '';
         }),
+        cadratins: (document.body.innerText.match(/\u2014/g) || []).length,
         debordement: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         fondBody: getComputedStyle(document.body).backgroundColor
       };
@@ -143,6 +145,10 @@ function check(ok, label, detail) {
       String(etat.mentionsAvis));
     check(etat.mentionsRecherches >= 4, '« faites vos propres recherches » répété',
       String(etat.mentionsRecherches));
+
+    /* Aucun tiret cadratin : la ponctuation reste celle du français courant. */
+    check(etat.cadratins === 0, 'aucun tiret cadratin dans le texte',
+      etat.cadratins ? etat.cadratins + ' trouvé(s)' : '');
 
     /* Publicité : étiquetée, et jamais mise en ligne avec un lien vide. */
     if (etat.encartsPub) {
