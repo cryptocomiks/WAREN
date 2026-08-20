@@ -78,6 +78,34 @@ Le test de fumée vérifie ce dispositif à chaque exécution : présence du
 bandeau, dix rappels de pied, au moins six encadrés, et un décompte minimal
 des occurrences dans le texte visible.
 
+## Encart publicitaire
+
+La couverture porte un **encart affilié Trade Republic**, volontairement doté
+d'une identité visuelle entièrement distincte du dossier — bleu encre,
+sans-serif, fond différent, liseré tireté façon coupon détachable — pour qu'il
+ne puisse jamais être confondu avec le contenu éditorial.
+
+⚠️ **Avant la mise en ligne**, remplacer dans `index.html` la chaîne
+`LIEN-AFFILIE-A-REMPLACER` par le véritable lien de parrainage. **Le test de
+fumée échoue tant que ce n'est pas fait** — c'est volontaire : un encart qui
+promet une offre derrière un lien mort est pire que pas d'encart du tout.
+
+Ce qui est en place côté conformité :
+
+- Bandeau **« Publicité · Collaboration commerciale »**, la mention exigée en
+  France pour une promotion rémunérée par un créateur de contenu.
+- **Divulgation explicite** de la rémunération et de son absence d'influence
+  sur le dossier.
+- `rel="sponsored nofollow noopener noreferrer"` sur le lien — `sponsored` est
+  ce que Google exige d'un lien rémunéré ; l'omettre expose à une sanction de
+  référencement.
+- **Avertissement de risque** de perte en capital et rappel que le choix d'un
+  courtier n'est pas conseillé ici.
+- Mentions d'offre **soumises à conditions et susceptibles d'évoluer**.
+
+Le test vérifie l'étiquetage, la présence de `rel="sponsored"` et le
+remplacement du lien.
+
 ## Navigation
 
 - **Sommaire d'entrée** — dix feuillets avec un résumé d'une ligne chacun, et le

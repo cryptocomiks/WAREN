@@ -105,6 +105,17 @@ function check(ok, label, detail) {
         rappelsPied: document.querySelectorAll('.legal-line').length,
         mentionsAvis: (document.body.innerText.match(/conseil en investissement/gi) || []).length,
         mentionsRecherches: (document.body.innerText.match(/propres recherches/gi) || []).length,
+        encartsPub: document.querySelectorAll('.promo').length,
+        pubEtiquetee: [].every.call(document.querySelectorAll('.promo'), function (e) {
+          var t = (e.querySelector('.promo__tag') || {}).innerText || '';
+          return /publicit/i.test(t);
+        }),
+        liensPubSponsorises: [].every.call(document.querySelectorAll('.promo a[href]'), function (a) {
+          return (a.getAttribute('rel') || '').indexOf('sponsored') !== -1;
+        }),
+        lienPubNonRenseigne: [].some.call(document.querySelectorAll('.promo a[href]'), function (a) {
+          return /A-REMPLACER/i.test(a.getAttribute('href') || '');
+        }),
         debordement: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         fondBody: getComputedStyle(document.body).backgroundColor
       };
@@ -132,6 +143,15 @@ function check(ok, label, detail) {
       String(etat.mentionsAvis));
     check(etat.mentionsRecherches >= 4, '« faites vos propres recherches » répété',
       String(etat.mentionsRecherches));
+
+    /* Publicité : étiquetée, et jamais mise en ligne avec un lien vide. */
+    if (etat.encartsPub) {
+      check(etat.pubEtiquetee, 'encart publicitaire étiqueté « Publicité »');
+      check(etat.liensPubSponsorises, 'liens rémunérés portant rel=\"sponsored\"');
+      check(!etat.lienPubNonRenseigne,
+        'lien d\'affiliation renseigné',
+        etat.lienPubNonRenseigne ? 'le gabarit LIEN-AFFILIE-A-REMPLACER est encore en place' : '');
+    }
 
     /* Navigation : panneau de sommaire sur les petits écrans */
     if (vp.width <= 880) {

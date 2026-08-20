@@ -732,6 +732,68 @@ table.ledger td.flag { color: var(--pencil); font-weight: 700; }
 }
 
 /* -------------------------------------------------------------------------
+   12a-bis. ENCART PUBLICITAIRE
+   Quatrième voix, et la plus importante à distinguer : ce bloc est payé, il
+   ne doit jamais pouvoir être confondu avec le contenu éditorial. D'où une
+   identité entièrement à part — bleu encre (jusqu'ici réservé aux
+   graphiques), sans-serif, fond distinct, bandeau « Publicité » en tête et
+   liseré rayé façon encart détachable de journal.
+   ------------------------------------------------------------------------- */
+.promo {
+  position: relative;
+  margin: 2.4rem 0;
+  max-width: 46rem;
+  background: #eceef2;
+  border: 2px solid var(--series-2);
+  outline: 2px dashed rgba(26, 95, 168, .45);
+  outline-offset: 6px;
+  font-family: var(--sans);
+  color: #1c2530;
+}
+.promo__tag {
+  margin: 0; padding: .5rem 1.2rem;
+  background: var(--series-2); color: #eef3fa;
+  font-size: .64rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
+  display: flex; flex-wrap: wrap; gap: .3rem .7rem; align-items: center;
+}
+.promo__tag span { opacity: .82; font-weight: 600; letter-spacing: .12em; }
+.promo__body { padding: 1.4rem 1.3rem 1.3rem; }
+.promo__body h3 {
+  font-family: var(--sans); font-size: 1.22rem; font-weight: 800;
+  letter-spacing: -.005em; text-transform: none; color: #12305a;
+  margin: 0 0 .6rem; padding: 0; border: 0;
+}
+.promo__body p { max-width: none; font-size: .96rem; line-height: 1.6; margin: 0 0 .9em; }
+.promo__body ul { list-style: none; padding: 0; margin: 0 0 1.1em; }
+.promo__body li {
+  max-width: none; font-size: .95rem; line-height: 1.5;
+  padding-left: 1.5rem; position: relative; margin-bottom: .5em;
+}
+.promo__body li::before {
+  content: "→"; position: absolute; left: 0; color: var(--series-2); font-weight: 800;
+}
+.promo__gift {
+  background: rgba(26,95,168,.10); border-left: 3px solid var(--series-2);
+  padding: .8rem .95rem; font-size: .93rem !important;
+}
+.promo__cta {
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: var(--series-2); color: #ffffff;
+  font-size: .84rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase;
+  text-decoration: none; padding: .95rem 1.4rem; border: 2px solid var(--series-2);
+  transition: background .15s, color .15s, transform .15s;
+}
+.promo__cta:hover {
+  background: #eceef2; color: #12305a; transform: translateY(-2px);
+}
+.promo__legal {
+  margin: 1.2rem 0 0 !important;
+  padding-top: .9rem; border-top: 1px solid rgba(26,95,168,.3);
+  font-size: .76rem !important; line-height: 1.55 !important; color: #43505f;
+}
+.promo__legal strong { color: #1c2530; }
+
+/* -------------------------------------------------------------------------
    12b. SOMMAIRE
    ------------------------------------------------------------------------- */
 .toc__time {
@@ -938,7 +1000,7 @@ footer.colophon strong { color: var(--ink); }
   .fig__data > :not(summary) { display: block !important; }
   .tablewrap { overflow: visible; box-shadow: none; }
   table.ledger thead th { position: static; }
-  .fig, .box, .kpi, .trap, .plain, .legal, table.ledger tr { break-inside: avoid; }
+  .fig, .box, .kpi, .trap, .plain, .legal, .promo, table.ledger tr { break-inside: avoid; }
   .contact { background: #fff; color: #000; border: 2px solid #000; }
   .contact p, .contact__note { color: #333; }
 }
