@@ -78,37 +78,35 @@ Le test de fumée vérifie ce dispositif à chaque exécution : présence du
 bandeau, dix rappels de pied, au moins six encadrés, et un décompte minimal
 des occurrences dans le texte visible.
 
-## Encart publicitaire
+## Encart partenaire
 
-La couverture porte un **encart affilié Trade Republic**, volontairement doté
-d'une identité visuelle entièrement distincte du dossier : bleu encre,
-sans-serif, fond différent, liseré tireté façon coupon détachable : pour qu'il
-ne puisse jamais être confondu avec le contenu éditorial.
+La couverture porte un **encart affilié Trade Republic**. Il est traité en aplat
+bleu profond, seule surface pleine du document : c'est le bloc qui doit se voir
+au premier coup d'œil, et surtout celui qui ne doit jamais pouvoir être pris
+pour de l'éditorial.
 
-Le lien de parrainage est `https://trade.re/CryptoComiks`. Le test de fumée
-échoue si ce lien est vidé ou remplacé par un gabarit : un encart qui appelle
-à l'action derrière un lien mort est pire que pas d'encart du tout.
+**Le texte de l'encart est fourni par l'annonceur et reproduit tel quel**, y
+compris les caractéristiques chiffrées (tarif à l'ordre, rémunération des
+liquidités, nombre d'instruments). Elles engagent l'annonceur : à vérifier
+auprès de lui quand elles évoluent.
 
 Ce qui est en place côté conformité :
 
-- Bandeau **« Publicité · Collaboration commerciale »**, la mention exigée en
+- Bandeau **« Publicité · Collaboration commerciale »**, la mention attendue en
   France pour une promotion rémunérée par un créateur de contenu.
 - **Divulgation explicite** de la rémunération et de son absence d'influence
   sur le dossier.
 - `rel="sponsored nofollow noopener noreferrer"` sur le lien : `sponsored` est
-  ce que Google exige d'un lien rémunéré ; l'omettre expose à une sanction de
+  ce que Google exige d'un lien rémunéré, l'omettre expose à une sanction de
   référencement.
-- **Avertissement de risque** de perte en capital et rappel que le choix d'un
-  courtier n'est pas conseillé ici.
-Le test vérifie l'étiquetage, la présence de `rel="sponsored"` et la validité
-du lien.
+- **Avertissement de risque** de perte en capital, en évidence sous le bouton.
+- **Réserve sur les caractéristiques annoncées**, susceptibles d'évoluer, avec
+  renvoi au site de l'annonceur.
 
-## Typographie
-
-Le document n'emploie **aucun tiret cadratin** (—). La ponctuation reste celle
-du français courant : virgule, deux-points, parenthèses, point. Le point médian
-(·) sert de séparateur dans les titres de sous-section et les étiquettes. Le
-test de fumée vérifie l'absence de cadratin dans le texte affiché.
+Le lien de parrainage est `https://trade.re/CryptoComiks`. Le test de fumée
+vérifie l'étiquetage, la présence de `rel="sponsored"` et la validité du lien :
+un encart qui appelle à l'action derrière un lien mort est pire que pas
+d'encart du tout.
 
 ## Navigation
 
